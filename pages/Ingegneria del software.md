@@ -51,6 +51,7 @@ Le attività da svolgere per effettuare transizioni di stato di vita in modo eff
 
 Per controllare (anche in automatico) i processi, si hanno bisogno delle loro misurazioni.
 
+Sviluppo != codifica
 Un programma è una composizione di algoritmi più piccoli.
 
 ![](img/Pasted%20image%2020251001100351.png)
@@ -60,6 +61,11 @@ Queste attività si suddividono in task più piccoli per maggiore efficienza.
 
 Quando un progetto è significativo, si associano ai processi un *sistema di qualità* che aiuta a migliorarli e garantire conformità.
 ![](img/Pasted%20image%2020251006093841.png)
+Il controllo di processo richiede di attuare manutenzione migliorativa.
+
+Misurazione  delle risorse richieste
+consuntivo: dopo
+preventivo: prima
 
 **Ciclo di miglioramento continuo (PDSA)**
 1. Plan, guarda cosa hai già fatto e pianifica un miglioramento *localizzato*
@@ -69,25 +75,29 @@ Quando un progetto è significativo, si associano ai processi un *sistema di qua
 
 I processi si pongono come way of working alla base del progetto.
 
-## Modelli di sviluppo
 Concezione -> Sviluppo -> Utilizzo -> Ritiro
-Sono i principali stati di vista di un prodotto SW. 
+Sono i principali stati di vita di un prodotto SW. 
 
+Una fase è tempo istanziato in uno stato o nella transizione di stato.
+
+## Modelli di sviluppo
 Modello è una descrizione oggettiva del fenomeno di interesse (astratto o concreto) dimostrabile come corretto.
 Un modello specifica cosa sia un oggetto, come funzioni e perché fa quel che fa nel modo che lo fa.
 
-| Modello      | Caratteristiche                                |
-| ------------ | ---------------------------------------------- |
-| Cascata      | Rigide fasi sequeziali                         |
-| Incrementale | A più passi                                    |
-| A componenti | Orientata al riuso                             |
-| Agile        | Dinamico, brevi cicli iterativi e incrementali |
+- Iterazione: rivisitazione per correzioni o raffinamenti
+- Incremento: aggiunte successive a un impianto base
+- Prototipo: attività di prova
+- Riuso: copia-incolla, sistematico
 
-Iterazione: rivisitazione per correzioni o raffinamenti
-Incremento: aggiunte successive a un impianto base
-Prototipo: attività di prova
+| Modello                 | Caratteristiche                                |
+| ----------------------- | ---------------------------------------------- |
+| Sequenziale (a cascata) | Rigide fasi sequenziali                        |
+| Incrementale            | A più passi                                    |
+| A componenti            | Orientata al riuso                             |
+| Agile                   | Dinamico, brevi cicli iterativi e incrementali |
 
-**Modello a cascata**
+
+**Modello sequenziale (a cascata)**
 Analisi -> Progettazione -> Realizzazione -> Manutenzione
 Rigido con stretta sequenzialità senza permettere modifiche ai requisiti
 Il risultato viene presentato solo alla fine, mancanza di feedback
@@ -118,17 +128,22 @@ Oggetti
 
 Passi
 1. Sprint planning
-2. Daily scrum: controllo giornaliero di avanzamento
-3. Sprint review: controllo prodotti dello sprint
-4. Sprint retrospective: controllo della qualità dello sprint
+2. Daily scrum: controllo giornaliero di avanzamento, asincrono 
+3. Sprint review: controllo prodotti dello sprint, asincrono
+4. Sprint retrospective: controllo della qualità dello sprint, asincrono
 I riscontri possono essere negativi.
 
-Pianificazione
+Pianificazione workflow
 - stabilire il way of working
 - determinare le risorse disponibili
 - fissare gli obiettivi di avanzamento
   *milestone*: punto nel tempo nel quale ci si aspetta un progresso, individuate all'indietro dall'obiettivo finale alla partenza
   *baseline*: versione approvata di un prodotto che ha raggiunto la milestone
+
+Attenzione : tempi troppo brevi sono inappropriati quando non si è abituati
+tempi troppo lunghi sono inappropriati quindi si è già in marcia
+
+Repo = magazzino e versionamento
 
 calcoliamo l'avanzamento con push
 pianificazione futura secondo l'avanzamento rilevato (preventivo a finire)

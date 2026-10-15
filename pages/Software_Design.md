@@ -3,14 +3,28 @@ title: Software design
 layout: page
 share: true
 ---
+riccardo.cardin@unipd.it
+Accountability: siamo responsabili del nostro codice
+
 Ingegneria deve essere ripetibile
+Scelta strategica e non tattica, duratura
+
+Software factory 1968 (Nasa)
+1. CTO
+2. Analisi
+3. Sviluppo -ingegneri->
+4. Review, ritorna a 3. <-ingegneri-
+5. Produzione, ritorna a 1.
+6. User
+7. Bug, ritorna a 1.
+Dark factory, loop automatizzato
 
 Il problema di OOP è come definiamo gli oggetti. Le inheritance spesso sono da evitare.
-Dipendenza (coupling): A->B, al cambio di B è probabile che anche A deve cambiare. Sono da ridurre il più possibile.
+Dipendenza (coupling): A->B, al cambio di B è probabile che anche A deve cambiare. Sono da ridurre il più possibile (debito tecnico).
 > "Prefer Composition over Inheritance"
 
 - *Dipendenza (relation)*: quando un metodo di A è usato in qualche parte del codice di B. C'è una dipendenza sulla firma del metodo e lo scope è quello del metodo in cui è stato chiamato.
-- *Associazione*: quando B ha un parametro di tipo A. La dipendenza ha una scope in tutta la classe A.
+- *Associazione*: quando B ha un parametro di tipo A. La dipendenza è su tutte le firme dei metodi di A e ha una scope di tutta la classe A.
 - *Aggregazione*: B è creato in A. Si deve gestire la sua creazione e la sua distruzione (composition).
 - *Ereditarietà*: il codice di A è condiviso a B
 
