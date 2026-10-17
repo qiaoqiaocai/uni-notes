@@ -1,11 +1,18 @@
-@import "jekyll-theme-minimal";
+---
+---
+
+@import "{{ site.theme }}";
 
 :root {
-    --body-bg: #EEE2DC;
-    --body-color: #AC3B61;
+    --body-bg: #FFFFFF;
+    --body-color: #000000;
 }
 
 body {
     background-color: var(--body-bg);
     color: var(--body-color) !important;
+}
+
+h3 {
+    color: green;
 }
