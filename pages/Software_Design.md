@@ -29,16 +29,17 @@ Dipendenza (coupling): A->B, al cambio di B è probabile che anche A deve cambia
 - *Ereditarietà*: il codice di A è condiviso a B
 
 I design pattern non sono volti a fornire soluzioni ma a definire meglio un problema e proporre una soluzione definendo pro e contro.
+
 ## Diagrammi di Casi d'uso
 E' una delle metodologie. Un'altra sono le user story.
 
-Si usa l'**UML (Unified Modeling Language)**
+Si usa l'**UML 2 (Unified Modeling Language)**
 Visuale, comprensibili anche da attori senza conoscenze tecniche.
 
 Individuare il dominio:
 	<u>COSA</u> fa parte del *sistema*, tutto ciò su cui si ha responsabilità
 
-Un *attore* interagisce con il sistema per accedere a delle funzionalità (*casi d'uso*). Gli attori hanno ruoli.
+Un *attore* è fuori dal sistema ovvero non è sotto al controllo di esso. Egli interagisce con il sistema per accedere a delle funzionalità (*casi d'uso*). Gli attori hanno ruoli.
 
 A->B
 Precondizione A: stato del sistema prima dello scenario
@@ -50,7 +51,7 @@ IAM (Identity and Access Management)
 > *Caso d'uso:* UC1 - Autenticazione
 > *Attore principale (attivo):* cliente non riconosciuto
 > *Precondizioni:* l'utente non è ancora autenticato presso il sistema
->* Postcondizioni:* l'utente è
+>*Postcondizioni:* l'utente possiede un account presso il sistema distinto da un username e password
 > *Scenario principale:* 
 > 1. L'utente accede al sistema
 > 2. L'utente inserisce l'username
@@ -62,6 +63,7 @@ IAM (Identity and Access Management)
 
 Scenario alternativo: Autenticazione esterna
 Attore secondario: Google, passivo
+Per comunicare usano ubiquitous language da DDD.
 
 ![](img/ruoli-autore.png)
 L'attore principale può avere diversi ruoli che accedono a diversi use case.
@@ -72,20 +74,20 @@ Attenzione: non concentratevi sull'ui, separazione dei casi uso per funzionalit�
 La loro precisione dipende da quanto valore fornisce.
 
 Individuare le classi e le loro proprietà (attributi, metodi).
-Attributo = $$O_{\text{scope}}$$ nome : tipo $[*=>0...n,n\in\mathbb{N}^*]$$
-$$O_{\text{scope}}$$ può essere 
+Attributo = $O_{\text{scope}}$ nome : tipo $[*=>0...n,n\in\mathbb{N}^*]$
+$O_{\text{scope}}$ può essere 
 	+ pubblico, - privato
 	# protetto, ~ default
 
-Metodi = $$O_{\text{scope}}$ nome (attr_nome : tipo) : tipo
+Metodi = $O_{\text{scope}}$ nome (attr_nome : tipo) : tipo
 
 ![](img/diagramma_classi.png)
 Dipendenze 
-$$\dashrightarrow$$ dipendenza semplice
-$$\rightarrow$$ associazione
-$$\lozenge\rightarrow$$ aggregazione; può essere condiviso
-$$\blacklozenge\rightarrow$$ composizione; non può essere condiviso
-$$\lhd-$$ ereditarietà, estensione
+$\dashrightarrow$ dipendenza semplice
+$\rightarrow$ associazione
+$\lozenge\rightarrow$ aggregazione; può essere condiviso
+$\blacklozenge\rightarrow$ composizione; non può essere condiviso
+$\lhd-$ ereditarietà, estensione
 
 Classi astratte non possono essere istanziate. Sono scritte in italico o {abstract}.
 
@@ -100,7 +102,7 @@ Una linea tratteggiata collegata a una associazione rappresenta una relazione. N
 \<T extends E> type bound non può essere rappresentato in UML.
 
 ## Diagrammi di Attività
-Concorrenza è caratteristica del problema.
+Concorrenza è caratteristica del problema, l'ordine non è predeterminato.
 Parallelismo è caratteristica del sistema (runtime). Contiene la concorrenza.
 
 ![](img/diagramma_attivita.png)
@@ -244,7 +246,7 @@ Pull Model
 *Presenter (passive view)*
 - man in the middle
 - osserva il modello
-- View $${-\circ\ \leftarrow\atop\longrightarrow}$$ Presenter -> Model
+- View ${-\circ\ \leftarrow\atop\longrightarrow}$ Presenter -> Model
   modello ritorna un valore al presenter
 - aggiorna e osserva la vista
 

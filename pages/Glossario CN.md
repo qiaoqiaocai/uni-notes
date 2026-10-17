@@ -6,74 +6,74 @@ share: true
 
 ##### 1. Sistema binario e sistema floating-point IEEE754 dei numeri macchina
 Il sistema binario è un sistema di numerazione posizionale in base 2. Un numero intero x può essere rappresentato in base 2 come:
-$$x=\text{sign}(x)\sum\limits_{i=-\infty}^{+\infty}d_{i}\cdot2^{i}$$dove $$d_{i}\in\{0,1\}$$ sono le cifre binarie e $$\text{sign}(x)\in\{-1,+1\}$$ è il segno.
+$$x=\text{sign}(x)\sum\limits_{i=-\infty}^{+\infty}d_{i}\cdot2^{i}$$dove $d_{i}\in\{0,1\}$ sono le cifre binarie e $\text{sign}(x)\in\{-1,+1\}$ è il segno.
 
-Lo standard IEEE754 rappresenta i numeri reali in virgola mobile nella forma normalizzata: $$x=(-1)^{s}\cdot m\cdot2^{e}$$
+Lo standard IEEE754 rappresenta i numeri reali in virgola mobile nella forma normalizzata: $x=(-1)^{s}\cdot m\cdot2^{e}$
 dove
-- $$s\in\{0,1\}$$ è il bit di segno
-- $m=1.f_{1}f_{2}…f_{t}$$ è la mantissa normalizzata con $$1\leq m<2$$
-- e è l’esponente con $$e_{\min}\leq e\leq e_{\max}$$
+- $s\in\{0,1\}$ è il bit di segno
+- $m=1.f_{1}f_{2}…f_{t}$ è la mantissa normalizzata con $1\leq m<2$
+- e è l’esponente con $e_{\min}\leq e\leq e_{\max}$
 - t è il numero di bit per la mantissa frazionaria
 
 Per lo standard IEEE754 double precision:
 - 1 bit per il segno
-- 11 bit per l’esponente ($$e_{\min}=-1022,e_{\max}=1023$)
+- 11 bit per l’esponente ($e_{\min}=-1022,e_{\max}=1023$)
 - 52 bit per la parte frazionaria della mantissa
 
 ##### 2. Errori assoluto e relativo, errore di rappresentazione
-Dato un $$x\in\mathbb{R}^{n}$$ e una norma fissata $$\|\cdot\|$$ per $$\mathbb{R}^{n}$$, l'errore assoluto è$$err_{ass}(\tilde{x}):=\|x-\tilde{x}\|$$mentre l'errore relativo è$$err_{rel}(\tilde{x}):=\frac{\|x-\tilde{x}\|}{\|x\|}\qquad\text{se }\|x\|\neq0$$Gli errori di rappresentazione sono gli errori causati dalla rappresentazione dei numeri in un sistema limitato. In particolare, prendiamo in considerazione i floating point durante troncamento e arrotondamento.
+Dato un $x\in\mathbb{R}^{n}$ e una norma fissata $\|\cdot\|$ per $\mathbb{R}^{n}$, l'errore assoluto è$$err_{ass}(\tilde{x}):=\|x-\tilde{x}\|$$mentre l'errore relativo è$$err_{rel}(\tilde{x}):=\frac{\|x-\tilde{x}\|}{\|x\|}\qquad\text{se }\|x\|\neq0$$Gli errori di rappresentazione sono gli errori causati dalla rappresentazione dei numeri in un sistema limitato. In particolare, prendiamo in considerazione i floating point durante troncamento e arrotondamento.
 L'errore assoluto di rappresentazione è$$err_{ass}(fl^{Tr/Ar}(x))=|x-fl^{Tr/Ar}(x)|$$mentre l'errore relativo di rappresentazione è$$err_{rel}(fl^{Tr/Ar}(x)):=\frac{|x-fl^{Tr/Ar}(x)|}{|x|}\qquad\forall|x|\neq0$$Stimiamo l'errore di rappresentazione
 - Troncamento
 - Arrotondamento
 
 ##### 3. Operazioni macchina, loro (non) proprietà, precisione macchina
-Per ogni operazione reale $$\ast$$, viene associata una operazione macchina $$\circledast$$ definita come$$x\circledast y=fl(fl(x)\ast fl(y))$$Alle operazioni macchina, non valgono le normali proprietà delle operazioni
+Per ogni operazione reale $\ast$, viene associata una operazione macchina $\circledast$ definita come$$x\circledast y=fl(fl(x)\ast fl(y))$$Alle operazioni macchina, non valgono le normali proprietà delle operazioni
 - non è commutativa
 - non è associativa
-- non distribuisce rispetto a $$\oplus$$
-- gli elementi neutri $$\oplus,\odot$$ non sono unici
+- non distribuisce rispetto a $\oplus$
+- gli elementi neutri $\oplus,\odot$ non sono unici
 - non vale la proprietà di cancellazione
 
-Def. La **precisione macchina** è il più piccolo numero floating pont positivo $$\varepsilon_{MACH}$$ per cui$$fl(1+\varepsilon_\text{MACH})\neq1$$è calcolato $$\varepsilon_\text{MACH}=2^{-t}=2^{1-t}/2$$
+Def. La **precisione macchina** è il più piccolo numero floating pont positivo $\varepsilon_{MACH}$ per cui$$fl(1+\varepsilon_\text{MACH})\neq1$$è calcolato $\varepsilon_\text{MACH}=2^{-t}=2^{1-t}/2$
 (t è il numero di bit per mantissa frazionaria)
 
 ##### 4. Stabilità di un algoritmo, stabilità delle operazioni macchina e cancellazione numerica
 Un algoritmo si dice **stabile** se "non amplifica in modo incontrollato gli errori presenti sui dati". Vogliamo una stima di stabilità $$err_{rel}(output)\leq C_{STAB}\cdot err_{rel}(input)$$
-La **cancellazione numerica** avviene quando sottraendo due numeri molto vicini tra loro $$x-y$$ si ha che $$x\approx y$$.
+La **cancellazione numerica** avviene quando sottraendo due numeri molto vicini tra loro $x-y$ si ha che $x\approx y$.
 
 La stabilità della somma:
-Siano $$x_{1},x_{2},…,x_{n}$$ numeri floating-point. L’errore relativo nel calcolare la somma $$S_{n}=\sum_{i=1}^{n}$$ è limitato da $$\frac{|S_{n}-\tilde{S}_{n}|}{|S_{n}|}\leq \frac{n\cdot\varepsilon_\text{MACH}}{1-n\cdot\varepsilon_{\text{MACH}}}\approx n\cdot\varepsilon_\text{MACH}$$
- per $$n\cdot\varepsilon_\text{MACH}<<1$$
+Siano $x_{1},x_{2},…,x_{n}$ numeri floating-point. L’errore relativo nel calcolare la somma $S_{n}=\sum_{i=1}^{n}$ è limitato da $$\frac{|S_{n}-\tilde{S}_{n}|}{|S_{n}|}\leq \frac{n\cdot\varepsilon_\text{MACH}}{1-n\cdot\varepsilon_{\text{MACH}}}\approx n\cdot\varepsilon_\text{MACH}$$
+ per $n\cdot\varepsilon_\text{MACH}<<1$
  
 ##### 5. Problema matematico, buona posizione
 Gli problemi matematici che affronteremo sono nella forma
-"Trovare $$\underset{\text{dominio}}{x\in X}:F(x,d)=0,\  \underset{\text{dati ammissibili}}{d\in D}$$"
+"Trovare $\underset{\text{dominio}}{x\in X}:F(x,d)=0,\  \underset{\text{dati ammissibili}}{d\in D}$"
 
 Un problema matematico è detto *ben posto* quando
 - ha la definizione del suo dominio e dei dati ammissibili
-- $$\forall d\in D,\quad\exists! x\in X:F(x,d)=0$$
-- $$d\longmapsto x(d)$$ soluzione del problema è continua
+- $\forall d\in D,\quad\exists! x\in X:F(x,d)=0$
+- $d\longmapsto x(d)$ soluzione del problema è continua
 
 ##### 6. Condizionamento numerico assoluto e relativo di un problema ben posto
 Un problema si dice ben condizionato se "una piccola variazione dei dati corrisponde a piccole variazioni della soluzione".
 NUMERO DI CONDIZIONAMENTO
-*locale* (di ordine $$\alpha$$) in $$d\in D$$$$\lim_{\tilde{d}\rightarrow d}\sup\frac{|x(\tilde{d})-x(d)|}{|\tilde{d}-d|^{\alpha}}\leq k_{\alpha}(d)\qquad0<\alpha\leq1$$*globale* (di ordine $$\alpha$$) in D$$\sup_{d\in D}k_{\alpha}(d)\leq k_{\alpha}<+\infty$$Osservazione: Il buon condizionamento è una proprietà del problema, non del metodo di soluzione.
+*locale* (di ordine $\alpha$) in $d\in D$$$\lim_{\tilde{d}\rightarrow d}\sup\frac{|x(\tilde{d})-x(d)|}{|\tilde{d}-d|^{\alpha}}\leq k_{\alpha}(d)\qquad0<\alpha\leq1$$*globale* (di ordine $\alpha$) in D$$\sup_{d\in D}k_{\alpha}(d)\leq k_{\alpha}<+\infty$$Osservazione: Il buon condizionamento è una proprietà del problema, non del metodo di soluzione.
 
 ##### 7. Numero di condizionamento di una matrice e stima dell'errore relativo della soluzione di un sistema lineare con termine noto affetto da errore (con dimostrazione). Cosa succede se perturbiamo anche la matrice (no dimostrazione).
-In un sistema lineare $$Ax=b$$ con termine noto $$b$$ affetto da errore.
-$$\tilde{b}\approx b\qquad A\tilde{x}=\tilde{b}$$
-$$\tilde{b}=b+\delta_{b}\qquad\tilde{x}=x+\delta_{x}\qquad$$ voglio stimare l'errore relativo $$\dfrac{\|\delta_{x}\|}{\|x\|}$$
-$$\begin{rcases}A(x+\delta_{x})=b+\delta_{b}\\ Ax=b\end{rcases}\Rightarrow A\delta x=\delta b$$
-A è invertibile quindi $$\delta_{x}=A^{-1}\delta_{b}$$
-e in particolare $$\|\delta_{x}\|=\|A^{-1}\delta_{b}\|$$ 
+In un sistema lineare $Ax=b$ con termine noto $b$ affetto da errore.
+$\tilde{b}\approx b\qquad A\tilde{x}=\tilde{b}$
+$\tilde{b}=b+\delta_{b}\qquad\tilde{x}=x+\delta_{x}\qquad$ voglio stimare l'errore relativo $\dfrac{\|\delta_{x}\|}{\|x\|}$
+$\begin{rcases}A(x+\delta_{x})=b+\delta_{b}\\ Ax=b\end{rcases}\Rightarrow A\delta x=\delta b$
+A è invertibile quindi $\delta_{x}=A^{-1}\delta_{b}$
+e in particolare $\|\delta_{x}\|=\|A^{-1}\delta_{b}\|$ 
 
-In un sistema lineare $$Ax=b$$ dove sia A che b sono affetti da errore.
-$$(A+\delta_{A})(x+\delta_{x})=b+\delta_{b}$$
-$$(A+\delta_{A})\delta_{x}=\cancel{b}+\delta_{b}-\cancel{Ax}-\delta_{A}x$$
+In un sistema lineare $Ax=b$ dove sia A che b sono affetti da errore.
+$(A+\delta_{A})(x+\delta_{x})=b+\delta_{b}$
+$(A+\delta_{A})\delta_{x}=\cancel{b}+\delta_{b}-\cancel{Ax}-\delta_{A}x$
 
 ##### 8. Algoritmi di sostituzione avanti e sostituzione indietro, condizioni per l'applicabilità.
 Usabile solo se A è triangolare superiore o inferiore.
-$$x(n)=b(n)/A(n,n)$$
+$x(n)=b(n)/A(n,n)$
 
 ##### 9. Fattorizzazione LU senza pivoting: algoritmo, limitazioni alla sua applicabilità e problematiche numeriche
 
@@ -95,7 +95,7 @@ Def "Molteplicità di una radice"
 
 ##### 22. Metodo di Newton: euristica e definizione. Teorema di convergenza locale per radici semplici con dimostrazione
 Teorema: "convergenza locale per radici semplici"
-Dato un $$f\in\mathcal{C}^{2}([a,b])$$ e un $$x^{*}$$ radice semplice di $$f\in[a,b]$$, esiste un intorno I di $$x^{*}$$ tale che il metodo di Newton inizializzato con $$x_{0}\in I$$ converge a $$x^{*}$$. Inoltre si ha$$\lim_{k\rightarrow+\infty}\frac{|e_{k+1}|}{|e_{k+1}|^{2}}=\left|\frac{f''(x^{*})}{2f'(x^{*})}\right|$$
+Dato un $f\in\mathcal{C}^{2}([a,b])$ e un $x^{*}$ radice semplice di $f\in[a,b]$, esiste un intorno I di $x^{*}$ tale che il metodo di Newton inizializzato con $x_{0}\in I$ converge a $x^{*}$. Inoltre si ha$$\lim_{k\rightarrow+\infty}\frac{|e_{k+1}|}{|e_{k+1}|^{2}}=\left|\frac{f''(x^{*})}{2f'(x^{*})}\right|$$
 23. Test di arresto per il metodo di Newton
 24. Newton come metodo iterativo: mappa di iterazione, versione del lemma delle contrazioni con g: [a,b]---->R, e applicazione alla convergenza di Newton per radici semplici
 25. Caso di radici multiple: convergenza lineare locale del metodo di Newton
