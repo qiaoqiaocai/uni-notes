@@ -191,6 +191,7 @@ Switch-case usato come
 - *istruzione switch*: sceglie un blocco di istruzioni da eseguire
   `case :` interrompiamo il fall-through con `break`, non ha bisogno di default
   `case ->`  inserire una sola espressione o blocco, no fall-through
+
 ``` java
 switch (seasonName) {
 	case "Spring" -> {
@@ -205,6 +206,7 @@ switch (seasonName) {
 - *espressione switch*: sceglie un valore da restituire
   `case :` ritorniamo un valore con `yield`; fall-through possibile
   `case ->` seguito da un valore letterale, un'espressione o un blocco che ritorna yield, no fall-through
+
 ``` java
 int numLetters = switch (seasonName) {
 	case "Spring":
