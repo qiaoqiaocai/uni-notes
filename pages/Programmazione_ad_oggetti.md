@@ -1420,7 +1420,7 @@ Questa relazione induce il *subtyping* (o subsumption).
 B sono supertipo e D sottotipo, ovvero le funzioni che operano sul supertipo funzionano sui sottotipo. C'è conversione di tipo.
 
 D => B estrae il sottooggetto
-D* => B*$$\qquad$$D& => B&$$\quad$$ sono puntatori e riferimenti *polimorfi*. 
+D* => B*$\qquad$D& => B&$\quad$ sono puntatori e riferimenti *polimorfi*. 
 **Tipo dinamico**, tipo effettivo dell'oggetto puntato in un certo istante. Il compilatore conosce solo tipi statici.
 
 Si possono fare `static_cast` tra puntatori e riferimenti polimorfi ma è può essere una operazione "pericolosa".

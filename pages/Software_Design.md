@@ -74,20 +74,20 @@ Attenzione: non concentratevi sull'ui, separazione dei casi uso per funzionalit�
 La loro precisione dipende da quanto valore fornisce.
 
 Individuare le classi e le loro proprietà (attributi, metodi).
-Attributo = $$O_{\text{scope}}$$ nome : tipo $[*=>0...n,n\in\mathbb{N}^*]$$
-$$O_{\text{scope}}$$ può essere 
+Attributo = $O_{\text{scope}}$ nome : tipo $[*=>0...n,n\in\mathbb{N}^*]$
+$O_{\text{scope}}$ può essere 
 	+ pubblico, - privato
 	# protetto, ~ default
 
-Metodi = $$O_{\text{scope}}$ nome (attr_nome : tipo) : tipo
+Metodi = $O_{\text{scope}}$ nome (attr_nome : tipo) : tipo
 
 ![](img/diagramma_classi.png)
 Dipendenze 
-$$\dashrightarrow$$ dipendenza semplice
-$$\rightarrow$$ associazione
-$$\lozenge\rightarrow$$ aggregazione; può essere condiviso
-$$\blacklozenge\rightarrow$$ composizione; non può essere condiviso
-$$\lhd-$$ ereditarietà, estensione
+$\dashrightarrow$ dipendenza semplice
+$\rightarrow$ associazione
+$\lozenge\rightarrow$ aggregazione; può essere condiviso
+$\blacklozenge\rightarrow$ composizione; non può essere condiviso
+$\lhd-$ ereditarietà, estensione
 
 Classi astratte non possono essere istanziate. Sono scritte in italico o {abstract}.
 
@@ -246,7 +246,7 @@ Pull Model
 *Presenter (passive view)*
 - man in the middle
 - osserva il modello
-- View $${-\circ\ \leftarrow\atop\longrightarrow}$$ Presenter -> Model
+- View ${-\circ\ \leftarrow\atop\longrightarrow}$ Presenter -> Model
   modello ritorna un valore al presenter
 - aggiorna e osserva la vista
 
