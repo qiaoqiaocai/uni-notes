@@ -143,7 +143,7 @@ Pianificazione workflow
 Attenzione : tempi troppo brevi sono inappropriati quando non si è abituati
 tempi troppo lunghi sono inappropriati quindi si è già in marcia
 
-Repo = magazzino e versionamento
+Repo = magazzino configurato e versionato
 
 calcoliamo l'avanzamento con push
 pianificazione futura secondo l'avanzamento rilevato (preventivo a finire)
@@ -155,6 +155,7 @@ Misurazione oggettiva misurabile, quindi quantitativa
 *PERT*
 Indica la possibilità di margine temporale (slack)
 	QB (quanto basta), utile per gestire imprevisti 
+Individua cammini critici, sequenze di attività ordinate con dipendenze temporali
 
 tempo/persona
 

@@ -9,14 +9,14 @@ O grande
 g(x) = O(f(x)) 
 
 *Gerarchia di grandezza*
-1. $f\rightarrow0$
+1. $$f\rightarrow0$$
 2. costante
 3. logaritmo 
-4. radice e potenza frazionaria ($\sqrt{n},\ n^{\frac{a}{b}}$)
+4. radice e potenza frazionaria ($$\sqrt{n},\ n^{\frac{a}{b}}$$)
 5. lineare (n)
-6. potenza ($n^{a}$)
-7. esponenziale ($a^{n}$)
-8. super esponenziali ($n^{n}$)
+6. potenza ($$n^{a}$$)
+7. esponenziale ($$a^{n}$$)
+8. super esponenziali ($$n^{n}$$)
 
 *Max-heap* è un albero binario completo che ha ogni nodo minore dei suoi antenati e maggiore dei suoi discendenti.
 Inserimento al prossimo nodo disponibile e max-heapify
