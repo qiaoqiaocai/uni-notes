@@ -26,8 +26,8 @@ I basi di dati sono gestiti da **DBMS (Data Management System)**
 Modello dei dati = insieme di construtti utilizzati per organizzare i dati e descriverne la dinamica
 Usiamo il *modello relazionale*.
 
-L'insieme $D_{1}\times...\times D_{n}$$ è relazione matematica
-$$\begin{array}{ccccc}\text{Partite}\subseteq&\text{string}\times&\text{string}\times&\text{int}\times&\text{int}\\&\text{Juve}&\text{Lazio}&3&1\\&\text{Lazio}&\text{Milan}&2&0\end{array}$
+L'insieme $$D_{1}\times...\times D_{n}$$ è relazione matematica
+$$\begin{array}{ccccc}\text{Partite}\subseteq&\text{string}\times&\text{string}\times&\text{int}\times&\text{int}\\&\text{Juve}&\text{Lazio}&3&1\\&\text{Lazio}&\text{Milan}&2&0\end{array}$$
 1. nessun ordine delle n-uple
 2. n-uple distinte
 3. ogni n-upla è ordinata: l'i-esimo valore proviene dall'i-esimo dominio
@@ -35,8 +35,8 @@ $$\begin{array}{ccccc}\text{Partite}\subseteq&\text{string}\times&\text{string}\
 La relazione in basi di dati è simile a quella matematica ma non è posizionale (3.); ogni dominio/colonna è associato a un nome unico (*attributo*)
 
 I riferimenti fra dati in relazioni diverse sono per valore.
-$R(A_{1},...A_{n})$$ relazione R su attributi $$A_{1},...,A_{n}$$
-$$R=\{R_{1}(X_{1}),...,R_{k}(X_{k})\}$ schema di base di dati, ovvero insieme di relazioni
+$$R(A_{1},...A_{n})$$ relazione R su attributi $$A_{1},...,A_{n}$$
+$$R=\{R_{1}(X_{1}),...,R_{k}(X_{k})\}$$ schema di base di dati, ovvero insieme di relazioni
 
 `null` per valore sconosciuto, inesistente o senza informazione
 
@@ -44,9 +44,9 @@ chiave primaria
 chiave esterna, vincolo di integrità relazionale
 
 Operatori insiemistici
-- *Unione $(\cup)$$*
+- *Unione $$(\cup)$$*
 - *Intersezione $$(\cap)$$*
-- *Differenza $$(-)$*
+- *Differenza $$(-)$$*
 devono avere lo stesso schema.
 
 Altri operatori
@@ -355,17 +355,17 @@ Ci sono
 quando ci sono *dipendenze funzionali* in una stessa relazione.
 
 >**Forma normale di Boyce e Codd (BCNF)**
->Una relazione R con chiavi $K_{1},...,K_{n}$$ è in forma normale di Boyce e Codd:
->se ogni dipendenza funzionale non banale $$X\rightarrow Y$$ è "buona" cioè $$\exists i, K_{i}\subseteq X$ (X è superchiave)
+>Una relazione R con chiavi $$K_{1},...,K_{n}$$ è in forma normale di Boyce e Codd:
+>se ogni dipendenza funzionale non banale $$X\rightarrow Y$$ è "buona" cioè $$\exists i, K_{i}\subseteq X$$ (X è superchiave)
 
 La normalizzazione è l'eliminazione delle dipendenze funzionali decomponendo la tabella in più tabelle in forma normale di Boyce e Codd.
 Non è sempre possibile scomporre in BCNF.
 
 >**Terza forma normale (3NF)**
->Una relazione R con chiavi $K_{1},...,K_{n}$$ è in Terza Forma Normale se:
+>Una relazione R con chiavi $$K_{1},...,K_{n}$$ è in Terza Forma Normale se:
 >per ogni dipendenza funzionale non banale $$X\rightarrow Y$$, almeno una delle seguenti condizioni sono valide
 >- X è superchiave (BCNF)
->- ogni attributo in Y è contenuto in almeno una tra le chiavi $$K_{1},...K_{n}$
+>- ogni attributo in Y è contenuto in almeno una tra le chiavi $$K_{1},...K_{n}$$
 
 Dipendenze violano 3NF se parte sinistra non è chiave e la parte destra non è parte della chiave.
 E' sempre possibile scomporre nella terza forma normale.
