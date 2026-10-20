@@ -343,7 +343,7 @@ CFLAGS = -g
 all: hello
 
 hello:
-	$(CC) -o hello file1.c file2.c file3.c
+	$$(CC) -o hello file1.c file2.c file3.c
 test:
 	$(CC) $(CFLAGS) -o hello file1.c file2.c file3.c
 clean:

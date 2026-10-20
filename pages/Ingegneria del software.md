@@ -167,6 +167,10 @@ otteniamo indicatori utili al PERT
 4. Controllo, rilevazione rischi
 
 Il modo in cui si impara ad avanzare si chiama *ciclo a spirale*, ovvero quando un ciclo termina (ritorno all'inizio) si avanza per prodotto e comprensione.
+
+Consuntivo qualitativa rispetto alle risorse consumate e gli obiettivi raggiunti
+
+Retrospettiva 
 1. Elenco di cosa si ha fatto
 2. E' andato bene o male? Perché?
 3. Cosa fare per andare meglio?

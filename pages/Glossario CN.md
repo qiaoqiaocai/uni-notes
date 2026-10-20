@@ -10,14 +10,14 @@ $$x=\text{sign}(x)\sum\limits_{i=-\infty}^{+\infty}d_{i}\cdot2^{i}$$dove $d_{i}\
 
 Lo standard IEEE754 rappresenta i numeri reali in virgola mobile nella forma normalizzata: $x=(-1)^{s}\cdot m\cdot2^{e}$
 dove
-- $s\in\{0,1\}$ è il bit di segno
-- $m=1.f_{1}f_{2}…f_{t}$ è la mantissa normalizzata con $1\leq m<2$
-- e è l’esponente con $e_{\min}\leq e\leq e_{\max}$
+- $$s\in\{0,1\}$$ è il bit di segno
+- $$m=1.f_{1}f_{2}…f_{t}$$ è la mantissa normalizzata con $$1\leq m<2$$
+- e è l’esponente con $$e_{\min}\leq e\leq e_{\max}$$
 - t è il numero di bit per la mantissa frazionaria
 
 Per lo standard IEEE754 double precision:
 - 1 bit per il segno
-- 11 bit per l’esponente ($e_{\min}=-1022,e_{\max}=1023$)
+- 11 bit per l’esponente ($$e_{\min}=-1022,e_{\max}=1023$$)
 - 52 bit per la parte frazionaria della mantissa
 
 ##### 2. Errori assoluto e relativo, errore di rappresentazione
@@ -57,7 +57,7 @@ Un problema matematico è detto *ben posto* quando
 ##### 6. Condizionamento numerico assoluto e relativo di un problema ben posto
 Un problema si dice ben condizionato se "una piccola variazione dei dati corrisponde a piccole variazioni della soluzione".
 NUMERO DI CONDIZIONAMENTO
-*locale* (di ordine $\alpha$) in $d\in D$$$\lim_{\tilde{d}\rightarrow d}\sup\frac{|x(\tilde{d})-x(d)|}{|\tilde{d}-d|^{\alpha}}\leq k_{\alpha}(d)\qquad0<\alpha\leq1$$*globale* (di ordine $\alpha$) in D$$\sup_{d\in D}k_{\alpha}(d)\leq k_{\alpha}<+\infty$$Osservazione: Il buon condizionamento è una proprietà del problema, non del metodo di soluzione.
+*locale* (di ordine $$\alpha$$) in $d\in D$$$\lim_{\tilde{d}\rightarrow d}\sup\frac{|x(\tilde{d})-x(d)|}{|\tilde{d}-d|^{\alpha}}\leq k_{\alpha}(d)\qquad0<\alpha\leq1$$*globale* (di ordine $$\alpha$$) in D$$\sup_{d\in D}k_{\alpha}(d)\leq k_{\alpha}<+\infty$$Osservazione: Il buon condizionamento è una proprietà del problema, non del metodo di soluzione.
 
 ##### 7. Numero di condizionamento di una matrice e stima dell'errore relativo della soluzione di un sistema lineare con termine noto affetto da errore (con dimostrazione). Cosa succede se perturbiamo anche la matrice (no dimostrazione).
 In un sistema lineare $Ax=b$ con termine noto $b$ affetto da errore.

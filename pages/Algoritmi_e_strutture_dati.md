@@ -165,10 +165,10 @@ Induzione su $\ell=$
 proprietà parametrica in $n\in\mathbb{N}\qquad P(n)=\{…n…\}$
 per dimostrare che $P(n)$ vale per ogni $n\in\mathbb{N}$ 
 
-$\left.\begin{array}{ll}P(0)&\text{caso base}\\\text{assumendo }P(n)\text{ dimostro che }P(n+1)&\text{caso induttivo}\end{array}\right\}\rightarrow$ per ogni n vale $P(n)$
+$$\left.\begin{array}{ll}P(0)&\text{caso base}\\\text{assumendo }P(n)\text{ dimostro che }P(n+1)&\text{caso induttivo}\end{array}\right\}\rightarrow$$ per ogni n vale $$P(n)$$
 
 **Induzione forte**
-$\left.\begin{array}{ll}P(0)\\\text{assumendo }P(n)\text{ vale per ogni }m<n\quad\dim P(n)\end{array}\right\}\rightarrow P(n)$ vale per ogni n
+$$\left.\begin{array}{ll}P(0)\\\text{assumendo }P(n)\text{ vale per ogni }m<n\quad\dim P(n)\end{array}\right\}\rightarrow P(n)$$ vale per ogni n
 
 es. Alberi binari
 ```
@@ -399,8 +399,8 @@ Quale domina ($f(n)$ vs $n^{log_{b}a}$)
 c   c c   c . . .              c   c c   c    #foglie= a^(logn)
 ```
 
-$\displaystyle T(n)=f(n)+af(\frac{n}{b})+a^{2}f(\frac{n}{b^{2}})+...+a^{log_{b}n}f(\frac{n}{b^{log_{a}n}})+ca^{log_{b}n}$
-$\displaystyle T(n)=f(n)+af(\frac{n}{b})+a^{2}f(\frac{n}{b^{2}})+...+(f(1)+c)n^{log_{b}a}$
+$$\displaystyle T(n)=f(n)+af(\frac{n}{b})+a^{2}f(\frac{n}{b^{2}})+...+a^{log_{b}n}f(\frac{n}{b^{log_{a}n}})+ca^{log_{b}n}$$
+$$\displaystyle T(n)=f(n)+af(\frac{n}{b})+a^{2}f(\frac{n}{b^{2}})+...+(f(1)+c)n^{log_{b}a}$$
 
 (1) se "domina" $n^{\log_{b}a}\qquad\rightsquigarrow\qquad T(n)=\Theta(n^{\log_{b}a})$
 (2) se sono "pari" $\qquad\rightsquigarrow\qquad T(n)=\Theta(n^{log_{b}a}\log n)$
@@ -414,14 +414,14 @@ $T(n)=aT(\frac{n}{b})+f(n)$
 confrontare $f(n)\qquad n^{\log_{b}a}$
 
 metodo del limite (se possibile)
-(a) $\begin{align*}\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a}}=k >0\qquad\rightsquigarrow\qquad&f(n)=\Theta(n^{log_{b}a})\\ &\text{[caso 2]}\quad T(n)=\Theta(n^{log_{b}a}\log n)\end{align*}$
-(b) $\displaystyle\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a}}=0\qquad\rightsquigarrow\qquad f(n)=O(n^{log_{b}a})$
-	\[caso 1\] unico possibile, ma deve esistere $\varepsilon>0$ tale che
-	$\begin{align*}\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a-\varepsilon}}=0\qquad\rightsquigarrow\qquad&f(n)=O(n^{(log_{b}a)-\epsilon})\\&T(n)=O(n^{log_{b}a})\end{align*}$
-(c) $\displaystyle\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a}}=\infty\qquad\rightsquigarrow\qquad f(n)=\Omega(n^{log_{b}a})$
-	\[caso 3\] unico possibile, ma deve esistere $\varepsilon>0$ tale che
-	$\displaystyle\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a+\varepsilon}}=\infty\quad$ ed se esiste $0<k<1$ tale che $af(\frac{n}{b})\leq kf(n)$
-	$\rightarrow T(n)=\Theta(f(n))$
+(a) $$\begin{align*}\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a}}=k >0\qquad\rightsquigarrow\qquad&f(n)=\Theta(n^{log_{b}a})\\ &\text{[caso 2]}\quad T(n)=\Theta(n^{log_{b}a}\log n)\end{align*}$$
+(b) $$\displaystyle\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a}}=0\qquad\rightsquigarrow\qquad f(n)=O(n^{log_{b}a})$$
+	\[caso 1\] unico possibile, ma deve esistere $$\varepsilon>0$$ tale che
+	$$\begin{align*}\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a-\varepsilon}}=0\qquad\rightsquigarrow\qquad&f(n)=O(n^{(log_{b}a)-\epsilon})\\&T(n)=O(n^{log_{b}a})\end{align*}$$
+(c) $$\displaystyle\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a}}=\infty\qquad\rightsquigarrow\qquad f(n)=\Omega(n^{log_{b}a})$$
+	\[caso 3\] unico possibile, ma deve esistere $$\varepsilon>0$$ tale che
+	$$\displaystyle\lim_{n\rightarrow\infty}\frac{f(n)}{n^{log_{b}a+\varepsilon}}=\infty\quad$$ ed se esiste $$0<k<1$$ tale che $$af(\frac{n}{b})\leq kf(n)$$
+	$$\rightarrow T(n)=\Theta(f(n))$$
 
 esempio. 
 $T(n)=5T(\frac{n}{2})+n^{3}$
@@ -674,12 +674,12 @@ A.length
 for i = A.length/2 down to 1
 	MaxHeapify(A,i)
 ```
-<u>inizio</u>: $i=\lfloor\frac{A.length}{2}\rfloor\Rightarrow\forall\ j>\frac{A.length}{2}$
+<u>inizio</u>: $$i=\lfloor\frac{A.length}{2}\rfloor\Rightarrow\forall\ j>\frac{A.length}{2}$$
 <u>iterazione</u>:
 Complessità?
 
-$n_{h}\leq2^{h_{T}-h}=\frac{2^{h_{T}}}{2^{T}}\leq\frac{2^{\log_{2}n}}{2^{h}}=\frac{n}{2^{h}}$
-$\begin{align*}T(n)=&\sum\limits_{n=1}^{\log_{2}n}n_{h}O(h)\leq\sum\limits_{n=1}^{\log_{2}n}\frac{n}{2^{h}}O(h)=O(\sum\limits_{n=1}^{\log_{2}n}n\frac{h}{2^{h}})\\=&O(n\sum\limits_{n=1}^{\log_{2}n}\frac{n}{2^{h}})=O(n)\end{align*}$
+$$n_{h}\leq2^{h_{T}-h}=\frac{2^{h_{T}}}{2^{T}}\leq\frac{2^{\log_{2}n}}{2^{h}}=\frac{n}{2^{h}}$$
+$$\begin{align*}T(n)=&\sum\limits_{n=1}^{\log_{2}n}n_{h}O(h)\leq\sum\limits_{n=1}^{\log_{2}n}\frac{n}{2^{h}}O(h)=O(\sum\limits_{n=1}^{\log_{2}n}n\frac{h}{2^{h}})\\=&O(n\sum\limits_{n=1}^{\log_{2}n}\frac{n}{2^{h}})=O(n)\end{align*}$$
 
 ```
 HeapSort(A)
@@ -694,7 +694,7 @@ $\begin{cases}n-1\text{ iterazioni}\\ \text{ogni iterazione: costo MaxHeapify }O
 -> complessivamente $O(n+n\log n)=O(n\log n)$
 
 Code con priorità
-$\begin{align*}\text{collezioni dinamiche di elementi }x\qquad& x.key\\\text{operazioni}\qquad&\text{ExtractMax(a)}\\\qquad&\text{Insert}\\\qquad&\text{Delete}\end{align*}$
+$$\begin{align*}\text{collezioni dinamiche di elementi }x\qquad& x.key\\\text{operazioni}\qquad&\text{ExtractMax(a)}\\\qquad&\text{Insert}\\\qquad&\text{Delete}\end{align*}$$
 ExtractMax, basta che ritorni la radice dopo BuildMaxHeap
 
 ```
@@ -820,9 +820,9 @@ $T(n)=\frac{1}{n}(T(k)+T(n-k-1)+an+b)$
 <u>Osservazione 1</u>: Partizionamento proporzionale
 Albero di Ricorsione
 
-$T(n)\leq n\log_\frac{10}{3}n$
-$T(n)=O(n\log n)$
-$\log_\frac{10}{9}n=(\underset{\sim\ 2.7}{\log_\frac{10}{9}2})\log_{2}n$
+$$T(n)\leq n\log_\frac{10}{3}n$$
+$$T(n)=O(n\log n)$$
+$$\log_\frac{10}{9}n=(\underset{\sim\ 2.7}{\log_\frac{10}{9}2})\log_{2}n$$
 
 <u>Osservazione 2</u>: Alternanza tra partizionamenti sbilanciati e ottimi
 Albero di ricorsione
@@ -837,7 +837,7 @@ Albero di ricorsione
 ```
 L’albero è divisibile in 3 casi
 
-$T(n)=O(n\log n)$
+$$T(n)=O(n\log n)$$
 
 -> Cosa fare nel caso di distribuzione di input non uniformi?
 Scegliamo il pivot in modo random
@@ -849,12 +849,12 @@ RandomizedPartition(A,p,r)
 ```
 
 -> E se ci sono molto ripetizioni? Le partizioni sono comunque sbilanciate
-Tripartition $\qquad\underbrace{\overset{p}{[}<x\underset{q_{1}}{|}}_{\text{QuickSort}}=x\underbrace{\underset{q_{2}}{|}>x\overset{r}{]}}_{\text{QuickSort}}$
+Tripartition $$\qquad\underbrace{\overset{p}{[}<x\underset{q_{1}}{|}}_{\text{QuickSort}}=x\underbrace{\underset{q_{2}}{|}>x\overset{r}{]}}_{\text{QuickSort}}$$
 #### Limite inferiore per il Problema dell’Ordinamento
 Problema
-$\begin{cases}\text{IN:}&a_{1}…a_{n}\\\text{OUT:}&a_{1}^{’}…a_{n}^{’}\quad\text{permutazioni ordinate}\end{cases}$
-ordinamento basato su confronti e assegnamenti, senza ulteriori informazioni sull’input$$\Omega(n\log n)$$$\hookrightarrow$ limite inferiore per le operazioni di confronto
-$\hookrightarrow$ restrizione a sequenze di input senza ripetizioni $\forall\ i,j\quad\begin{align*}i&\neq j\\ a_{i}&\neq a_{j}\end{align*}$
+$$\begin{cases}\text{IN:}&a_{1}…a_{n}\\\text{OUT:}&a_{1}^{’}…a_{n}^{’}\quad\text{permutazioni ordinate}\end{cases}$$
+ordinamento basato su confronti e assegnamenti, senza ulteriori informazioni sull’input$$\Omega(n\log n)$$$\hookrightarrow$$ limite inferiore per le operazioni di confronto
+$$\hookrightarrow$$ restrizione a sequenze di input senza ripetizioni $$\forall\ i,j\quad\begin{align*}i&\neq j\\ a_{i}&\neq a_{j}\end{align*}$$
 
 - <u>Alberi di decisione</u>
 descrizione (astratta) dell’esecuzione di algoritmi su input di dimensione fissata n
@@ -871,7 +871,7 @@ Osservazioni fondamentali
 Ogni algoritmo di ordinamento (corretto), l’albero di decisione per input di dimensione n$$\#\text{ foglie}\geq\#\text{ permutazioni di n elementi}=n!$$$\underbrace{\triangle}_{2^n\geq\#\text{ foglie}\geq n!}$
 $\begin{align*}\#\text{operazioni dell’ algoritmo su input di dim n nel caso pessimo}\quad\geq\quad h&\geq\log_{2}(n!)\\&\geq\end{align*}$
 ### Ordinamento a tempo lineare
-Il limite inferiore dell’argoritmo di ordinamento è $\Omega(n\log n)$.
+Il limite inferiore dell’argoritmo di ordinamento è $$\Omega(n\log n)$$.
 Ordinamento a tempo lineare è solo possibile con ipotesi sull’input:
 - limite di variabilità
 - distribuzione
@@ -881,7 +881,7 @@ Assunzione:
 - interi
 - in \[0,k\] con k noto (massimo valore)
 
-Input: A\[1,…,n\] con $A[j]\in\{0,1,…,k\}\qquad\forall\ j\quad 1\leq j\leq k$
+Input: A\[1,…,n\] con $$A[j]\in\{0,1,…,k\}\qquad\forall\ j\quad 1\leq j\leq k$
 Output: B\[1,…,n\] con gli elementi di A ordinato
 ```
 CountingSort(A,B,k)
@@ -895,7 +895,7 @@ CountingSort(A,B,k)
 		c[A[j]]
 ```
 <u>Complessità</u>?
-$\Theta(n+k)$
+$$\Theta(n+k)$$
 
 Perché l’ultimo for non inizia dal primo elemento?
 Si perde la proprietà di **stabilità**, mantenimento della posizione relativa di numeri duplicati.
@@ -927,7 +927,7 @@ Macchina che suddivideva le schede in indici. Come ordinare le schede?
 Tabulating Machine Company
 -> 1924 International Business Machine
 
-Input: $A[1,…,n]\qquad A[j] = o_{d} o_{d-1} … o_{1}$
+Input: $$A[1,…,n]\qquad A[j] = o_{d} o_{d-1} … o_{1}$
 d cifre in base b
 ```
 Radix(A,d)
@@ -935,7 +935,7 @@ Radix(A,d)
 		ordina A rispetto alla cifra j con algoritmo stabile
 ```
 <u>Correttezza</u>?
-Invariante: $A^{j-1}$ ordinato
+Invariante: $$A^{j-1}$$ ordinato
 Inizio:
 
 <u>Complessità</u>?
@@ -947,7 +947,7 @@ $\Theta((n+b)\cdot b)\qquad b=O(1)$
 $\Theta(\text{complessità algoritmo stabile})+\Theta(n)$ con l’assunzione precedente
 
 ## Hash Tables
-$x\begin{cases}\text{x.key}\\\text{dati satellite}\end{cases}\quad\begin{align*}\text{Insert(s,x)}\\\text{Delete(s,x)}\\\text{Search(s,k)}\end{align*}$
+$$x\begin{cases}\text{x.key}\\\text{dati satellite}\end{cases}\quad\begin{align*}\text{Insert(s,x)}\\\text{Delete(s,x)}\\\text{Search(s,k)}\end{align*}$$
 
 efficiente:
 -> costo medio $\Theta(1)$
@@ -977,13 +977,13 @@ Problemi:
 Ideale: usare spazio proporzionale al numero di elementi nella struttura (senza degradare le prestazioni)
 `T[0,…,m-1]`
 m << |U|
-algoritmo di hash $h:U\rightarrow[0,m-1]$
+algoritmo di hash $$h:U\rightarrow[0,m-1]$$
 assumiamo che abbia costo O(1)
 
 Collisione: chiavi $k_{1},k_{2}\in U$ con $h(k_{1})=h(k_{2})$
 ($m<|U|\Rightarrow$ succede con certezza)
 
-*Pigeon hole principle*: Dati A,B finiti e |A| > |B| allora nessuna funzione $f:A\rightarrow B$ è iniettiva.
+*Pigeon hole principle*: Dati A,B finiti e |A| > |B| allora nessuna funzione $$f:A\rightarrow B$$ è iniettiva.
 
 2 possibili soluzioni:
 - CHAINING
@@ -1005,7 +1005,7 @@ Search(T,k) // O(n) caso peggiore
 **Caso medio**
 m = numero celle tabella
 n = numero di elementi memorizzati
-$\alpha=\frac{n}{m}$ fattore di carico
+$$\alpha=\frac{n}{m}$$ fattore di carico
 
 fattori rilevanti:
 - distribuzione input
@@ -1013,20 +1013,20 @@ fattori rilevanti:
 
 <u>Ipotesi</u>: funzione di *hash uniforme e indipendente*, per cui ogni elemento in input è assegnato in uguale probabilità $\frac{1}{m}$ a qualunque cella.
 
-$n_j:$ lunghezza della lista in `T[j]`
-$x_{1},…,x_{n}\quad E[n_{j}]=\frac{n}{m}=\alpha$
+$$n_j:$$ lunghezza della lista in `T[j]`
+$$x_{1},…,x_{n}\quad E[n_{j}]=\frac{n}{m}=\alpha$$
 
 - Costo medio di Search
 (a) ricerca di una chiave *presente*
-$\begin{rcases}\rightarrow\text{calcolo }h(k)=j\\\rightarrow\text{accedo alla lista }T[j]\quad\end{rcases}\Theta(1)$
+$$\begin{rcases}\rightarrow\text{calcolo }h(k)=j\\\rightarrow\text{accedo alla lista }T[j]\quad\end{rcases}\Theta(1)$$
 -> cerco in `T[j]` un elemento x tale che `x.key=k`
-complessivamente costo medio $1+\frac{\alpha}{2}$
+complessivamente costo medio $$1+\frac{\alpha}{2}$$
 
 (b) ricerca di una chiave *assente*
-$\begin{rcases}\rightarrow\text{calcolo }h(k)=j\\\rightarrow\text{accedo alla lista }T[j]\quad\end{rcases}\Theta(1)$
+$$\begin{rcases}\rightarrow\text{calcolo }h(k)=j\\\rightarrow\text{accedo alla lista }T[j]\quad\end{rcases}\Theta(1)$$
 -> cerco x con `x.key=k` in `T[j]`, senza trovarlo
-	-> scorro l’intera lista $\quad\Theta(n_{j})\underset{\text{in media}}{=}\Theta(\alpha)$
-costo medio $1+\alpha$
+	-> scorro l’intera lista $$\quad\Theta(n_{j})\underset{\text{in media}}{=}\Theta(\alpha)$$
+costo medio $$1+\alpha$$
 
 In sintesi il costo medio
 - chiave presente è $1+\frac{\alpha}{2}$
@@ -1045,10 +1045,10 @@ dato un numero in base b
 se le chiavi $k\in[0,1)$ reale uniformemente distribuite
 $h(k)=\llcorner m n\lrcorner$
 
-data $k\in\{0,1,…,|U|-1\}$
--> fisso $A\in(0,1)\quad0<A<1$
--> considero $k\cdot A=…,\underbrace{…}_{\in[0,1)}$
-$h(k)=\llcorner m(K\cdot A\mod1)\lrcorner$
+data $$k\in\{0,1,…,|U|-1\}$$
+-> fisso $$A\in(0,1)\quad0<A<1$$
+-> considero $$k\cdot A=…,\underbrace{…}_{\in[0,1)}$$
+$$h(k)=\llcorner m(K\cdot A\mod1)\lrcorner$$
 
 xcasa:
 1. Radix Sort con ordinamento a partire dalla cifra più significativa (MSD)
@@ -1087,8 +1087,8 @@ Delete(T,j)
 ```
 
 *Hashing uniforme (con permutazioni indipendenti e uniformi)*
-ogni elemento induce con la stessa probabilità una delle $m!$ seguenze di ispezione.
-sequenze di ispezione $\sim$ sequenze 
+ogni elemento induce con la stessa probabilità una delle $$m!$$ seguenze di ispezione.
+sequenze di ispezione $$\sim$$ sequenze 
 
 Come definire le funzioni di hash?
 1. ispezioni lineari
@@ -1102,13 +1102,13 @@ Come definire le funzioni di hash?
    $h^{'}(k,i)=(h(k)+c_{1}i+c_{2}i^{2})\mod m\qquad c_{1},c_{2}\text{ scelte appropriamente}$
    CONTRO: addensamento secondario, num sequenze di ispezione è m
 3. Doppio Hash
-   date $h_{1}(k),h_{2}(k)$ funzioni di hash unarie
-   $h(k,i)=(h_{1}(k)+ih_{2}(k))\mod m$
-   CONTRO: numero di sequenze di ispezione è $m^{2}$
-   come fare in modo che $h(k,0)\quad h(k,1)\quad ...\quad h(k,m-1)$ sia permutazione?
-   Condizione: $h_{2}(k)$ e m sono coprimi, $MCD(m,h_{2}(k))=1$
-   dim: mostro che $\forall i,i^{2}\quad0\leq i,i^{'}\leq m-1\quad i\neq i^{'}\Rightarrow h(k,i)\neq h(k,i)$
-   equivalente a $\forall i,i^{2}\quad0\leq i\leq i^{'}\leq m-1\quad h(k,i)=h(k,i)\Rightarrow i=i^{'}$
+   date $$h_{1}(k),h_{2}(k)$$ funzioni di hash unarie
+   $$h(k,i)=(h_{1}(k)+ih_{2}(k))\mod m$$
+   CONTRO: numero di sequenze di ispezione è $$m^{2}$$
+   come fare in modo che $$h(k,0)\quad h(k,1)\quad ...\quad h(k,m-1)$$ sia permutazione?
+   Condizione: $$h_{2}(k)$$ e m sono coprimi, $$MCD(m,h_{2}(k))=1$$
+   dim: mostro che $$\forall i,i^{2}\quad0\leq i,i^{'}\leq m-1\quad i\neq i^{'}\Rightarrow h(k,i)\neq h(k,i)$$
+   equivalente a $$\forall i,i^{2}\quad0\leq i\leq i^{'}\leq m-1\quad h(k,i)=h(k,i)\Rightarrow i=i^{'}$$
 
 **Caso medio**
 con ipotesi di hashing uniforme.
@@ -1117,14 +1117,14 @@ fattore di carico $\qquad\alpha=\dfrac{n}{m}\quad0\leq\alpha\leq1$
   numero medio di celle ispezionate $\begin{cases}\frac{1}{1-\alpha}&\alpha<1\\ m&\alpha=1\end{cases}$
   dim: seguo la sequenza di ispezione fino a una cella vuota
   prob i=0 : 1
-  prob i=1 : prob trovare cella piena con i=0 $\frac{n}{m}$
-  prob i=2 : prob i=1 e trovare cella piena $\frac{n}{m}\cdot\frac{n-1}{m-1}$
-  prob i : $\frac{n}{m}\cdot\frac{n-1}{m-1}...\frac{n-i+1}{m-i+1}\leq\alpha^{'}$
+  prob i=1 : prob trovare cella piena con i=0 $$\frac{n}{m}$$
+  prob i=2 : prob i=1 e trovare cella piena $$\frac{n}{m}\cdot\frac{n-1}{m-1}$$
+  prob i : $$\frac{n}{m}\cdot\frac{n-1}{m-1}...\frac{n-i+1}{m-i+1}\leq\alpha^{'}$$
   numero medio celle ispezionate
   $1+\alpha+\alpha^{2}+...+\alpha=\sum\limits$
 - Ricerca di un elemento presente
-  numero medio di celle ispezionate $\begin{cases}\frac{1}{\alpha}\log(\frac{1}{1-\alpha})&\alpha<1\\1+\log m&\alpha=1\end{cases}$
-  ho inserito n elementi $x_{1},x_{2},...x_{i-1}|x_{i}$
+  numero medio di celle ispezionate $$\begin{cases}\frac{1}{\alpha}\log(\frac{1}{1-\alpha})&\alpha<1\\1+\log m&\alpha=1\end{cases}$$
+  ho inserito n elementi $$x_{1},x_{2},...x_{i-1}|x_{i}$$
 ### Alberi di ricerca
 Albero: nodi x, x.key
 Operazioni
@@ -1143,7 +1143,7 @@ Definizione induttiva:
 -  se r nodo, $T_{L},T_{R}$ sono alberi binari ordinati
 	allora $(r,T_{L},T_{R})$ è albero binario ordinato
 	
-In memoria $\quad x\begin{cases}\text{x.key}\\ x.p\\\text{x.left}\\\text{x.right}\end{cases}$
+In memoria $$\quad x\begin{cases}\text{x.key}\\ x.p\\\text{x.left}\\\text{x.right}\end{cases}$
 
 <u>Albero binario di ricerca</u>
 Albero binario ordinato tale che per ogni nodo x
@@ -1161,13 +1161,13 @@ InOrder(x)
 		InOrder(x.right)
 ```
 <u>Complessità</u>?
-$\Theta(n)$ (visita dell’albero)
+$$\Theta(n)$$ (visita dell’albero)
 
 $\begin{align*}T(n)&=T(k)+\Theta(1)+T(n-k-1)\\&=\Theta(n)\end{align*}$
 $\begin{align*}T(n)&=\begin{cases}d&\text{se }n=0\\ T(k)+T(n-k-1)+c&\text{se }n>0\end{cases}\\&=ak+b\end{align*}\qquad c,d$ costanti opportune 
 Induttivamente:
-$(n=0)\qquad T(n)=d=\cancel{a\cdot0}+b=b$
-$\begin{align*}(n>0)\qquad T(n)&=T(k)+T(n-k-1)+c\\&=(ak+b)+(a)\end{align*}$
+$$(n=0)\qquad T(n)=d=\cancel{a\cdot0}+b=b$$
+$$\begin{align*}(n>0)\qquad T(n)&=T(k)+T(n-k-1)+c\\&=(ak+b)+(a)\end{align*}$$
 
 **Ricerca**
 data k chiave, cerca nel sottoalbero radicato in un nodo x un elemento con chiave k.
@@ -1182,9 +1182,9 @@ Search(x,k)
 		return x
 ```
 <u>Complessità</u>?
-continuo a cercare lungo un cammino di lunghezza parei all’altezza h $O(h)$
+continuo a cercare lungo un cammino di lunghezza parei all’altezza h $$O(h)$$
 Nota: se n è il numero di elementi, l’altezza può essere n
-caso peggiore $\Theta(n)$
+caso peggiore $$\Theta(n)$$
 
 **Minimo**
 dato un nodo x trovare il nodo con chiave minima nel sottoalbero radicato in x.
@@ -1271,7 +1271,7 @@ Delete(T,z) // z!=nil
 		y.left.p = y
 		Transplant(T,z,y)
 ```
-<u>Complessità</u>? $O(h)$
+<u>Complessità</u>? $$O(h)$$
 
 Operazione ABR generico
 $\text{InOrder(x)}\qquad\ \ \}O(n)$
@@ -1279,7 +1279,7 @@ $\begin{rcases}\text{Search(x,k)}\\\text{Min(x), Max(x)}\\\text{Succ(x), Pred(x)
 
 #### Alberi RedBlack
 Sono alberi binari di ricerca con un ulteriore attributo
-$\begin{align*}\text{x.color}=\ &\text{RED}\\&\text{BLACK}\end{align*}$
+$$\begin{align*}\text{x.color}=\ &\text{RED}\\&\text{BLACK}\end{align*}$$
 
 Def. Un albero RedBlack è un ABR
 1) ogni nodo ha uno e un solo colore
@@ -1295,7 +1295,7 @@ Def. Un albero RedBlack è un ABR
 ($\Leftarrow$) supponiamo che (5) valga per la radice
 
 <u>Osservazione</u>:
-1. se elimino i nodi RED ogni cammino radice$\rightsquigarrow$foglia ha la stessa lunghezza, come negli alberi completi
+1. se elimino i nodi RED ogni cammino radice$$\rightsquigarrow$$foglia ha la stessa lunghezza, come negli alberi completi
 2. in ogni cammino i nodi rossi sono al più la metà
 
 <u>Osservazione</u>: Sia T un RB-tree con n nodi (interni != T.nil) e altezza h. Allora $$h\leq2\log_{2}(n+1)=O(\log n)$$Dimostrazione
@@ -1309,7 +1309,7 @@ Come realizzare Insert/Delete mantenendo le proprietà da RB-tree?
 - statistiche di ordine dinamiche
 - alberi di intervalli
 ###### Statistiche d'ordine dinamiche
-$x_{1},...,x_{n}\qquad\begin{align*}\text{Select(S,i)}&=\text{elemento in posizione i quando gli elementi sono ordinati}\\\text{Rank(S,x)}&=\text{posizione di x nella frequenza ordinata}\end{align*}$
+$$x_{1},...,x_{n}\qquad\begin{align*}\text{Select(S,i)}&=\text{elemento in posizione i quando gli elementi sono ordinati}\\\text{Rank(S,x)}&=\text{posizione di x nella frequenza ordinata}\end{align*}$$
 
 Usiamo alberi binari di ricerca
 Select(T,i) = elemento in posizione i in una visita InOrder
@@ -1412,8 +1412,8 @@ RecFib(n)
 Complessità?
 $T(n)=\begin{cases}0&n=0,1\\T(n-1)+T(n-2)+1&n\geq2\end{cases}$
 
- $\begin{align*}(\text{caso }n\geq2)\quad T(n)&=T(n-1)+T(n-2)+1\\&\geq2T(n-2)+1\\&\geq 2(2T(n-2-2)+1)+1\\&=2^{2}T(n-2\cdot2)+2+1\\&\geq...\\&\ \ \vdots\\&\geq2^{i}T(n-2i)\sum\limits_{j=0}^{i=1}2^{j}\end{align*}$
-$T(n)\geq$
+ $$\begin{align*}(\text{caso }n\geq2)\quad T(n)&=T(n-1)+T(n-2)+1\\&\geq2T(n-2)+1\\&\geq 2(2T(n-2-2)+1)+1\\&=2^{2}T(n-2\cdot2)+2+1\\&\geq...\\&\ \ \vdots\\&\geq2^{i}T(n-2i)\sum\limits_{j=0}^{i=1}2^{j}\end{align*}$$
+$$T(n)\geq$$
 Siccome ci sono n sottoistanze possibili, allora il numero di ripetizioni di una stessa sottoistanza è elevatissimo.
 
 ```
@@ -1468,10 +1468,10 @@ Caratteristiche dei problemi
 3) <u>Spazio dei sottoproblemi piccolo</u>: poche sottoistanze che possono contribuire a creare la soluzione al livello superiore
 
 Procedura
-1) Caratterizzare la struttura di una soluzione ottima $s^{*}$ in funzione di soluzioni ottime $s_{1}^{*},s_{2}^{*},...,s_{k}^{*}$ di sottoistanze di taglia inferiore
-2) Determinare una relazione di ricorrenza del tipo $c(s^{*})=f(c(s_{1}^{*},...,s_{k}^{*}))$
-3) Calcolare $c(s^{*})$ usando la ricorrenza ma impostando il calcolo in maniera iterattiva (bottom-up) oppure memoizzando l'algoritmo DeC basato sulla definizione $c(s^{*})$
-4) (opzionale) Mantieni informazioni addizionali che permettono di ricavare $s^{*}$
+1) Caratterizzare la struttura di una soluzione ottima $$s^{*}$$ in funzione di soluzioni ottime $$s_{1}^{*},s_{2}^{*},...,s_{k}^{*}$$ di sottoistanze di taglia inferiore
+2) Determinare una relazione di ricorrenza del tipo $$c(s^{*})=f(c(s_{1}^{*},...,s_{k}^{*}))$$
+3) Calcolare $$c(s^{*})$$ usando la ricorrenza ma impostando il calcolo in maniera iterattiva (bottom-up) oppure memoizzando l'algoritmo DeC basato sulla definizione $$c(s^{*})$$
+4) (opzionale) Mantieni informazioni addizionali che permettono di ricavare $$s^{*}$$
 
 ### Applicazioni della programmazione dinamica
 #### Problemi su stringhe
@@ -1497,7 +1497,7 @@ Data $X=<x_{1},...,x_{n}>\text{ e }Z=<z_{1},...,z_{n}>\in Z^{*}$ si dice che Z �
 La sottostringa è un caso particolare di sottosequenza in cui la successione degli indici è particolare; crescono sempre di 1
 
 Quante sono le sottosequenze di una stringa?
-$\sum\limits_{k=0}^{n}({m\atop k})=2^{m}$ -> numero sottosequenze è enorme
+$$\sum\limits_{k=0}^{n}({m\atop k})=2^{m}$$ -> numero sottosequenze è enorme
 
 ##### "Longest Common Subsequence" (LCS)
 Determinare la sottosequenza comune di massima lunghezza di due stringhe date X,Y
@@ -1525,30 +1525,30 @@ $S=\{LCS(\underbrace{X_{i},Y_{j}}_{\text{prefissi}}):0\leq i\leq m;0\leq j\leq n
 $|S|=(m+1)(n+1)\quad$<u>quadratico</u>
 (non è esp come l'algoritmo esaustivo)
 
-*Proprietà di sottostruttura ottima* per il sottoproblema $LCS(X_{i},Y_{i})$
-$\begin{align*}X_{i}&=<x_{1},...,x_{i}>\\ Y_{j}&=<y_{1},...,y_{j}>\end{align*}$
-sia $Z=<z_{1},...,z_{k}>=LCS(X_{i},Y_{i})$
-0) (caso base) i=0 oppure j=0 allora $Z=\varepsilon$
-1) $(i,j)>0\text{ se }x_{i}=y_{j}$ allora
-   a. $z_{k}=x_{i}(=y_{j})$
-   b. $Z_{k-1}=LCS(X_{i-1},Y_{j-1})$
-2) $(i,j)>0\text{ se }x_{i}\neq y_{j}$ allora
-   Z è una stringa di lunghezza massima tra $LCS(X_{i},Y_{j-1})\text{ e }LCS(X_{i-1},Y_{j})$
+*Proprietà di sottostruttura ottima* per il sottoproblema $$LCS(X_{i},Y_{i})$$
+$$\begin{align*}X_{i}&=<x_{1},...,x_{i}>\\ Y_{j}&=<y_{1},...,y_{j}>\end{align*}$$
+sia $$Z=<z_{1},...,z_{k}>=LCS(X_{i},Y_{i})$$
+0) (caso base) i=0 oppure j=0 allora $$Z=\varepsilon$$
+1) $$(i,j)>0\text{ se }x_{i}=y_{j}$$ allora
+   a. $$z_{k}=x_{i}(=y_{j})$$
+   b. $$Z_{k-1}=LCS(X_{i-1},Y_{j-1})$$
+2) $$(i,j)>0\text{ se }x_{i}\neq y_{j}$$ allora
+   Z è una stringa di lunghezza massima tra $$LCS(X_{i},Y_{j-1})\text{ e }LCS(X_{i-1},Y_{j})$$
 
 Dimostrazione della proprietà di sottostruttura
 0) banale
-  $\begin{align*}1)\ LCS(X_{i},Y)=Z&=<z_{i},z_{2},...,z_{k}>=\\&=<x_{i1},x_{i2},...,x_{ik}>\\&=<y_{j1},y_{j2},...,y_{jk}>\end{align*}$
-	dove $1\leq i_{1}<i_{2}<...$
-2) $x_{i}\neq y_{j}\ (i,j>0)$
-   basta dimostrare che $Z=LCS(X_{i},Y_{j-1})\text{ oppure }Z=LCS(X_{i-1},Y_{j})$
-   (caso $i_{k}=i$)
-   (caso $i_{k}<i$)
+  $$\begin{align*}1)\ LCS(X_{i},Y)=Z&=<z_{i},z_{2},...,z_{k}>=\\&=<x_{i1},x_{i2},...,x_{ik}>\\&=<y_{j1},y_{j2},...,y_{jk}>\end{align*}$$
+	dove $$1\leq i_{1}<i_{2}<...$$
+2) $$x_{i}\neq y_{j}\ (i,j>0)$$
+   basta dimostrare che $$Z=LCS(X_{i},Y_{j-1})\text{ oppure }Z=LCS(X_{i-1},Y_{j})$$
+   (caso $$i_{k}=i$$)
+   (caso $$i_{k}<i$$)
 Fine dimostrazione
 
 Passo 2: ricorrenza sui costi
-chiamo $\ell(i,j)=|LCS(X_{i},Y_{j})|\rightarrow$ funzione sul "costo"
-$\ell(i,j)=\begin{cases}0&i=0\text{ o }j=0\\1+\ell(i-1,j-1)&i,j>0\text{ e }x_{i}=y_{j}\\\max\{\ell(i,j-1),\ell(i-1,j)\}&i,j>0\text{ e }x_{i}\neq y_{j}\end{cases}$
-ci interessa $\ell(m,n)$
+chiamo $$\ell(i,j)=|LCS(X_{i},Y_{j})|\rightarrow$$ funzione sul "costo"
+$$\ell(i,j)=\begin{cases}0&i=0\text{ o }j=0\\1+\ell(i-1,j-1)&i,j>0\text{ e }x_{i}=y_{j}\\\max\{\ell(i,j-1),\ell(i-1,j)\}&i,j>0\text{ e }x_{i}\neq y_{j}\end{cases}$$
+ci interessa $$\ell(m,n)$$
 E' chiara la presenza di sottoproblemi ripetuti.
 
 Modello di costo: confronti tra caratteri delle stringhe
@@ -1660,8 +1660,8 @@ perché per assurdo, se non fosse così $\exists$ soluzione ottima per pagare S 
 
 (se) c'è $v_{4}$ OK; altimenti l'ottimo esclude il valore $v_{4}\rightarrow$ l'ottimo è il minimo tra questi due casi
 
-Supponiamo una caratterizzazione ricorsiva del costo C(S',i) della soluzione ottima per il sottoproblema di pagare S' usando monete con valori $v_{1},v_{2},...,v_{i}$ dove $i\leq n$
-$C(S',i)=\begin{cases}0&S'=0\\ S'&S'>0\text{ e }i=1\\ C(S',i-1)&S'>0,i>1\text{ e }S'<v_{i}\\\min\{C(S',i-1),1+C(S-,i)\}&\text{altrimenti}\end{cases}$
+Supponiamo una caratterizzazione ricorsiva del costo C(S',i) della soluzione ottima per il sottoproblema di pagare S' usando monete con valori $$v_{1},v_{2},...,v_{i}$$ dove $$i\leq n$$
+$$C(S',i)=\begin{cases}0&S'=0\\ S'&S'>0\text{ e }i=1\\ C(S',i-1)&S'>0,i>1\text{ e }S'<v_{i}\\\min\{C(S',i-1),1+C(S-,i)\}&\text{altrimenti}\end{cases}$$
 
 ```
 minBanconote(s)
@@ -1677,26 +1677,26 @@ minBanconote(s)
 				C[v,i]=min(C[v,i-1],C[v-,i]+1)
 	return C[s,n]
 ```
-Complessità $O(s\cdot n)$
+Complessità $$O(s\cdot n)$$
 
 ##### "Longest Increasing Subsequence" (LIS)
 $Z=LIS(X)$
 Algoritmo esaustivo -> esponenziale
 
 Provo a fare come per LCS:
-Dato X, cerco la $LIS(X_{i})\quad\forall i$, sperando che $\exists$ una proprietà di sottostruttura ottima che mette in relazione $LIS(X_{i})$ con altre LIS.
-Dato $Z^{i}=LIS(X_{i})=<z_{1},z_{2},...,z_{k}>$ voglio calcolare $Z^{i+1}=LIS(X_{i+1})$.
-$X_{i+1}=<X_{i},x_{i+1}>$
-- caso fortunato:  $z_{k}<x_{i+1}$
-  $\rightarrow LIS(X_{i+1})=<LIS(X_{i}),x_{i+1}>$ 
-- caso sfortunato: $z_{k}>x_{i+1}$
-  posso dire $LIS(X_{i+1})=LIS(X_{i})$? NO!
+Dato X, cerco la $$LIS(X_{i})\quad\forall i$$, sperando che $$\exists$$ una proprietà di sottostruttura ottima che mette in relazione $$LIS(X_{i})$$ con altre LIS.
+Dato $$Z^{i}=LIS(X_{i})=<z_{1},z_{2},...,z_{k}>$$ voglio calcolare $$Z^{i+1}=LIS(X_{i+1})$$.
+$$X_{i+1}=<X_{i},x_{i+1}>$$
+- caso fortunato:  $$z_{k}<x_{i+1}$$
+  $$\rightarrow LIS(X_{i+1})=<LIS(X_{i}),x_{i+1}>$$ 
+- caso sfortunato: $$z_{k}>x_{i+1}$$
+  posso dire $$LIS(X_{i+1})=LIS(X_{i})$$? NO!
 
 Possibile soluzione:
-sottoproblemi con proprietà aggiuntive: calcolare la più lunga IS di $X_{i}$ che termina proprio con $x_{i}$.
-Definizione: $Z=\overline{LIS}(X_{i})$ è la più lunga tra le $IS(X_{i})$ con $Z=<z_{1},z_{2},...,z_{k}>=<x_{i_{1}},x_{i_{2}},...,x_{i_{k}}>$ con $i_{k}=i$.
-$\overline{LIS}$ è un problema più vincolato
-$\Rightarrow|\overline{LIS}(X_{i})|\leq|LIS(X_{i})|$
+sottoproblemi con proprietà aggiuntive: calcolare la più lunga IS di $$X_{i}$$ che termina proprio con $$x_{i}$$.
+Definizione: $$Z=\overline{LIS}(X_{i})$$ è la più lunga tra le $$IS(X_{i})$$ con $$Z=<z_{1},z_{2},...,z_{k}>=<x_{i_{1}},x_{i_{2}},...,x_{i_{k}}>$$ con $$i_{k}=i$$.
+$$\overline{LIS}$$ è un problema più vincolato
+$$\Rightarrow|\overline{LIS}(X_{i})|\leq|LIS(X_{i})|$$
 
 Considero 
 
@@ -1737,8 +1737,8 @@ Recprint(X, prev, i)
 ```
 -> usata all'esterno con RecPrint(X,prev,end)
 
-Data una stringa di numeri interi $A=<a_{1},a_{2},...,a_{n}>$ si consideri la seguente ricorrenza z(i,j) definita $\forall$ coppia di valori i,j con $0\leq i,j\leq n$
-$z(i,j)=\begin{cases}a_{j}&i=1,1\leq j\leq n\\a_{n+1-i}&j=i,1<i\leq n\\ z(i-1,j)\cdot z(i,j+1)-z(i-1,j+1)&\text{altrimenti}\end{cases}$
+Data una stringa di numeri interi $$A=<a_{1},a_{2},...,a_{n}>$$ si consideri la seguente ricorrenza z(i,j) definita $$\forall$$ coppia di valori i,j con $$0\leq i,j\leq n$$
+$$z(i,j)=\begin{cases}a_{j}&i=1,1\leq j\leq n\\a_{n+1-i}&j=i,1<i\leq n\\ z(i-1,j)\cdot z(i,j+1)-z(i-1,j+1)&\text{altrimenti}\end{cases}$$
 1. Algoritmo 
 
 ## Algoritmo Greedy
@@ -1764,9 +1764,9 @@ $a_{i}\text{ e }a_{j}$ sono compatibili $\begin{align}\Longleftrightarrow&[s_{i}
 
 Partiamo con la *programmazione dinamica*:
 Assunzione semplificativa 
-$0<f_{1}\leq f_{2}\leq...\leq f_{n}$ è senza perdita di generalità (modulo un fattore $O(n\log n)$ per l'ordinamento)
+$$0<f_{1}\leq f_{2}\leq...\leq f_{n}$$ è senza perdita di generalità (modulo un fattore $$O(n\log n)$$ per l'ordinamento)
 
-Sottoproblema $S=\{a_{k}:f_{i}\leq s_{k}<f_{k}\leq s_{j}\}$
+Sottoproblema $$S=\{a_{k}:f_{i}\leq s_{k}<f_{k}\leq s_{j}\}$$
 Osservazione
 1. $i>j\Longrightarrow S_{ij}=\emptyset$
 2. ci sono tutte le attività di indice k con $i<k<j\text{ in }S_{ij}$? NO
