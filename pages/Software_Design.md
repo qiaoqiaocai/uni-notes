@@ -74,12 +74,12 @@ Attenzione: non concentratevi sull'ui, separazione dei casi uso per funzionalit�
 La loro precisione dipende da quanto valore fornisce.
 
 Individuare le classi e le loro proprietà (attributi, metodi).
-Attributo = $$O_{\text{scope}}$$ nome : tipo $[*=>0...n,n\in\mathbb{N}^*]$$
+Attributo = $$O_{\text{scope}}$$ nome : tipo $$[*=>0...n,n\in\mathbb{N}^*]$$
 $$O_{\text{scope}}$$ può essere 
 	+ pubblico, - privato
 	# protetto, ~ default
 
-Metodi = $$O_{\text{scope}}$ nome (attr_nome : tipo) : tipo
+Metodi = $$O_{\text{scope}}$$ nome (attr_nome : tipo) : tipo
 
 ![](img/diagramma_classi.png)
 Dipendenze 
