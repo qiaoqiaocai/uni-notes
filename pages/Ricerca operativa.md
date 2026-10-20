@@ -35,7 +35,7 @@ Vincoli
 $$\begin{array}{l l}1x_{L}+1x_{P}\leq 11&\text{(ettari disponibili)}\\7x_{L}\leq70&\text{(semi disponibili)}\\3x_{P}\leq18&\text{(tuberi disponibili)}\\10x_{L}+20x_{P}\leq145&\text{(fertilizzante disponibile)}\\x_{L}\geq0, x_{P}\geq0&\text{(dominio)}\end{array}$$
 
 Soluzione grafica
-![[IMG_9469.png|IMG_9469.png]]
+![[img/IMG_9469.png|img/IMG_9469.png]]
 Area sotto i vincoli si chiama politopo e rappresenta il l’insieme delle soluzioni ammissibili.
 
 Non funziona quando le variabili da trovare superano i 3.
@@ -128,13 +128,13 @@ Si possono investire in A e B: A profitta 0.4 dopo due anni e B profitta 0.7 dop
 Vogliamo massimizzare i profitti in sei anni con un budget totale di 10000.
 
 $$x_{ij}:\text{ investiti in }i\in\{A,B,C,D\}\text{ per l'anno }j\in\{1,2,3,4,5\}$$
-$\max0.4(x_{A1}+x_{A2}+x_{A3}+x_{A4})+0.7(x_{B1}+x_{B2}+x_{B3})+x_{C2}+0.3(x_{D5})$
+$$\max0.4(x_{A1}+x_{A2}+x_{A3}+x_{A4})+0.7(x_{B1}+x_{B2}+x_{B3})+x_{C2}+0.3(x_{D5})$$
 
 | s.t.                          |                           |                                                                            |                                                                       |
 | ----------------------------- | ------------------------- | -------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | $$x_{A1}+x_{B1}+x_{C1}+x_{D1}$$ | $$\leq10000$$               |                                                                            |                                                                       |
 | $$x_{C1},x_{D1}=0$$             |                           |                                                                            |                                                                       |
-| $$x_{A2}+x_{B2}+x_{C2}+x_{D2}$$ | $$\leq10000$$               | $$-x_{A1}$$<br>$$-x_{B1}$$                                                     | $$-x_{C1}$$<br>$+0.3x_{D1}$$                                             |
+| $$x_{A2}+x_{B2}+x_{C2}+x_{D2}$$ | $$\leq10000$$               | $$-x_{A1}$$<br>$$-x_{B1}$$                                                     | $$-x_{C1}$$<br>$$+0.3x_{D1}$$                                             |
 | $$x_{D2}=0$$                    |                           |                                                                            |                                                                       |
 | $$x_{A3}+x_{B3}+x_{C3}+x_{D3}$$ | $$\leq10000$$               | $$+0.4x_{A1}-x_{A2}$$<br>$$-x_{B1}-x_{B2}$$                                    | $$-x_{C1}-x_{C2}$$<br>$$+0.3(x_{D1}+x_{D2})$$                             |
 | $$x_{C3},x_{D3}=0$$             |                           |                                                                            |                                                                       |
@@ -142,7 +142,7 @@ $\max0.4(x_{A1}+x_{A2}+x_{A3}+x_{A4})+0.7(x_{B1}+x_{B2}+x_{B3})+x_{C2}+0.3(x_{D5
 | $$x_{B4},x_{C4},x_{D4}=0$$      |                           |                                                                            |                                                                       |
 | $$x_{A5}+x_{B5}+x_{C5}+x_{D5}$$ | $$\leq10000$$               | $$+0.4(x_{A1}+x_{A2}+x_{A3})-x_{A4}$$<br>$$+0.7(x_{B1}+x_{B2})-x_{B3}-x_{B4}$$ | $$-x_{C1}-x_{C2}-x_{C3}-x_{C4}$$<br>$$+0.3(x_{D1}+x_{D2}+x_{D3}+x_{D4})$$ |
 | $$x_{A5},x_{B5},x_{C5}=0$$      |                           |                                                                            |                                                                       |
-|                               | $$x_{ij}\in\mathbb{R}^{+}$$ | $$\forall i\in\{A,B,C,D\}$$                                                  | $$\forall j\in\{1,2,3,4,5\}$                                           |
+|                               | $$x_{ij}\in\mathbb{R}^{+}$$ | $$\forall i\in\{A,B,C,D\}$$                                                  | $$\forall j\in\{1,2,3,4,5\}$$                                           |
 
 ---
 Vogliamo modelli lineari: min-max, max-min e abs non sono funzioni lineari.
@@ -185,15 +185,15 @@ Vogliamo massimizzare i ricavi complessivi.
 $$x_{i}:$$ quantità di m^[2] aperti in $$i\in I$$ (in 100mq)
 $$y_{i}=\begin{cases}F_{i}&\text{se }x_{i}>0\\0&\text{se }x_{i}=0\end{cases}$$
 
-$\begin{array}{lll}\max&\sum\limits_{i\in I}R_{i}{\color{red}x_{i}y_{i}}\\\text{s.t.}&&\\&\sum\limits_{i\in I}C_{i}{\color{red}x_{i}y_{i}}+F_{i}y_{i}\leq W&\text{(budget)}\\&x_{i}\in\mathbb{R}_{+},\ y_{i}\in\{0,1\}&\forall i\in I\end{array}$
+$$\begin{array}{lll}\max&\sum\limits_{i\in I}R_{i}{\color{red}x_{i}y_{i}}\\\text{s.t.}&&\\&\sum\limits_{i\in I}C_{i}{\color{red}x_{i}y_{i}}+F_{i}y_{i}\leq W&\text{(budget)}\\&x_{i}\in\mathbb{R}_{+},\ y_{i}\in\{0,1\}&\forall i\in I\end{array}$$
 
 Non è un modello lineare. Si definisce un *vincolo "big-M"* dove M è una costante sufficientemente grande per attivare le variabili binarie.
 
-$\begin{array}{lll}\max&\sum\limits_{i\in I}R_{i}x_{i}\\\text{s.t.}&&\\&\sum\limits_{i\in I}C_{i}x_{i}+F_{i}y_{i}\leq W&\text{(budget)}\\&x_{i}\leq My_{i}\ \forall i\in I&\text{(attivazione delle variabili binarie)}\\&x_{i}\in\mathbb{R}_{+},\ y_{i}\in\{0,1\}&\forall i\in I\end{array}$$
+$$\begin{array}{lll}\max&\sum\limits_{i\in I}R_{i}x_{i}\\\text{s.t.}&&\\&\sum\limits_{i\in I}C_{i}x_{i}+F_{i}y_{i}\leq W&\text{(budget)}\\&x_{i}\leq My_{i}\ \forall i\in I&\text{(attivazione delle variabili binarie)}\\&x_{i}\in\mathbb{R}_{+},\ y_{i}\in\{0,1\}&\forall i\in I\end{array}$$
 
 Aggiungiamo vincoli:
-Per ogni localizzazione i è prevista una dimensione massima $$U_{i}$$, e nel caso di apertura, una dimensione minima pari a $$L_{i}$. Non possono essere aperti più di K ipermercati.
-$\begin{array}{lll}\max&\sum\limits_{i\in I}R_{i}x_{i}\\\text{s.t.}&&\\&\sum\limits_{i\in I}C_{i}x_{i}+F_{i}y_{i}\leq W&\text{(budget)}\\&x_{i}\leq U_{i}y_{i}\ \forall i\in I&\text{(dim massima/attivazione delle variabili binarie)}\\&x_{i}\geq L_{i}y_{i}\ \forall i\in I&\text{(dim minima ipermercato)}\\&\sum\limits_{i\in I}y_{i}\leq K&\text{(num massimo ipermercati)}\\&x_{i}\in\mathbb{R}_{+},\ y_{i}\in\{0,1\}&\forall i\in I\end{array}$
+Per ogni localizzazione i è prevista una dimensione massima $$U_{i}$$, e nel caso di apertura, una dimensione minima pari a $$L_{i}$$. Non possono essere aperti più di K ipermercati.
+$$\begin{array}{lll}\max&\sum\limits_{i\in I}R_{i}x_{i}\\\text{s.t.}&&\\&\sum\limits_{i\in I}C_{i}x_{i}+F_{i}y_{i}\leq W&\text{(budget)}\\&x_{i}\leq U_{i}y_{i}\ \forall i\in I&\text{(dim massima/attivazione delle variabili binarie)}\\&x_{i}\geq L_{i}y_{i}\ \forall i\in I&\text{(dim minima ipermercato)}\\&\sum\limits_{i\in I}y_{i}\leq K&\text{(num massimo ipermercati)}\\&x_{i}\in\mathbb{R}_{+},\ y_{i}\in\{0,1\}&\forall i\in I\end{array}$$
 Da notare che senza la dimensione minima dell'ipermercato, c'è la possibilità che un ipermercato a dimensione nulla sia aperto.
 
 ---
@@ -209,17 +209,17 @@ E: privato, 5 rischio, 2 anni, 6.1%
 I fondi pubblici e dello stato sono tassati del 30% e almeno il 40% del capitale deve essere riservato a questi. La durata media dell'investimento non deve superare i 5 anni.
 Un investimento in C blocca l'investimento in D e viceversa. E' possibile investire in E solo se si 
 
-$\max4.5x_{A}+0.7(5.4x_{B}+5.1x_{C}+4.4x_{D})+6.1x_{E}$ 
+$$\max4.5x_{A}+0.7(5.4x_{B}+5.1x_{C}+4.4x_{D})+6.1x_{E}$$ 
 
 | s.t.                                 |                                                |
 | :----------------------------------- | ---------------------------------------------- |
 | $$x_A+x_B+x_C+x_D+x_E$$                | $$\leq100000$$                                   |
 | $$x_B+x_C+x_D$$                        | $$\leq40000$$                                    |
 | $$9x_A+15x_B+4x_C+3x_D+2x_E$$          | $$\leq5(x_A+x_B+x_C+x_D+x_E)$$                   |
-| $$2x_A+3x_B+1x_C+4x_D+5x_E$$           | $\leq1.5(x_A+x_B+x_C+x_D+x_E)$$                 |
+| $$2x_A+3x_B+1x_C+4x_D+5x_E$$           | $$\leq1.5(x_A+x_B+x_C+x_D+x_E)$$                 |
 | $$y_C+y_D\leq1$$<br>(vincolo C nand D) | $$x_C\leq My_C$$<br>$$x_D\leq My_D$$ (attivazione) |
 | $$x_A\geq10000y_E$$                    | $$x_E\leq My_E$$ (attivazione)                   |
-| $$x_i\in\mathbb{R}_+,\ y_i\in\{0,1\}$$ | $$\forall i\in I$                               |
+| $$x_i\in\mathbb{R}_+,\ y_i\in\{0,1\}$$ | $$\forall i\in I$$                               |
 
 ---
 Ditta dispone di 20 operai esperti e deve pianificare le assunzioni per i prossimi 5 mesi. Ogni operaio esperto lavora 150 ore di lavoro e percepisce 1000 euro al mese. Un neoassunto, durante il suo primo mese, percepisce 500 euro, non fornisce lavoro utile e gli viene affiancato un operaio esperto. Ogni operaio esperto 
@@ -305,7 +305,7 @@ Esecuzione:
 	ripeti
 2. mettere in forma canonica rispetto a B
    $$z=\bar{z}_{B}+\sum\limits_{j=1}^{n-m}\bar{c}_{F_{j}}x_{F_{j}}$$
-   $x_{B_{i}}=\bar{b}_{i}-\sum\limits_{j=1}^{n-m}-\bar{a}_{iF_{j}}x_{F_{j}}\quad(i=1...m)$
+   $$x_{B_{i}}=\bar{b}_{i}-\sum\limits_{j=1}^{n-m}-\bar{a}_{iF_{j}}x_{F_{j}}\quad(i=1...m)$$
 3. *Condizione sufficiente di ottimalità*
    Quando tutti i costi ridotti delle variabili fuori base sono $$c_{B_{i}}\geq0$$ allora la soluzione è ottima.
 4. *Condizione sufficiente di illimitatezza*
@@ -321,7 +321,7 @@ Prima di procedere:
 2. è una base ammissibile? $$\bar{b}\geq0$$
 3. è una funzione ottima?
 4. è illimitato?
-5. $\min\{\underset{(x_{B_{1}})}{\dfrac{\bar{b}_{1}}{\bar{a}_{1h}}},...,\underset{(x_{B_{m}})}{\dfrac{\bar{b}_{m}}{\bar{a}_{mh}}}\}$ che scegliamo per cambio di base
+5. $$\min\{\underset{(x_{B_{1}})}{\dfrac{\bar{b}_{1}}{\bar{a}_{1h}}},...,\underset{(x_{B_{m}})}{\dfrac{\bar{b}_{m}}{\bar{a}_{mh}}}\}$$ che scegliamo per cambio di base
 
 Per fare cambio di base si devono fare operazioni di pivot dalla colonna.
 Base non deve essere assolutamente nella nella posizione dello schema sopra, basta essere definita.
@@ -349,7 +349,7 @@ Vincolo è saturo quando $$s_{1}=0$$ e lasco quando $$\geq0$$.
 		(2) Ammissibile? Sì
 		(3) Ottima? Sì, non ci sono costi ridotti negativi
 
-*Base degenere*: ci sono più di una $\min\{\frac{\bar{b}_{1}}{\bar{a}_{1h}},...,\frac{\bar{b}_{m}}{\bar{a}_{mh}}\}$.
+*Base degenere*: ci sono più di una $$\min\{\frac{\bar{b}_{1}}{\bar{a}_{1h}},...,\frac{\bar{b}_{m}}{\bar{a}_{mh}}\}$$.
 Scegliamo albitrariamente quale fare uscire.
 E' possibile che con basi diverse si hanno le stesse soluzioni.
 
@@ -374,7 +374,7 @@ Cambiamo punto di vista: definiamo un valore per la funzione obiettivo w
 >Se z* esiste finito allora esiste anche w*.
 
 w*=max w che soddisfa tutti i vincoli sul valore obiettivo. I vincoli sono infiniti.
-$\begin{array}{lcll}w^{*}=&\max&w\\ &\text{s.t.}&w\leq c^{T}x&\forall x\in P\\ &&x\in\mathbb{R}\end{array}$$
+$$\begin{array}{lcll}w^{*}=&\max&w\\ &\text{s.t.}&w\leq c^{T}x&\forall x\in P\\ &&x\in\mathbb{R}\end{array}$$
 
 PL2
 Condizioni necessarie e sufficienti:
@@ -390,7 +390,7 @@ La funzione funzione obiettivo del duale è $$u^{T}b=u_{1}b_{1}+...+u_{m}b_{m}$$
 -Sufficienza, definire $$u^{T}A\sim c^{T}$$ e u
 $$c^{T}x\underbrace{\geq}_{x\geq0,\text{ serve }u^{T}A\leq c^{T}}u^{T}Ax\underbrace{\geq}_{Ax}u^{T}b\geq w_{i},\ \forall x\in P$$
 
-Affinché $$u^{T}Ax\leq c^{T}x$$ è sufficiente che a $$$u^{T}A_{j}x_{j}\leq c_{j}x_{j},\ \forall j=1...n$$ si consideri una variabile primale alla volta:
+Affinché $$u^{T}Ax\leq c^{T}x$$ è sufficiente che a $$u^{T}A_{j}x_{j}\leq c_{j}x_{j},\ \forall j=1...n$$ si consideri una variabile primale alla volta:
 - se $$x_{j}\geq0$$, la condizione sufficiente è che $$u^{T}A_{j}\leq c_{j}$$
 - se $$x_{j}\leq0$$, la condizione sufficiente è che $$u^{T}A_{j}\geq c_{j}$$
 - se $$x_{j}$$ è libera, la condizione sufficiente è che $$u^{T}A_{j}=c_{j}$$
@@ -410,7 +410,7 @@ Affinché $$u^{T}Ax\geq u^{T}b$$ è sufficiente che a $$u_{i}a_{i}^{T}x\geq u_{i
 | $$x_{j}$$ libera          | $$u^{T}A_{j}=c_{j}$$     |
 
 esempio:
-$\begin{array}{lllll}\min&10x_{1}&+20x_{2}\\\text{s.t.}&2x_1&-x_{2}&&\geq1\\&&x_{2}&x_{3}&\leq2\\&x_1&&-2x_3&=3\\&&3x_{2}&-x_{3}&\geq4\\&x_{1}&&&\geq0\\&&x_2&&\text{libera}\\&&&x_{3}&\leq0\end{array}\Longrightarrow\begin{array}{llllll}\max&1u_{1}&+2u_{2}&+3u_{3}&+4u_{4}\\\text{s.t.}&u_{1}&&&&\geq0\\&&u_{2}&&&\text{libera}\\&&&u_{3}&&\leq0\\&&&&u_{4}&\geq0\\&2u_{1}&&+u_{3}&&\leq10\\&-u_{1}&+u_{2}&&+3u_{4}&\leq20\\&&u_{2}&-2u_{3}&-u_{4}&=0\end{array}$
+$$\begin{array}{lllll}\min&10x_{1}&+20x_{2}\\\text{s.t.}&2x_1&-x_{2}&&\geq1\\&&x_{2}&x_{3}&\leq2\\&x_1&&-2x_3&=3\\&&3x_{2}&-x_{3}&\geq4\\&x_{1}&&&\geq0\\&&x_2&&\text{libera}\\&&&x_{3}&\leq0\end{array}\Longrightarrow\begin{array}{llllll}\max&1u_{1}&+2u_{2}&+3u_{3}&+4u_{4}\\\text{s.t.}&u_{1}&&&&\geq0\\&&u_{2}&&&\text{libera}\\&&&u_{3}&&\leq0\\&&&&u_{4}&\geq0\\&2u_{1}&&+u_{3}&&\leq10\\&-u_{1}&+u_{2}&&+3u_{4}&\leq20\\&&u_{2}&-2u_{3}&-u_{4}&=0\end{array}$$
 
 > Teorema: trasformazione duale doppia
 > Il duale del duale è la primale.
@@ -520,7 +520,7 @@ Costruire il cammino minimo seguendo i flag all'indietro.
 
 Generalizzazione del cammino minimo con più inizi e fini
 Variabile decisionale $$x_{ij}\in\mathbb{Z}_+$$
-$\begin{align}\min&\sum\limits_{(i,j)\in A}c_{ij}x_{ij}\\s.t.&\sum\limits_{(i,v)\in A}x_{iv}\sum\limits_{(v,j)\in A}x_{vj}=\begin{cases}\leq q&\\\geq q&\\0&v\in N\backslash\{s,d\}\end{cases}\\&\underbrace{x_{ij}\leq a_{ij}}_{\text{vincoli di capacità}}\\&x_{ij}\in\{0,1\}\quad\forall(i,j)\in A\end{align}$
+$$\begin{align}\min&\sum\limits_{(i,j)\in A}c_{ij}x_{ij}\\s.t.&\sum\limits_{(i,v)\in A}x_{iv}\sum\limits_{(v,j)\in A}x_{vj}=\begin{cases}\leq q&\\\geq q&\\0&v\in N\backslash\{s,d\}\end{cases}\\&\underbrace{x_{ij}\leq a_{ij}}_{\text{vincoli di capacità}}\\&x_{ij}\in\{0,1\}\quad\forall(i,j)\in A\end{align}$$
 Problema del flusso di costo minimo
 Vincoli di capacità
 
@@ -550,9 +550,9 @@ La complessità è $$O(|A|\log N)$$ con heap binario.
 ### Branch and Bound: problema di programmazione lineare intera
 $$\begin{array}{rcll}z_{I}=&\max\backslash\min &c^{T}x\\&\text{s.t.}&Ax=b\\&&x_{i}\in\mathbb{Z}_{+}^{n}&i\in I\end{array}$$
 **Rilassamento continuo**
-$\begin{array}{rcl}z_{L}=&\max\backslash\min &c^{T}x\\&\text{s.t.}&Ax=b\\&&x\geq0\end{array}$$
+$$\begin{array}{rcl}z_{L}=&\max\backslash\min &c^{T}x\\&\text{s.t.}&Ax=b\\&&x\geq0\end{array}$$
 Nei problemi di massimo $$z_{L}\geq z_{I}$$ è *Upper Bound* (sempre arrotondato in eccesso)
-Nei problemi di minimo $$z_{L}\leq z_{I}$ è *Lower Bound*.
+Nei problemi di minimo $$z_{L}\leq z_{I}$$ è *Lower Bound*.
 
 **Branching**
 Usiamo il metodo divide-et-impera per trovare l'ottimo di ogni porzione della soluzione ammissibile. Il migliore tra queste è la soluzione ottima del problema.
@@ -565,17 +565,17 @@ Costruiamo due sotto-problemi (branch) con una soluzione del rilassamento contin
 > 	*Criterio di stop:* Se $$L=\emptyset$$, allora `stop`: $$\bar{x}$$ è la soluzione ottima
 > 	*Selezione nodo:* Seleziona ed estrai $$(P_{i},B_{i})\in L$$ per effettuare branch
 > 	*Branching:* Dividi $$P_{i}\text{ in }P_{|L|+1}(x_{ik})\leq\lfloor x_{ik}^{R}\rfloor\text{ e }P_{|L|+2}(x_{ik}\geq\lceil\hat{x}_{ik}^{R}\rceil)$$
-> 	`for each` sotto-problema $P_{j},\ j=|L|+1...|L|+2$$:
-> 		*Bounding:* Risolvi il rilassamento di $$P_{j}$$ ottenendo la stima ottimistica $$B_{j}$$ e soluzione $$x_{j}^{R}$ o inammissibilità
+> 	`for each` sotto-problema $$P_{j},\ j=|L|+1...|L|+2$$:
+> 		*Bounding:* Risolvi il rilassamento di $$P_{j}$$ ottenendo la stima ottimistica $$B_{j}$$ e soluzione $$x_{j}^{R}$$ o inammissibilità
 > 		*Fathoming:* 
-> 			`if` $P_{j}$ non è inammissibile: `continue`
-> 			`else if` $B_{j}$$ non è migliore di $$\hat{z}$: `continue`
-> 			`else if` $x_{j}^{R}$ è intera:
-> 				`if` $x_{j}^{R}$$ è migliore di $$\bar{z}$$:
+> 			`if` $$P_{j}$$ non è inammissibile: `continue`
+> 			`else if` $$B_{j}$$ non è migliore di $$\hat{z}$$: `continue`
+> 			`else if` $$x_{j}^{R}$$ è intera:
+> 				`if` $$x_{j}^{R}$$ è migliore di $$\bar{z}$$:
 > 					aggiorna
-> 					elimina da L tutti i nodi k con $$L_{k}$$ non migliore di $$\bar{z}$
+> 					elimina da L tutti i nodi k con $$L_{k}$$ non migliore di $$\bar{z}$$
 > 				`continue`
-> 		*Ricorsione:* `else` aggiungi $(P_{j},B_{j})$ a L
+> 		*Ricorsione:* `else` aggiungi $$(P_{j},B_{j})$$ a L
 
 Possiamo usare il criterio del Best Bound First sui nodi attivi.
 
