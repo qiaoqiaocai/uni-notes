@@ -817,7 +817,7 @@ class C_handle::C_privata{
   
 **Friend Function**  
 La funzione Friend viene usata per dare accesso alla parte privata della classe.  
-<u>Attenzione</u>: Se è usato molto spesso, c’è probabilmente un problema di design.  
+{::nomarkdown} <u>Attenzione</u> {:/nomarkdown}: Se è usato molto spesso, c’è probabilmente un problema di design.  
 ``` c++  
 // file bolletta.h  
 class bolletta{  
@@ -997,7 +997,7 @@ double* q = static_cast<double*>(p);
   
 CONST_CAST  
 Permette di convertire un puntatore o un riferimento da const T a T.  
-Attenzione: quando si usa, probabilmente c'è un <u>errore di design</u>.  
+Attenzione: quando si usa, probabilmente c'è un {::nomarkdown} <u>errore di design</u> {:/nomarkdown}.  
 ``` c++  
 const int i=5;  
 int* p = const_cast<int*>(&i);  
@@ -1150,7 +1150,7 @@ private:
 L’istanziazione di template di classe devono essere **esplicite** o devo definire un default.  
 `template <class Tipo=int, unsigned int size=1024>`  
   
-<u>Nota bene</u>: il compilatore genera una istanza di un template (di classe o funzione) *solo quando è necessario*.  
+{::nomarkdown} <u>Nota bene</u> {:/nomarkdown}: il compilatore genera una istanza di un template (di classe o funzione) *solo quando è necessario*.  
 Istanzia solo le classi/funzioni richieste dal codice per compilare.  
   
 Anche se tutto il template sta nel “header” file, i metodo devono essere definiti fuori dalla definizione di classe.  
@@ -1360,10 +1360,10 @@ Implementata come una lista doppiamente linkata.
 - accesso sequenziale (`operator[]` non funziona)  
   
 ## Ereditarietà  
-Classe che eredita da un'altra classe, si dice <u>derivata</u> (sottoclasse) -> D  
-Classe da cui viene derivata si chiama <u>classe base</u> (superclasse) -> B  
+Classe che eredita da un'altra classe, si dice {::nomarkdown} <u>derivata</u> {:/nomarkdown} (sottoclasse) -> D  
+Classe da cui viene derivata si chiama {::nomarkdown} <u>classe base</u> {:/nomarkdown} (superclasse) -> B  
   
-<table>  
+{::nomarkdown} <table>  
 	<thead>  
 	<tr><td>Classe base</td><td colspan="3">Classe derivata con derivazione</td></tr>  
 	</thead>  
@@ -1373,9 +1373,9 @@ Classe da cui viene derivata si chiama <u>classe base</u> (superclasse) -> B
 	<tr><td><b>protetto</b></td><td>protetto</td><td>protetto</td><td>privata</td></tr>  
 	<tr><td><b>pubblico</b></td><td>pubblico</td><td>protetto</td><td>privato</td></tr>  
 	</tbody>  
-</table>  
+</table> {:/nomarkdown}  
   
-La parte privata della classe base è <u>inaccessibile</u> alla classe derivata. Usiamo i metodi pubblici della base.  
+La parte privata della classe base è {::nomarkdown} <u>inaccessibile</u> {:/nomarkdown} alla classe derivata. Usiamo i metodi pubblici della base.  
 Possiamo usare la marcatura `protected` che da accessibilità alla derivata. Da usare limitatamente per non violare information hiding.  
   
 Derivazione   
