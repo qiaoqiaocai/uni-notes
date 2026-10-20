@@ -10,8 +10,10 @@
     </script>
     <script>
     MathJax = {
+      loader:  {load: ['[tex]/ams', '[tex]/mathtools']},
       tex: {
-        inlineMath: {'[+]': [['$', '$']]}
+        inlineMath: {'[+]': [['$', '$']]},
+        packages: {'[+]': ['ams', 'mathtools']}
       },
       svg: {
         fontCache: 'global'
