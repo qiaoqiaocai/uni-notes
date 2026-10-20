@@ -53,34 +53,34 @@ Altri operatori
 *Ridenominazione* (p),
   modifica lo schema lasciando inalterate le istanze
 
-*Selezione $(\sigma)$*, 
+*Selezione $$(\sigma)$$*, 
   decomposizione orizzontale: ottengo un sottoinsieme delle tuple che soddisfano una condizione
 
-*Proiezione $(\pi)$*, 
+*Proiezione $$(\pi)$$*, 
   decomposizione verticale: restituisce relazione con una parte di attributi
   sottoinsieme delle tuple (eliminazione duplicati)
 
-*Join $(\bowtie)$*,
+*Join $$(\bowtie)$$*,
   prodotto cartesiano tra relazioni mantenendo quelli con valori uguali su attributi uguali. Può risultare completo, non completo, vuoto o nxm (prodotto cartesiano).
-  In generale $0\leq|R_{1}\bowtie R_{2}|\leq|R_{1}|\times|R_{2}|$
+  In generale $$0\leq|R_{1}\bowtie R_{2}|\leq|R_{1}|\times|R_{2}|$$
   
   Join esterno,
-   mette null in attributi quando non ha un relativo nell'altra tabella. Può essere sinistro $(\bowtie_{\text{left}})$, destro $(\bowtie_{\text{right}})$ o completo $(\bowtie_{\text{full}})$ a seconda di quali tuple mantiene. Risolve il problema dei join non completi e la perdita di informazioni.
+   mette null in attributi quando non ha un relativo nell'altra tabella. Può essere sinistro $$(\bowtie_{\text{left}})$$, destro $$(\bowtie_{\text{right}})$$ o completo $$(\bowtie_{\text{full}})$$ a seconda di quali tuple mantiene. Risolve il problema dei join non completi e la perdita di informazioni.
   
   *Semi-join*, restituisce le tuple che contribuiscono allo join
-  *Theta_join*: $\sigma_{\text{condition}}(R_{1}\bowtie R_{2})\quad\Longleftrightarrow\quad R_{1}\bowtie_{\text{condition}}R_{2}$
+  *Theta_join*: $$\sigma_{\text{condition}}(R_{1}\bowtie R_{2})\quad\Longleftrightarrow\quad R_{1}\bowtie_{\text{condition}}R_{2}$$
   Equi-join è un theta-join con condizione di equivalenza
 
 In algebra relazione, due espressioni sono equivalenti se producono lo stesso risultato per qualunque istanza delle relazioni della base di dati. Il DBMS cerca sempre di eseguire espressioni equivalenti ma più efficienti.
-1. $\sigma_{\text{C1 and C1}}(R)\equiv\sigma_{C1}\sigma_{C2}(R)$
-2. $\pi_{X}(\pi_{XY}(R))\equiv\pi_{X}(R)$
-3. $\sigma_{C1}(R_{1}\bowtie R_{2})\equiv R_{1}\bowtie\sigma_{C1}(R_{2})$
-   se C1 condizione su $X_{2}$
-4. $\pi_{X_{1}Y_{2}}(R_{1}\bowtie R_{2})\equiv\pi_{X_{1}Y_{2}}(R_{1}\bowtie\pi_{Y_{2}}(R_{2}))$
-   se $X_{2}-Y_{2}$ non coinvolti dal join
-5. $\sigma_{C}(R_{1}\bowtie R_{2})\equiv R_{1}\bowtie_{C}R_{2}$
-6. $\sigma_C(R_{1}\cup R_{2})\equiv\sigma_{C}(R_{1})\cup\sigma_{C}(R_{2})$
-7. $\sigma_{C}(R_{1}-R_{2})\equiv\sigma_{C}(R_{1})-\sigma_{C}(R_{2})$
+1. $$\sigma_{\text{C1 and C1}}(R)\equiv\sigma_{C1}\sigma_{C2}(R)$$
+2. $$\pi_{X}(\pi_{XY}(R))\equiv\pi_{X}(R)$$
+3. $$\sigma_{C1}(R_{1}\bowtie R_{2})\equiv R_{1}\bowtie\sigma_{C1}(R_{2})$$
+   se C1 condizione su $$X_{2}$$
+4. $$\pi_{X_{1}Y_{2}}(R_{1}\bowtie R_{2})\equiv\pi_{X_{1}Y_{2}}(R_{1}\bowtie\pi_{Y_{2}}(R_{2}))$$
+   se $$X_{2}-Y_{2}$$ non coinvolti dal join
+5. $$\sigma_{C}(R_{1}\bowtie R_{2})\equiv R_{1}\bowtie_{C}R_{2}$$
+6. $$\sigma_C(R_{1}\cup R_{2})\equiv\sigma_{C}(R_{1})\cup\sigma_{C}(R_{2})$$
+7. $$\sigma_{C}(R_{1}-R_{2})\equiv\sigma_{C}(R_{1})-\sigma_{C}(R_{2})$$
 
 **Viste (relazioni derivati)**
 Rappresentazioni diverse per gli stessi dati. Non hanno contenuto autonomo ma si basano sulle relazioni di base. Vengono usati per mascherando informazioni in base ai diversi utenti o per semplificare la scrittura di interrogazioni complesse.
@@ -387,14 +387,14 @@ R(A, B, C, D, E, F)
 | B -> F     |                    |                | viola |
 | AD -> CF   | AD->C<br>~~AD->F~~ | <br>A->B, B->F |       |
 
-$C^{+}=\{C,D,B,E,A,F\}$ candidato chiave
-$A^{+}=\{A,B,F\}$
-$D^{+}=\{B,E,F\}$
-$B^{+}=\{F\}$
-$AD^{+}=\{A,D,C,F,B,E\}$ candidato chiave
+$$C^{+}=\{C,D,B,E,A,F\}$$ candidato chiave
+$$A^{+}=\{A,B,F\}$$
+$$D^{+}=\{B,E,F\}$$
+$$B^{+}=\{F\}$$
+$$AD^{+}=\{A,D,C,F,B,E\}$$ candidato chiave
 
-2. G viene partizionato in sottoinsiemi tali che dipendenze funzionali $X\rightarrow A\text{ e }Y\rightarrow B$ sono insieme se $X^{+}_{G}=Y^{+}_{G}$
-$\{C\rightarrow A,C\rightarrow D, AD\rightarrow C\},\ \{A\rightarrow B\},\ \{D\rightarrow B, D\rightarrow E\},\ \{B\rightarrow F\}$
+2. G viene partizionato in sottoinsiemi tali che dipendenze funzionali $$X\rightarrow A\text{ e }Y\rightarrow B$$ sono insieme se $$X^{+}_{G}=Y^{+}_{G}$$
+$$\{C\rightarrow A,C\rightarrow D, AD\rightarrow C\},\ \{A\rightarrow B\},\ \{D\rightarrow B, D\rightarrow E\},\ \{B\rightarrow F\}$$
 3. Viene costruita una relazione per ogni sotto-insieme
 
 R1(<u>C</u>, <u>A, D</u>)
@@ -402,8 +402,8 @@ R2(<u>A</u>, B)
 R3(<u>U</u>,B, E)
 R4(<u>B</u>, F)
 
-4. Se esistono due relazioni S(X) e T(Y) con $X\subseteq Y$ allora viene eliminata
-5. Se, per qualche i, non esiste una relazione S(X) con $K_{i}\subseteq X$, viene aggiunta una relazione $T(K_{i})$
+4. Se esistono due relazioni S(X) e T(Y) con $$X\subseteq Y$$ allora viene eliminata
+5. Se, per qualche i, non esiste una relazione S(X) con $$K_{i}\subseteq X$$, viene aggiunta una relazione $$T(K_{i})$$
 Indici
 
 ## Transazione
