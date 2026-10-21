@@ -35,7 +35,11 @@ Vincoli
 $$\begin{array}{l l}1x_{L}+1x_{P}\leq 11&\text{(ettari disponibili)}\\7x_{L}\leq70&\text{(semi disponibili)}\\3x_{P}\leq18&\text{(tuberi disponibili)}\\10x_{L}+20x_{P}\leq145&\text{(fertilizzante disponibile)}\\x_{L}\geq0, x_{P}\geq0&\text{(dominio)}\end{array}$$  
   
 Soluzione grafica  
+<<<<<<< HEAD
 ![](./img/IMG_9469.png)  
+=======
+![[./img/IMG_9469.png|IMG_9469]]  
+>>>>>>> 66b3aa81db01a561597e9901fb1b9861f87a7844
 Area sotto i vincoli si chiama politopo e rappresenta il l’insieme delle soluzioni ammissibili.  
   
 Non funziona quando le variabili da trovare superano i 3.  
@@ -264,7 +268,7 @@ Un problema di PL può avere soluzione:
 > Dato un problema PL $$\min(\max)\{c^{T}x:x\in P\}$$, se P è non vuoto e limitato, allora  
 > - ammette soluzione ottima  
 > - esiste almeno un vertice ottimo  
-  
+
 Combinazione convessa  
 Si dice stretta quando non vengono considerati gli estremi.  
   
@@ -422,7 +426,7 @@ $$\begin{array}{lllll}\min&10x_{1}&+20x_{2}\\\text{s.t.}&2x_1&-x_{2}&&\geq1\\&&x
   
 > Teorema: trasformazione duale doppia  
 > Il duale del duale è la primale.  
-  
+
 >**Teorema della dualità forte**  
 >Data coppia (PL) e (DL)  
 >(PL) ammette ottimo finito $$\Longleftrightarrow$$ (DL) ammette ottimo finito e i valori delle funzioni obiettivo coincidono.  

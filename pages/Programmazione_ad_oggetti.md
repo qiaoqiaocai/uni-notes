@@ -1395,7 +1395,7 @@ Differenza ereditarietà privata e composizione
 - ered. privata può introdurre ere. multipla (problematica) non necessaria  
 - ered. privata permette alla derivata di convertire puntatore della classe derivata a quella della base  
 - ered. privata permette l'accesso alla parte privata della base  
-  
+
 ### Eredità di Tipo  
 Relazione *is-a*, sotto-tipaggio.  
 ``` c++  
@@ -1918,7 +1918,7 @@ class C {
   
 C++14  
 - auto come valore di ritorno della funzione  
-  
+
 C++17  
 - nested namespaces  
 - variable declaration in if  
