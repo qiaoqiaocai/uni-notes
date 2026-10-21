@@ -5,7 +5,7 @@
 
 :root {
     --body-bg: #FFFFFF;
-    --body-color: #000000;
+    --txt-color: #000000;
     --quote-bg: #E5E5E5;
     --quote-border: #C9C9C9;
 }
@@ -13,15 +13,19 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --body-bg: #000000;
-        --body-color: #FFFFFF;
-        --quote-bg: #757575;
+        --txt-color: #FFFFFF;
+        --quote-bg: #424040;
         --quote-border: #C9C9C9;
     }
 }
 
 body {
     background-color: var(--body-bg);
-    color: var(--body-color) !important;
+    color: var(--txt-color) !important;
+}
+
+h1, h2, h3, h4, h5 {
+    color: var(--txt-color);
 }
 
 small {
@@ -32,5 +36,5 @@ blockquote {
     background-color: var(--quote-bg);
     border-left: 2px solid var(--quote-border);
     font-style: normal;
-    color: var(--body-color);
+    color: var(--txt-color);
 }

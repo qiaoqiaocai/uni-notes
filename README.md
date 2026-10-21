@@ -3,6 +3,11 @@ University Obsidian notes published in a Jekyll Page.
 
 Using Enveloppe Obsidian plugin to publish `share: true` .md notes in the `page/` folder.
 
-Uses Enveloppe's text replacer to change every single $ to $$.
-- regex of the text to replace: `/(?<!\$)\$([^$]+?)\$(?!\$)/`
+## Enveloppe's text replacer configurations
+to change every single $ to $$.
+- regex of the text to capture: `/(?<!\$)\$([^$]+?)\$(?!\$)/`
 - replacement: `$$$$$1$$$$`
+
+to encapsule codeblocks in \{::nomarkdown\} \{:/nomarkdown\}
+- regex of the text to capture: `/<([a-zA-Z][\w-]*)\b[^>]*>[\s\S]*?</\1\s*>/`
+- replacement: `{::nomarkdown} $& {:/nomarkdown}`

@@ -35,11 +35,7 @@ Vincoli
 $$\begin{array}{l l}1x_{L}+1x_{P}\leq 11&\text{(ettari disponibili)}\\7x_{L}\leq70&\text{(semi disponibili)}\\3x_{P}\leq18&\text{(tuberi disponibili)}\\10x_{L}+20x_{P}\leq145&\text{(fertilizzante disponibile)}\\x_{L}\geq0, x_{P}\geq0&\text{(dominio)}\end{array}$$  
   
 Soluzione grafica  
-<<<<<<< HEAD
 ![](./img/IMG_9469.png)  
-=======
-![[./img/IMG_9469.png|IMG_9469]]  
->>>>>>> 66b3aa81db01a561597e9901fb1b9861f87a7844
 Area sotto i vincoli si chiama politopo e rappresenta il l’insieme delle soluzioni ammissibili.  
   
 Non funziona quando le variabili da trovare superano i 3.  
