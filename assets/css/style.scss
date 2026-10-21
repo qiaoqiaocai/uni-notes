@@ -6,25 +6,26 @@
 :root {
     --body-bg: #FFFFFF;
     --txt-color: #000000;
+    --code-color: #333333;
     --quote-bg: #E5E5E5;
     --quote-border: #C9C9C9;
 }
 
-@media (prefers-color-scheme: dark) {
-    :root {
-        --body-bg: #000000;
-        --txt-color: #FFFFFF;
-        --quote-bg: #424040;
-        --quote-border: #C9C9C9;
-    }
+:has(#dark-mode-toggle:checked) {
+    --body-bg: #000000;
+    --txt-color: #FFFFFF;
+    --code-color: #757575;
+    --quote-bg: #424040;
+    --quote-border: #C9C9C9;
 }
 
 body {
     background-color: var(--body-bg);
     color: var(--txt-color) !important;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
     color: var(--txt-color);
 }
 
@@ -32,9 +33,36 @@ small {
     color: #757575;
 }
 
+bold {
+    color: var(--txt-color);
+}
+
+code {
+    color: var(--code-color);
+}
+
 blockquote {
     background-color: var(--quote-bg);
     border-left: 2px solid var(--quote-border);
     font-style: normal;
-    color: var(--txt-color);
+    color: var(--code-color);
 }
+
+#dark-mode-toggle {
+    display: none;
+}
+
+.toggle {
+    background-image: url("../icons/sun.png");
+    background-color: var(--quote-bg);
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 2.8em;
+    height: 2.8em;
+    content: "";
+}
+
+#dark-mode-toggle:checked + .toggle {
+    background-image: url("../icons/moon.png");
+}
+
