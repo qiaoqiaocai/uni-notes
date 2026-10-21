@@ -6,6 +6,17 @@
 :root {
     --body-bg: #FFFFFF;
     --body-color: #000000;
+    --quote-bg: #E5E5E5;
+    --quote-border: #C9C9C9;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --body-bg: #000000;
+        --body-color: #FFFFFF;
+        --quote-bg: #757575;
+        --quote-border: #C9C9C9;
+    }
 }
 
 body {
@@ -15,4 +26,11 @@ body {
 
 small {
     color: #757575;
+}
+
+blockquote {
+    background-color: var(--quote-bg);
+    border-left: 2px solid var(--quote-border);
+    font-style: normal;
+    color: var(--body-color);
 }
