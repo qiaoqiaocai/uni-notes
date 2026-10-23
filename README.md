@@ -11,3 +11,10 @@ to change every single $ to $$.
 to encapsule codeblocks in \{::nomarkdown\} \{:/nomarkdown\}
 - regex of the text to capture: `/<([a-zA-Z][\w-]*)\b[^>]*>[\s\S]*?</\1\s*>/`
 - replacement: `{::nomarkdown} $& {:/nomarkdown}`
+
+## Resources used
+Table of Contents generation: (jekyll-toc)[https://github.com/allejo/jekyll-toc]
+
+Jekyll theme: (minimal)[https://github.com/pages-themes/minimal]
+
+Markdown codeblock style: (my-jekyll-syntax-highlighter-theme)[https://github.com/low-perry/my-jekyll-syntax-highlighter-theme]

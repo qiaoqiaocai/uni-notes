@@ -33,11 +33,11 @@ small {
     color: #757575;
 }
 
-bold {
+strong {
     color: var(--txt-color);
 }
 
-code {
+code > :not(.highlight) {
     color: var(--code-color);
 }
 
@@ -45,7 +45,7 @@ blockquote {
     background-color: var(--quote-bg);
     border-left: 2px solid var(--quote-border);
     font-style: normal;
-    color: var(--code-color);
+    color: var(--txt-color);
 }
 
 #dark-mode-toggle {

@@ -3,5 +3,7 @@ title: uni-notes
 description: University Obsidian notes published in a Jekyll Page.
 theme: jekyll-theme-minimal
 markdown: kramdown
+highlighter: rouge
 kramdown:
   math_engine: mathjax
+  input: GFM
