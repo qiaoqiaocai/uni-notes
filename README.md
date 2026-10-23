@@ -13,8 +13,8 @@ to encapsule codeblocks in \{::nomarkdown\} \{:/nomarkdown\}
 - replacement: `{::nomarkdown} $& {:/nomarkdown}`
 
 ## Resources used
-Table of Contents generation: (jekyll-toc)[https://github.com/allejo/jekyll-toc]
+Table of Contents generation: [jekyll-toc](https://github.com/allejo/jekyll-toc)
 
-Jekyll theme: (minimal)[https://github.com/pages-themes/minimal]
+Jekyll theme: [minimal](https://github.com/pages-themes/minimal)
 
-Markdown codeblock style: (my-jekyll-syntax-highlighter-theme)[https://github.com/low-perry/my-jekyll-syntax-highlighter-theme]
+Markdown codeblock style: [my-jekyll-syntax-highlighter-theme](https://github.com/low-perry/my-jekyll-syntax-highlighter-theme)

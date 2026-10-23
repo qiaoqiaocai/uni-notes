@@ -9,6 +9,8 @@
     --code-color: #333333;
     --quote-bg: #F2F2F2;
     --quote-border: #C9C9C9;
+    --bold-color: #444444;
+    --border-color: #E5E5E5;
 }
 
 :has(#dark-mode-toggle:checked) {
@@ -17,6 +19,8 @@
     --code-color: #757575;
     --quote-bg: #424040;
     --quote-border: #C9C9C9;
+    --bold-color: #BBBBBB;
+    --border-color: #1A1A1A;
 }
 
 body {
@@ -33,12 +37,12 @@ small {
     color: #757575;
 }
 
-strong {
-    color: var(--txt-color);
+strong, th {
+    color: var(--bold-color);
 }
 
-code > :not(.highlight) {
-    color: var(--code-color);
+th, td {
+    border-bottom: 1px solid var(--border-color);
 }
 
 blockquote {

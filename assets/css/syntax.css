@@ -84,7 +84,7 @@
 .highlight .cp {
     color: var(--cp-color);
 }
-.highlight .nt {
+.highlight .nt, .highlight .nl {
     color: var(--nt-color);
 }
 .highlight .o, .highlight .ow {
@@ -160,7 +160,6 @@
 .language-plaintext.highlighter-rouge {
     background-color: var(--text-bg-color);
     color: var(--text-color);
-    font-size: large;
     padding-left: 5px;
     padding-right: 5px;
 }
