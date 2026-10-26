@@ -264,7 +264,7 @@ Un problema di PL può avere soluzione:
 > Dato un problema PL $$\min(\max)\{c^{T}x:x\in P\}$$, se P è non vuoto e limitato, allora  
 > - ammette soluzione ottima  
 > - esiste almeno un vertice ottimo  
-
+  
 Combinazione convessa  
 Si dice stretta quando non vengono considerati gli estremi.  
   
@@ -422,7 +422,7 @@ $$\begin{array}{lllll}\min&10x_{1}&+20x_{2}\\\text{s.t.}&2x_1&-x_{2}&&\geq1\\&&x
   
 > Teorema: trasformazione duale doppia  
 > Il duale del duale è la primale.  
-
+  
 >**Teorema della dualità forte**  
 >Data coppia (PL) e (DL)  
 >(PL) ammette ottimo finito $$\Longleftrightarrow$$ (DL) ammette ottimo finito e i valori delle funzioni obiettivo coincidono.  

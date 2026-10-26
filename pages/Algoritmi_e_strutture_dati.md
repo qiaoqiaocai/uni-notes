@@ -29,7 +29,7 @@ Output: permutazione $$a_{1},…,a_{2}$$ tale che $$a^{’}_{1}\leq a^{’}_{2}\
 1. INSERTION SORT, incrementale $$\sim n^2$$  
 2. MERGE SORT, divide et impera $$\sim n\log n$$  
   
-## Insertion sort  
+### Insertion sort  
 ```  
 [5|2|8|4|7]  
   
@@ -108,7 +108,7 @@ $$\begin{align*}T(n)=&c_{1}+c_{2}+c_{3}n+(c_{4}+c_{5}+c_{9})(n-1)+\sum_{j=2}^{n}
 Caso medio:  
 mediamente $$t_{j}+\frac{j-1}{2}$$  
   
-## Merge sort  
+### Merge sort  
   
 Divide et impera  
 - Divide il problema P in $$P_{1},…,P_{n}$$ sottoproblemi  
@@ -587,7 +587,7 @@ xcasa
 2. Versione iterativo divide fino a un k ordinato in InsertionSort (Timsort)  
 3. In loco  
   
-## HeapSort  
+### HeapSort  
 - complessità  
 	tempo: $$\Theta(n\log n)$$  
 	spazio: $$O(1)$$  
@@ -731,7 +731,7 @@ Remove(A,i)
 	(es. come continuarlo)  
 ```  
   
-## QuickSort  
+### QuickSort  
 Di Tony Hoare (1961)  
 - complessità del caso peggiore $$O(n^{2})$$  
 - complessità del caso medio $$O(n\log n)$$  
@@ -850,11 +850,11 @@ RandomizedPartition(A,p,r)
   
 -> E se ci sono molto ripetizioni? Le partizioni sono comunque sbilanciate  
 Tripartition $$\qquad\underbrace{\overset{p}{[}<x\underset{q_{1}}{|}}_{\text{QuickSort}}=x\underbrace{\underset{q_{2}}{|}>x\overset{r}{]}}_{\text{QuickSort}}$$  
-#### Limite inferiore per il Problema dell’Ordinamento  
+### Limite inferiore per il Problema dell’Ordinamento  
 Problema  
 $$\begin{cases}\text{IN:}&a_{1}…a_{n}\\\text{OUT:}&a_{1}^{’}…a_{n}^{’}\quad\text{permutazioni ordinate}\end{cases}$$  
 ordinamento basato su confronti e assegnamenti, senza ulteriori informazioni sull’input$$\Omega(n\log n)$$$\hookrightarrow$$ limite inferiore per le operazioni di confronto  
-$$\hookrightarrow$$ restrizione a sequenze di input senza ripetizioni $$\forall\ i,j\quad\begin{align*}i&\neq j\\ a_{i}&\neq a_{j}\end{align*}$$  
+$$\hookrightarrow$$ restrizione a sequenze di input senza ripetizioni $$\forall\ i,j\quad i\neq j,\ a_{i}\neq a_{j}$$  
   
 - {::nomarkdown} <u>Alberi di decisione</u> {:/nomarkdown}  
 descrizione (astratta) dell’esecuzione di algoritmi su input di dimensione fissata n  
@@ -870,6 +870,7 @@ Osservazioni fondamentali
   
 Ogni algoritmo di ordinamento (corretto), l’albero di decisione per input di dimensione n$$\#\text{ foglie}\geq\#\text{ permutazioni di n elementi}=n!$$$\underbrace{\triangle}_{2^n\geq\#\text{ foglie}\geq n!}$$  
 $$\begin{align*}\#\text{operazioni dell’ algoritmo su input di dim n nel caso pessimo}\quad\geq\quad h&\geq\log_{2}(n!)\\&\geq\end{align*}$$  
+  
 ### Ordinamento a tempo lineare  
 Il limite inferiore dell’argoritmo di ordinamento è $$\Omega(n\log n)$$.  
 Ordinamento a tempo lineare è solo possibile con ipotesi sull’input:  
@@ -947,9 +948,7 @@ $$\Theta((n+b)\cdot b)\qquad b=O(1)$$
 $$\Theta(\text{complessità algoritmo stabile})+\Theta(n)$$ con l’assunzione precedente  
   
 ## Hash Tables  
-$$\begin{cases}\text{x.key}\\\text{dati satellite}\end{cases}$$  
-  
-$$\begin{align*}\text{Insert(s,x)}\\\text{Delete(s,x)}\\\text{Search(s,k)}\end{align*}$$  
+$$\begin{cases}\text{x.key}\\\text{dati satellite}\end{cases}$$ $$\begin{align*}\text{Insert(s,x)}\\\text{Delete(s,x)}\\\text{Search(s,k)}\end{align*}$$  
   
 efficiente:  
 -> costo medio $$\Theta(1)$$  
@@ -991,7 +990,7 @@ Collisione: chiavi $$k_{1},k_{2}\in U$$ con $$h(k_{1})=h(k_{2})$$
 - CHAINING  
 - OPEN ADDRESS  
   
-#### CHAINING  
+### CHAINING  
 Linked list nelle celle dell'array  
 ```  
 Insert(T,x) // O(1)  
@@ -1054,7 +1053,7 @@ $$h(k)=\llcorner m(K\cdot A\mod1)\lrcorner$
   
 xcasa:  
 1. Radix Sort con ordinamento a partire dalla cifra più significativa (MSD)  
-#### OPEN ADDRESSING  
+### OPEN ADDRESSING  
 Tutti gli elementi dell'insieme dinamico memorizzati nella tabella.  
   
 `h(k,i)  // k=key, i=iterazione`  
@@ -1307,11 +1306,12 @@ Operazioni: Insert/Delete, Search, Min/Max, Pred/Succ,
 Come realizzare Insert/Delete mantenendo le proprietà da RB-tree?  
 ```  
 ```  
-#### Aumento di strutture dati  
+  
+Aumento degli alberi  
 - statistiche di ordine dinamiche  
 - alberi di intervalli  
   
-###### Statistiche d'ordine dinamiche  
+### Statistiche d'ordine dinamiche  
 $$x_{1},...,x_{n}$$  
 $$\begin{align*}\text{Select(S,i)}&=\text{elemento in posizione i quando gli elementi sono ordinati}\\\text{Rank(S,x)}&=\text{posizione di x nella frequenza ordinata}\end{align*}$$  
   
@@ -1388,8 +1388,8 @@ RB-Insert-FixUp(T,z)
 	   -> cambi di colore  
 	   -> max 3 rotazioni  
   
-{::nomarkdown} <u>Teorema dell'aumento degli alberi RedBlack</u> {:/nomarkdown}  
-Se modifichiamo RB-tree aggiungendo ad ogni nodo un campo x.field che io possa calcolare in tempo $$O(1)$$ usando informazioni locali (di x, x.left, x.right), allora RB-Insert e RB-Delete possono essere "adattate" in un modo da mantenere x.field aggiornate, con complessità $$O(\log n)$$.  
+> **Teorema dell'aumento degli alberi RedBlack**  
+> Se modifichiamo RB-tree aggiungendo ad ogni nodo un campo x.field che io possa calcolare in tempo $$O(1)$$ usando informazioni locali (di x, x.left, x.right), allora RB-Insert e RB-Delete possono essere "adattate" in un modo da mantenere x.field aggiornate, con complessità $$O(\log n)$$.  
   
 NB. `Left(T,x)` non è banale da dimostrare.  
   
@@ -1483,7 +1483,7 @@ Procedura
 4) (opzionale) Mantieni informazioni addizionali che permettono di ricavare $$s^{*}$$  
   
 ### Applicazioni della programmazione dinamica  
-#### Problemi su stringhe  
+**Problemi su stringhe**  
 Dato un alfabeto finito $$\Sigma$$, una stringa $$X=<x_{1},x_{2},...,x_{n}>\ x_{i}\in\Sigma\text{ per }1\leq i\leq n$$ è una contenazione finita di simboli in $$\Sigma$$  
 lunghezza di $$X\quad|X|=m$$  
 $$\Sigma^{*}$$ è l'insieme di tutte le stringhe di lunghezza finita costruibile su $$\Sigma$$  
@@ -1508,7 +1508,7 @@ La sottostringa è un caso particolare di sottosequenza in cui la successione de
 Quante sono le sottosequenze di una stringa?  
 $$\sum\limits_{k=0}^{n}({m\atop k})=2^{m}$$ -> numero sottosequenze è enorme  
   
-##### "Longest Common Subsequence" (LCS)  
+#### "Longest Common Subsequence" (LCS)  
 Determinare la sottosequenza comune di massima lunghezza di due stringhe date X,Y  
 Date X,Y determinare Z tale che  
 1. Z è sottosequenza di X e di Y  
@@ -1688,7 +1688,7 @@ minBanconote(s)
 ```  
 Complessità $$O(s\cdot n)$$  
   
-##### "Longest Increasing Subsequence" (LIS)  
+#### "Longest Increasing Subsequence" (LIS)  
 $$Z=LIS(X)$$  
 Algoritmo esaustivo -> esponenziale  
   
@@ -1821,7 +1821,7 @@ Greedy_Sec(s,f)
 ```  
 Complessità: $$O(n)$$  
 2 ordini di grandezza guadagnati grazie all'algoritmo greedy  
-#### Paradigma generale  
+### Paradigma generale  
 si basa su 2 proprietà:  
 - **Proprietà di scelta greedy**  
   la soluzione ottima può essere costruita componendo scelte "avare". Si dimostra con la tecnica del cut & paste.  
@@ -1947,7 +1947,8 @@ Vediamo $$T^{*}\rightarrow T'$$
 $$\begin{align*}\underbrace{B(T^{*})-B(T')}_{\text{goal }\geq0}&=\sum\limits_{c\in C}f(c)d_{T^{*}}(c)-\sum\limits_{c\in C}f(c)d_{T'}(c)\\&=f(b)d_{T^{*}}(b)+f(x)d_{T^{*}}(x)-f(b)d_{T'}(b)-f(x)d_{T'}(x)=\\&\text{sia }d_{T'}(b)=d_{T^{*}}(x),\ d_{T'}(x)=d_{T^{*}}(b)\\&=f(b)d_{T^{*}}(b)+f(x)d_{T^{*}}(x)-f(b)d_{T^{*}}(x)-f(x)d_{T^{*}}(b)\\&=f(b)(d_{T^{*}}(b)-d_{T^{*}}(x))-f(x)(d_{T^{*}}(b)-d_{T^{*}}(x))\\&=\underbrace{(d_{T^{*}}(b)-d_{T^{*}}(x))}_{\geq0}\underbrace{(f(b)-f(x))}_{\geq0}\\&\Longrightarrow B(T^{*})=B(T)\end{align*}$$  
 e in modo del tutto analogo per $$T^{*}\rightarrow T'$$  
   
-{::nomarkdown} <u>Proprietà di sottostruttura ottima</u> {:/nomarkdown}: sia T un codice prefisso ottimo che contiene la scelta greedy (sui caratteri x e y). Sia z un nuovo carattere (cioè $$c\not\in C$$) con $$f(z)=f(x)+f(y)$$. Allora il codice prefisso $$T'=T\setminus\{x,y\}$$ è ottimo per $$C\setminus\{x,y\}\cup\{z\}$$.  
+> {::nomarkdown} <u>Proprietà di sottostruttura ottima</u> {:/nomarkdown}  
+> Sia T un codice prefisso ottimo che contiene la scelta greedy (sui caratteri x e y). Sia z un nuovo carattere (cioè $$c\not\in C$$) con $$f(z)=f(x)+f(y)$$. Allora il codice prefisso $$T'=T\setminus\{x,y\}$$ è ottimo per $$C\setminus\{x,y\}\cup\{z\}$$.  
   
 Dimostrazione:  
 che relazione c'è tra $$B(T)\text{ e }B(T')$$?  

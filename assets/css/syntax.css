@@ -137,7 +137,7 @@
 .highlight .no, .highlight .nd {
     color: var(--no-color);
 }
-.highlight .na {
+.highlight .na, .highlight .n {
     color: var(--na-color);
 }
 .highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
@@ -157,7 +157,8 @@
     color: var(--kr-color);
 }
 
-.language-plaintext.highlighter-rouge {
+.language-plaintext.highlighter-rouge,
+.language-plaintext.highlighter-rouge code {
     background-color: var(--text-bg-color);
     color: var(--text-color);
     padding-left: 5px;

@@ -10,7 +10,7 @@ O grande
 g(x) = O(f(x))   
   
 *Gerarchia di grandezza*  
-1. $$f\rightarrow0$$  
+1. $$f\rightarrow0$$   
 2. costante  
 3. logaritmo   
 4. radice e potenza frazionaria ($$\sqrt{n},\ n^{\frac{a}{b}}$$)  
@@ -28,6 +28,7 @@ Rimozione del'elemento e max-heapify
 ## Algoritmi  
 Correttezza?  
 - Analisi invarianti  
+  
 ### Algoritmo greedy  
 1. Scelta greedy  
 2. Risolvi il sotto-problema   
