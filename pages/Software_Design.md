@@ -123,6 +123,7 @@ Nei linguaggi ad oggetti evitare usare metodi statici pubblici.
   
 Interfaccia può avere solo dipendenza semplice o ereditarietà quando estende un'altra interfaccia.  
 ___ implementazione  
+  
 Una linea tratteggiata collegata a una associazione rappresenta una relazione. Non sono rappresentabili nei linguaggi di programmazione.  
   
 ![](./img/generics.png)  
@@ -132,29 +133,42 @@ Una linea tratteggiata collegata a una associazione rappresenta una relazione. N
 \<T extends E> type bound non può essere rappresentato in UML.  
   
 ## Design Pattern architetturali  
-Definisce le dipendenze tra i componenti. Ci sono 5 tipi.  
-Guidati da requisiti non funzionali.  
-Secondo la legge di Conway, un software viene progettato rispecchiando i rapporti sociali nelle organizzazioni.  
+Un design pattern è un *glossario di problemi comuni* e le possibili soluzioni con pro e contro.  
   
+Un design pattern architetturale definisce le dipendenze tra i componenti. Ci sono 5 tipi. Guidati da requisiti non funzionali.  
+  
+Secondo la legge di Conway, un software viene progettato rispecchiando i rapporti sociali nelle organizzazioni.  
 ### Architettura di tipo logico  
-**Layered Architecture**  
-Agli inizi l'organizzazione aziendale era a piramide: diversi tier dipendenti con quelli sopra e centrati da un CEO. Non funziona in aziende con molti dipendenti.  
 Programma back-end  
 1. *Application Logic*  
-   validazione sintattica delle applicazioni (classi controller)  
-   adapting delle informazioni in oggetti usabili  
+   validazione sintattica delle applicazioni  
+   adapting delle informazioni in oggetti usabili, {::nomarkdown} <u>DTO</u> {:/nomarkdown} (Data Transfer Objects)  
 2. *Business Logic*  
-   dominio applicativo per cui sto andando a sviluppare (classi service)  
-   validazione semantica o di dominio  
+   dominio applicativo per cui sto andando a sviluppare  
+   validazione semantica o di {::nomarkdown} <u>dominio</u> {:/nomarkdown}  
 3. *Persistent Logic*  
-   ciò che va a comunicare con l'esterno e come vengono salvati (repository)  
-   le classi che si scrivono sul database si chiamano entity  
+   ciò che va a comunicare con l'esterno e come vengono salvati  
+   le classi che si scrivono sul database si chiamano {::nomarkdown} <u>entity</u> {:/nomarkdown}  
+  
+L'architettura di tipo logico definisce come queste tre logiche interagiscono con loro. Applicare il fail fast.  
+  
+**Layered Architecture**  
+Agli inizi l'organizzazione aziendale era a piramide: diversi tier dipendenti con quelli sopra e centrati da un CEO. Non funziona in aziende con molti dipendenti.  
+  
+La relazione delle tre logiche è una in cui una dipende dall'altra  
+$$\displaystyle{Application\atop \text{classi controller}}\rightarrow{Business\atop \text{classi service}}\rightarrow{Persistent\atop \text{repository}}$$  
+  
 Problema: la persistent logic è la più importante perché è la più vicina a quella fisica. Si inizia a strutturare l'architettura da questo strato.  
   
 **Hexagonal Architecture**  
 ![](./img/hex-logic.png)  
+  
+Controller -input-> Service ->Dominio<- Repository  
+port-adapter  
+  
 Business logic è la più importante. Comunica con l'esterno tramite porte (driver). Gli adapting vengono fatte su queste e implementano gli use case.  
-### Architettura di tipo deployement  
+  
+### Architettura di tipo deployment  
 Basato sulla build, installazione del software.  
 **Architettura monolite**  
 E' composto da un monolite, detto anche artifact o installazione, indipendente dalle altre applicazioni. Da un monolite si definiscono i servizi.  
@@ -166,8 +180,10 @@ Ha un problema di "big ball of mud" dove un solo monolite fatto male può portar
 Per risolvere questo si può applicare il modular monolith.  
   
 **Architettura a microservizi**  
-E' un'applicazione definita come una serie di microservizi, indipendenti l'uno con l'altro.  
-Deve stabilire come i microservizi interagiscono tra loro.  
+E' un'architettura distribuita.  
+  
+La serie di microservizi sono indipendenti l'uno con l'altro con concetti di dominio separati.   
+Si devono stabilire come i microservizi interagiscono tra loro.  
 I microservizi *non possono condividere risorse* nel sistema di persistenza.  
   
 La problematica dei microservizi è la rete.  
@@ -254,7 +270,7 @@ Separation of concern, competenze per risolvere una logica
 **Model-View-Controller Pattern**  
 Controller: reazione agli input utente (application logic)  
   
-![[./img/model-view-controller.png|model-view-controller.png]]  
+![model-view-controller.png](./img/model-view-controller.png)  
 View notifica il Controller quando l'utente ci interagisce  
 Modello notifica la View quando è stato modificato  
   
@@ -348,7 +364,7 @@ object Singleton
 Assicurarsi l'esistenza di un'*unica istanza* di classe ed avere un *accesso globale* a questa.  
 Motivazione: ci sono entità che non devono avere più di una istanza.  
 Usato per classi service.  
-![[./img/singleton.png|singleton.png]]  
+![singleton.png](./img/singleton.png)  
 ```java  
 public enum Singleton {  
 	INSTANCE;  
@@ -442,7 +458,7 @@ E' un single point of failure e complica le dipendenze: va utilizzato solo quand
   
 ### Proxy  
 E' un surrogato che condivide la stessa interfaccia della classe da mediare.  
-![[./img/proxy.png|proxy.png]]  
+![](./img/proxy.png)  
   
 L'oggetto viene costruito solo quando viene usato (on demand) come collegamenti al server.  
 Es. smart pointer  
@@ -451,14 +467,14 @@ Es. smart pointer
 Permettono la definizione d  
 ### Command Pattern  
 Definisce l'interfaccia per eseguirle una richiesta (oggetto)  
-![[./img/command.png|command.png]]  
+![command.png](./img/command.png)  
   
 Gestisce richieste di cui non si conoscono i particolari  
 Passare in input tutti parametri necessari  
 Lambda, funzioni passate come parametri  
 ### Strategy Pattern  
 Definisce una famiglia di algoritmi intercambiabili.  
-![[./img/strategy.png|strategy.png]]  
+![strategy.png](./img/strategy.png)  
   
 Problema: non è detto che tutte le implementazioni hanno bisogno delle stesse informazioni, i metodi devono richiamare loro le informazioni aggiuntive di cui hanno bisogno  
   
