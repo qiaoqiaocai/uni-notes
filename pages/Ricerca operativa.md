@@ -281,11 +281,11 @@ $$c^{T}$$, vettore c trasposto
 	x è un vettore di n variabili reali di soluzioni ammissibili  
 	c è un vettore di n termini noti; sono costanti della funzione obiettivo  
 	b è un vettore di m termini noti; sono limiti dei vincoli  
-	a è una matrice mxn di termini noti; sono costanti dei vincoli  
+	a è una matrice $$m\times n$$ di termini noti; sono costanti dei vincoli  
   
 **Soluzioni di base**  
 Sistema $$Ax=b,\ A\in\mathbb{R}^{m\times n},\ p(A)=m,\ m<n$$  
-*Base di A*: sottomatrice quadrata di rango massimo, $$B\in\mathbb{R}^{m\times n}$$  
+*Base di A*: sottomatrice identità quadrata di rango massimo, $$B\in\mathbb{R}^{m\times n}$$  
 F matrice delle variabili di slack  
 $$A=[B|F]\quad B\in\mathbb{R}^{m\times n},\ \det(B)\neq0$$  
 $$x=\left[{x_{B}\atop x_{F}}\right]\quad x_{B}\in\mathbb{R}^{m},\ x_{F}\in\mathbb{R}^{n-m}$$  
@@ -296,12 +296,12 @@ $$\displaystyle x=\left[{x_{B}\atop x_{F}}\right]=\left[{B^{-1}b\atop 0}\right]$
 Usiamo il metodo di Gauss  
 Soluzioni di base sono vertici del problema di programmazione lineare.  
   
-$$z=c^{T}x=\underbrace{c_{B}^{T}B^{-1}b}_{z_{B}}+\underbrace{(c_{F}^{T}-c_{B}^{T}B^{-1}F)x_{F}}_{c_{F}^{T}}$$  
+$$z=c^{T}x=\underbrace{c_{B}^{T}B^{-1}b}_{z_{B}}+\underbrace{(c_{F}^{T}-c_{B}^{T}B^{-1}F)}_{c_{F}^{T}}x_{F}$$  
   
 Calcolare uno ad uno le soluzioni per trovare quella ottima può risultare un algoritmo molto pesante, usiamo il metodo del simplesso.  
   
 #### Metodo del simplesso  
-Usabile solo per problemi senza variabili intere  
+Usabile solo per problemi di programmazione lineare  
   
 Troviamo una soluzione di base ammissibile  
 Da quella troviamo un'altra base ammissibile e migliorante modificando le variabili fuori base da focalizzare e ponendo le altre a 0  
@@ -313,14 +313,16 @@ Esecuzione:
 	ripeti  
 2. mettere in forma canonica rispetto a B  
    $$z=\bar{z}_{B}+\sum\limits_{j=1}^{n-m}\bar{c}_{F_{j}}x_{F_{j}}$$  
-   $$x_{B_{i}}=\bar{b}_{i}-\sum\limits_{j=1}^{n-m}-\bar{a}_{iF_{j}}x_{F_{j}}\quad(i=1...m)$$  
+   $$x_{B_{i}}=\bar{b}_{i}+\sum\limits_{j=1}^{n-m}-\bar{a}_{iF_{j}}x_{F_{j}}\quad(i=1...m)$$  
 3. *Condizione sufficiente di ottimalità*  
-   Quando tutti i costi ridotti delle variabili fuori base sono $$c_{B_{i}}\geq0$$ allora la soluzione è ottima.  
+   Quando tutti i costi ridotti delle variabili fuori base sono $$c_{B_{i}}\geq0$$ allora la soluzione è ottima.   
 4. *Condizione sufficiente di illimitatezza*  
-   Quando c'è un costo ridotto $$c_{B_{i}}<0$$ e ha tutti gli altri parametri della stessa colonna è 0. L'algoritmo termina.  
+   Quando c'è un costo ridotto $$c_{B_{i}}<0$$ e ha tutti gli altri parametri della stessa colonna < 0. L'algoritmo termina.  
   
 c = costo ridotto  
 $$\bar{z}$$ = coefficiente di z  
+$$B_{i}$$ = indice della i-esima variabile in base (<= m)  
+$$F_{j}$$ = indice della j-esima variabile fuori base (<= n-m)  
   
 $$R_{0}$$ è la funzione obiettivo con z come valore obiettivo  
 $$TS=\left[\begin{array}{cc|c|c|c}&x_{B_{1}}...x_{B_{m}}&x_{F_{1}}...x_{F_{n-m}}&z &\bar{b}\\\hline(R_{0})&c_{B}^{T}&c_{F}^{T}&-1&0\\\hline(R_{1})&&&0\\\vdots&B&F&\vdots&b\\(R_{m})&&&0\end{array}\right]$$  
@@ -329,33 +331,35 @@ Prima di procedere:
 2. è una base ammissibile? $$\bar{b}\geq0$$  
 3. è una funzione ottima?  
 4. è illimitato?  
-5. $$\min\{\underset{(x_{B_{1}})}{\dfrac{\bar{b}_{1}}{\bar{a}_{1h}}},...,\underset{(x_{B_{m}})}{\dfrac{\bar{b}_{m}}{\bar{a}_{mh}}}\}$$ che scegliamo per cambio di base  
+5. $$\displaystyle\arg\min_{i=1,...,m}\{\underset{(x_{B_{i}})}{\dfrac{\bar{b}_{i}}{\bar{a}_{ih}}}:\bar{a}_{ih}>0\}$$ che scegliamo per cambio di base  
   
 Per fare cambio di base si devono fare operazioni di pivot dalla colonna.  
 Base non deve essere assolutamente nella nella posizione dello schema sopra, basta essere definita.  
   
 Vincolo è saturo quando $$s_{1}=0$$ e lasco quando $$\geq0$$.  
+$$\begin{array}{lllll}\max&3x_{i}&+1x_{2}&+3x_{3}\\\text{s.t.}&&\\&2x_{1}&+x_{2}&+x_{3}&\leq2\\&x_{1}&+2x_{2}&+3x_{3}&\geq -5\\&2x_{1}&+2x_{2}&+x_{3}&\leq6\\ &x_{1},&x_{2},&x_{3}&\geq0\end{array}\longrightarrow\begin{array}{llllllll}\min&-3x_{i}&-1x_{2}&-3x_{3}\\\text{s.t.}&&\\&2x_{1}&+x_{2}&+x_{3}&+x_{4}&&&=2\\&x_{1}&+2x_{2}&+3x_{3}&&+x_{5}&&=5\\&2x_{1}&+2x_{2}&+x_{3}&&&+x_{6}&=6\\ &x_{1},&x_{2},&x_{3},&x_{4},&x_{5},&x_6&\geq0\end{array}$$  
   
 0. Individuare base ammissibile da var slack in questo caso $$B=[x_{4}\ x_{5}\ x_{6}]$$  
 	Iter 1) $$B=[x_{4}\ x_{5}\ x_{6}]$$  
-		$$\begin{array}{cccccc|c|c}x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline-3&-1&-3&0&0&0&-1&0\\\hline2&1&1 &1&0&0&0&2\\1 & 2 & 3 & 0 & 1 & 0 & 0 & 5 \\2 & 2 & 1 & 0 & 0 & 1 & 0 & 6 \end{array}$$  
+		$$\begin{array}{ccccccc|c|c}&x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\-z&\hline-3 &-1 &-3 &0 &0 &0 &-1 &0 \\\hline x_{4} &2 &1 &1 &1 &0 &0 &0 &2\\ x_{5} &1 &2 &3 &0 &1 &0 &0 &5 \\ x_{4} &2 &2 &1 &0 &0 &1 &0 &6\end{array}$$  
 		(1) FC? Sì  
-		(2) Ammissibile? Sì  
+		(2) Ammissibile? Sì, vale 0  
 		(3) Ottima? Non so  
 		(4) Illimitata? Non so  
-		(5) entra x1 ed esce $$\min\{\frac{2}{2},\frac{5}{1},\frac{6}{2}\}=x_{4}$$  
+		(5) entra x1 ed esce $$\min\{\frac{2}{1},\frac{5}{2},\frac{6}{2}\}=x_{4}$$  
 	Iter 2) $$B=[x_{1}\ x_{5}\ x_{6}]$$  
-		$$\begin{array}{cccccc|c|cc}x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline0&1/2&-3/2&3/2&0&0&-1&0&R'_{0}=R_{0}+3R'_{1}\\\hline1&1/2&1/2&1/2&0&0&0&1&R'_{1}=R_{1}/2\\0&3/2&5/2&-1/2&1&0&0&4&R'_{2}=R_{2}-R'_{1}\\0&1&0&-1&0&1&0&4&R'_{3}=R_{3}-R'_{1}\end{array}$$  
+		$$\begin{array}{cccccc|c|cc}x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline0&1/2&-3/2&3/2&0&0&-1&3&R'_{0}=R_{0}+3R'_{1}\\\hline1&1/2&1/2&1/2&0&0&0&1&R'_{1}=R_{1}/2\\0&3/2&5/2&-1/2&1&0&0&4&R'_{2}=R_{2}-R'_{1}\\0&1&0&-1&0&1&0&4&R'_{3}=R_{3}-R'_{1}\end{array}$$  
 		(1) FC? Sì  
-		(2) Ammissibile? Sì  
+		(2) Ammissibile? Sì, vale -3  
 		(3) Ottima? Non so  
 		(4) Illimitata? Non so  
 		(5) entra x3 ed esce $$\min\{\frac{1}{\frac{1}{2}},\frac{4}{\frac{5}{2}},\frac{4}{0}\}=x_{5}$$  
 	Iter 3) $$B=[x_{1}\ x_{3}\ x_{6}]$$  
-		$$\begin{array}{cccccc|c|cc}x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline0&7/5&0&6/5&3/5&0&-1&6/5&R'_{0}=R_{0}+\frac{3}{2}R'_{2}\\\hline1&1/5&0&3/5&0&0&0&4/5&R'_{1}=R_{1}-\frac{1}{2}R'_{2}\\0&3/5&1&-1/5&2/5&0&0&8/5&R'_{2}=\frac{2}{5}R_{2}\\0&1&0&-1&0&1&0&4&\end{array}$$  
+		$$\begin{array}{cccccc|c|cc}x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline0&7/5&0&6/5&3/5&0&-1&27/5&R'_{0}=R_{0}+\frac{3}{2}R'_{2}\\\hline1&1/5&0&3/5&-1/5&0&0&1/5&R'_{1}=R_{1}-\frac{1}{2}R'_{2}\\0&3/5&1&-1/5&2/5&0&0&8/5&R'_{2}=\frac{2}{5}R_{2}\\0&1&0&-1&0&1&0&4&R'_{3}=R_{3}\end{array}$$  
 		(1) FC? Sì  
-		(2) Ammissibile? Sì  
+		(2) Ammissibile? Sì, vale -27/5  
 		(3) Ottima? Sì, non ci sono costi ridotti negativi  
+		  
   
 *Base degenere*: ci sono più di una $$\min\{\frac{\bar{b}_{1}}{\bar{a}_{1h}},...,\frac{\bar{b}_{m}}{\bar{a}_{mh}}\}$$.  
 Scegliamo albitrariamente quale fare uscire.  
