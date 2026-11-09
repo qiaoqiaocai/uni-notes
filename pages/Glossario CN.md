@@ -85,16 +85,19 @@ Osservazione: Il buon condizionamento è una proprietà del problema, non del me
 ?  
 Per una matrice invertibile $$A\in\mathbb{R}^{n\times m}$$, il numero di condizionamento rispetto alla norma $$\|\cdot\|$$ è $$K(A)=\text{Cond}(A)=\|A\|\cdot\|A^{-1}\|$$Per la norma 2, $$K_{2}(A)=\frac{\sigma_{\max}(A)}{\sigma_{\min}(A)}$$ dove $$\sigma$$ sono i valori singoli.  
   
+(Stima dell'errore, perturbazione del termine noto)  
+Sia Ax=b un sistema lineare con A invertibile. Se $$\tilde{b}=b+\Delta b\text{ e }A\tilde{x}=\tilde{b}$$, allora$$\frac{\|x-\tilde{x}\|}{\|x\|}\leq K(A)\frac{\|\Delta b\|}{\|b\|}$$  
+*Dimostrazione*  
 In un sistema lineare $$Ax=b$$ con termine noto $$b$$ affetto da errore.  
 $$\tilde{b}\approx b\qquad A\tilde{x}=\tilde{b}$$  
-$$\tilde{b}=b+\delta_{b}\qquad\tilde{x}=x+\delta_{x}\qquad$$ voglio stimare l'errore relativo $$\dfrac{\|\delta_{x}\|}{\|x\|}$$  
-$$\begin{rcases}A(x+\delta_{x})=b+\delta_{b}\\ Ax=b\end{rcases}\Rightarrow A\delta x=\delta b$$  
-A è invertibile quindi $$\delta_{x}=A^{-1}\delta_{b}$$  
-e in particolare $$\|\delta_{x}\|=\|A^{-1}\delta_{b}\|$$   
-  
+$$\tilde{b}=b+\Delta b\qquad\tilde{x}=x+\Delta x\qquad$$ voglio stimare l'errore relativo $$\dfrac{\|\Delta_{x}\|}{\|x\|}$$  
+$$\begin{rcases}A(x+\Delta x)=b+\Delta b\\ Ax=b\end{rcases}\Rightarrow A(\Delta x)=\Delta b$$  
+A è invertibile quindi $$\Delta x=A^{-1}\Delta b$$  
+e in particolare $$\|\Delta x\|=\|A^{-1}\Delta b\|\leq\|A^{-1}\|\|\Delta b\|$$   
+Da Ax=b abbiamo $$\|A\|\|x\|\geq\|b\|$$ quindi $\|x\|\leq\frac{\|b\|}{\|A\|}$$$\frac{\|\Delta x\|}{\|x\|}\leq\frac{\|A^{-1}\|\|\Delta b\|}{\|b\|/\|A\|}=\|A\|\|A^{-1}\|\frac{\|\Delta b\|}{\|b\|}=K(A)\frac{\|\Delta b\|}{\|b\|}$$  
 In un sistema lineare $$Ax=b$$ dove sia A che b sono affetti da errore.  
-$$(A+\delta_{A})(x+\delta_{x})=b+\delta_{b}$$  
-$$(A+\delta_{A})\delta_{x}=\cancel{b}+\delta_{b}-\cancel{Ax}-\delta_{A}x$$  
+$$(A+\Delta_{A})(x+\Delta x)=b+\Delta b$$  
+$$(A+\Delta A)\Delta x=\cancel{b}+\Delta b-\cancel{Ax}-\Delta Ax$$  
 +++  
   
 ##### 8. Algoritmi di sostituzione avanti e sostituzione indietro, condizioni per l'applicabilità.  
@@ -125,27 +128,49 @@ L = L^(n-1)
   
 ##### 10. Algoritmo LU con pivoting parziale per righe "idea" del pivoting e sua motivazione, output dell'algoritmo (no dettagli dell'algoritmo)  
 ?  
-Per migliorare la stabilità numerica, ad ogni passo k si sceglie come pivot. L'elemento di modulo massimo nella colonna k (dalla riga k in poi) quindi $$PA=LU$$dove P è la matrice delle permutazioni.  
+Per migliorare la stabilità numerica, ad ogni passo k si sceglie come pivot. L'elemento di modulo massimo nella colonna k (dalla riga k in poi) quindi $$PA=LU$$  
+dove P è la matrice delle permutazioni.  
 +++  
   
 ##### 11. Punti fissi, lemma delle contrazioni con dimostrazione.  
 ?  
 Lemma delle contrazioni di Banach  
-Sia $$F:\mathbb{R}^{n}\rightarrow\mathbb{R}^{n}$$ una contrazione, ovvero esiste $$L<1$$ tale che$$\|F(x)-F(y)\|\leq L\|x-y\|\quad\forall x,y\in\mathbb{R}^{n}$$allora:  
+Sia $$F:\mathbb{R}^{n}\rightarrow\mathbb{R}^{n}$$ una contrazione, ovvero esiste $$L<1$$ tale che  
+$$\|F(x)-F(y)\|\leq L\|x-y\|\quad\forall x,y\in\mathbb{R}^{n}$$  
+allora:  
 1. esiste un unico punto fisso $$x^{*}\in\mathbb{R}^{n}$$ tale che $$F(x^{*})=x^{*}$$  
 2. per ogni $$x^{(0)}\in\mathbb{R}^{n}$$, la successione $$x^{(k+1)}=F(x^{(k)})$$ converge a $$x^{*}$$  
 3. vale la stima dell'errore: $$\|x^{(k)}-x^{*}\|\leq L^{k}\|x^{(0)}-x^{*}\|$$  
   
-Dimostrazione  
-la successione è di Cauchy  
-il limite è punto fisso  
-il punto fisso è unico  
-stima dell'errore  
+*Dimostrazione*  
+1. La successione è di Cauchy.  
+Dato $$s^{(k)}=s^{(k+1)}-x^{(k)}$$ allora  
+$$x^{(k+1)}-x^{(k)}=\sum\limits_{j=0}^{\ell-1}s^{(k+1)}\\\|s^{(k)}\|=\|F(x^{(k)})-F(x^{(k-1)})\|\leq L\|x^{(k)}-x^{(k-1)}\|=L\|s^{(k-1)}\|$$  
+per induzione $$\|s^{(k)}\|\leq L^{k}\|s^{(0)}\|$$. Quindi  
+$$\|x^{(k-1)}-x^{(k)}\|\leq\sum\limits_{j=0}^{\ell-1}\|s^{(k-1)}\|\leq\sum\limits_{j=0}^{\ell-1}L^{k+j}\|s^{(0)}\|\frac{1-L^{\ell}}{1-L}$$  
+Poiché L<1, per k sufficientemente grande abbiamo $$\|x^{(k-\ell)}-x^{(k)}\|<\epsilon\quad\forall\epsilon>0,\ \forall\ell\geq0$$. Quindi la successione è di Cauchy.   
+  
+2. Il limite è punto fisso.  
+Dato che $$\mathbb{R}^{n}$$ è completo, esiste $$x^{*}=\lim_{k\rightarrow\infty}x^{(k)}$$. Per continuità di F  
+$$x^{*}=\lim_{k\rightarrow\infty}x^{(k+1)}=\lim_{k\rightarrow\infty}F(x^{(k)})=F(\lim_{k\rightarrow\infty}x^{(k)})=F(x^{*})$$  
+  
+3. Il punto fisso è unico.  
+Siano $$x^{*},y^{*}$$ due punti fissi. Allora  
+$$\|x^{*}-y^{*}\|=\|F(x^{*})-F(y^{*})\|\leq L\|x^{*}-y^{*}\|$$  
+Poiché L<1, necessariamente $$\|x^{*}-y^{*}\|=0\text{ quindi }x^{*}=y^{*}$$.  
+  
+4. Stima dell'errore  
+$$\|x^{(k+1)}-x^{*}\|=\|F(x^{(k)})-F(x^{*})\|\leq L\|x^{(k)}-x^{*}\|$$  
+Per induzione: $$\|x^{(k)}-x^{*}\|\leq L^{k}\|x^{(0)}-x^{*}\|$$  
 +++  
   
 ##### 12. Metodi iterativi lineari stazionari per soluzione di Ax=b: idea generale, condizioni per la consistenza, possibili vantaggi, risultato di convergenza generale che si deduce dal lemma delle contrazioni  
 ?  
+Idea: Creare una successione di approssimazione della soluzione in modo iterativo con basso costo computazionale della singola iterazione.  
+  
 Per risolvere Ax=b, un metodo iterativo lineare stazionario ha la forma $$x^{(k+1)}=Ex^{(k)}+q$$dove E è la matrice di iterazione e q è un vettore costante.  
+  
+$$\exists x^{*}\in\mathbb{R}^{n}:x^{(k)}\rightarrow x^{*}$$  
   
 Questo metodo converge alla soluzione di Ax=b per ogni $$x^{(0)}$$ se e solo se il raggio spettale p(E) < 1.  
 +++  
@@ -170,7 +195,7 @@ Gli autovalori di una matrice $$A=(a_{ij})$$ sono contenuti nell'unione dei cerc
 Se A è strettamente diagonalmente dominante per righe $$|a_{n}|>\sum\limits_{j\neq1}|a_{ij}|\qquad\forall i$$allora il metodo di Jacobi converge.  
 +++  
   
-##### 16. Criteri di arresto per metodi iterativi per la soluzione di sistemi lineari: residuo relarivo e step  
+##### 16. Criteri di arresto per metodi iterativi per la soluzione di sistemi lineari: residuo relativo e step  
 ?  
 Per il criterio del residuo relativo si arrestano le iterazioni quando $$r_{rel}^{(k)}=\frac{\|Ax^{(k)}-b\|}{\|b\|}<\text{toll}$$  
 Per il criterio dello scarto si arrestano le iterazioni quando $$\|x^{(k+1)}-x^{(k)}\|<\text{toll}$$  
@@ -182,11 +207,19 @@ Per il criterio del residuo vale che $$\frac{\|x^{*}-x^{(k)}\|}{x^{*}}\leq K(A)\
 Un sistema Ax=b con $$A\in\mathbb{R}^{m\times n},\ m>n$$, è sovradeterminato. In generale non ammette soluzione esatta.  
 La soluzione ai minimi quadrati di Ax=b è $$x^{*}=\arg\min_{x\in\mathbb{R}^{n}}\|Ax-b\|_{2}^{2}$$  
 +++  
-\[Fine primo appello\]  
   
 ##### 18. Teorema delle proiezioni ortogonali ed equazioni normali con dimostrazione  
-##### 19. Metodo QR per la soluzione delle eq normali  
 ?  
+Sia $$V_{n}$$ un sottospazio di dimensione finita di uno spazio con prodotto scalare. Per ogni f, esiste un unico $$p^{*}\in V_{n}$$ tale che $$\|f-p^{*}\|=\min_{p\in V_{n}}\|f-p\|$$Inoltre $$p^{*}$$ è caratterizzato dalla condizione di ortogonalità$$\langle f-p^*,v\rangle=0$$  
+*Dimostrazione*  
+Esistenza.  
+Unicità.  
+Caratterizzazione.  
++++  
+\[Fine primo appello\]  
+  
+##### 19. Metodo QR per la soluzione delle eq normali  
+++  
   
 ##### 20. Radici di un eq non lineare: condizioni per l'unicità, condizioni per l'esistenza e metodo di bisezione (con dimostrazione)  
 ##### 21. Radici semplici e radici di molteplicità maggiore di 1, condizionamento del calcolo di radici  
