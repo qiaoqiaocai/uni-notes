@@ -197,15 +197,21 @@ Domain Driven Design è riprodurre al livello software il dominio applicativo.
   
 Circuit breaker = definisce un circuit break nel caso di errore in un microservizio.  
 Rate limiter = definisce un limite di traffico mandato da un microservizio.  
-Back pressure =   
   
-Idempotenza = gestione dati duplicati.  
+Idempotenza = gestione di dati duplicati.  
   
 SemVer  
 Semanthic Versioning stabilisce che ogni versione può essere  
 - x Major, non retrocompatibile  
 - y Minor, retrocompatibile  
 - z Patch, piccole modifiche retrocompatibili  
+  
+*Topologie*  
+API-based = una libreria che comunica con i microservizi  
+REST-based = applicazione che comunica con i microservizi  
+  
+Con la comunicazione sincrona chi chiede deve rimanere in attesa attiva della risposta.  
+Centralised Message = c'è un layer di message broker che attende e inoltra risposte  
   
 ### Dependency Injection  
 Risolve il problema di risoluzione delle dipendenze.  
@@ -261,31 +267,37 @@ Programma front-end
 1. *Application Logic*  
 2. *Business Logic* (classe model)  
    implementata da un modello  
-3. *Persistent Logic*  
   
 View<>Model  
 Si deve risolvere il problema di sincronizzazione tra vista e modello.  
 Separation of concern, competenze per risolvere una logica  
   
 **Model-View-Controller Pattern**  
+(Observer Pattern)  
 Controller: reazione agli input utente (application logic)  
   
-![model-view-controller.png](./img/model-view-controller.png)  
+![](./img/MVC.png)  
+  
 View notifica il Controller quando l'utente ci interagisce  
 Modello notifica la View quando è stato modificato  
   
-Push Model  
-Pull Model  
+Push Model, client side rendering  
+![](./img/push_model.png)  
+  
+Pull Model, server side rendering  
+La view è separata per client e server  
   
 **Model-View-Presenter Pattern**  
 *Presenter (passive view)*  
 - man in the middle  
 - osserva il modello  
-- View $${-\circ\ \leftarrow\atop\longrightarrow}$$ Presenter -> Model  
+- View $${-\bullet\ \leftarrow\atop\longrightarrow}$$ Presenter -> Model  
   modello ritorna un valore al presenter  
-- aggiorna e osserva la vista  
+- aggiorna e osserva la vista (dumb)  
   
-View è solo un template di visualizzazione e un'interfaccia di comunicazione.  
+![](./img/MVP.png)  
+  
+View è solo un template di visualizzazione e un'interfaccia di comunicazione. Sostituibile da mock in test.  
   
 **Model-View-ViewModel Pattern**  
 *ViewModel*  
@@ -295,6 +307,11 @@ View
 - dichiarativa  
 - data-binding a due vie con proprietà del ViewModel  
 - non possiede più lo stato dell'applicazione  
+  
+![](./img/MV-MV.png)  
+  
+Framework ha il flusso che richiama gli elementi da noi definiti  
+Libreria: il flusso è a mano nostra e richiamiamo elementi in libreria  
   
 ## Design Pattern Creazionali  
 Design pattern per la creazione di istanze.  
