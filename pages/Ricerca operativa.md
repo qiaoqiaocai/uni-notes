@@ -341,21 +341,21 @@ $$\begin{array}{lllll}\max&3x_{i}&+1x_{2}&+3x_{3}\\\text{s.t.}&&\\&2x_{1}&+x_{2}
   
 0. Individuare base ammissibile da var slack in questo caso $$B=[x_{4}\ x_{5}\ x_{6}]$$  
 	Iter 1) $$B=[x_{4}\ x_{5}\ x_{6}]$$  
-		$$\begin{array}{ccccccc|c|c}&x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\-z&\hline-3 &-1 &-3 &0 &0 &0 &-1 &0 \\\hline x_{4} &2 &1 &1 &1 &0 &0 &0 &2\\ x_{5} &1 &2 &3 &0 &1 &0 &0 &5 \\ x_{4} &2 &2 &1 &0 &0 &1 &0 &6\end{array}$$  
+		$$\begin{array}{ccccccc|c|c}&x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline(-z)&-3 &-1 &-3 &0 &0 &0 &-1 &0 \\\hline(x_{4}) &2 &1 &1 &1 &0 &0 &0 &2\\ (x_{5}) &1 &2 &3 &0 &1 &0 &0 &5 \\ (x_{4}) &2 &2 &1 &0 &0 &1 &0 &6\end{array}$$  
 		(1) FC? Sì  
 		(2) Ammissibile? Sì, vale 0  
 		(3) Ottima? Non so  
 		(4) Illimitata? Non so  
 		(5) entra x1 ed esce $$\min\{\frac{2}{1},\frac{5}{2},\frac{6}{2}\}=x_{4}$$  
 	Iter 2) $$B=[x_{1}\ x_{5}\ x_{6}]$$  
-		$$\begin{array}{cccccc|c|cc}x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline0&1/2&-3/2&3/2&0&0&-1&3&R'_{0}=R_{0}+3R'_{1}\\\hline1&1/2&1/2&1/2&0&0&0&1&R'_{1}=R_{1}/2\\0&3/2&5/2&-1/2&1&0&0&4&R'_{2}=R_{2}-R'_{1}\\0&1&0&-1&0&1&0&4&R'_{3}=R_{3}-R'_{1}\end{array}$$  
+		$$\begin{array}{ccccccc|c|cc}&x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline&0&1/2&-3/2&3/2&0&0&-1&3&R'_{0}=R_{0}+3R'_{1}\\\hline(x_{1})&1&1/2&1/2&1/2&0&0&0&1&R'_{1}=R_{1}/2\\(x_{5})&0&3/2&5/2&-1/2&1&0&0&4&R'_{2}=R_{2}-R'_{1}\\(x_{6})&0&1&0&-1&0&1&0&4&R'_{3}=R_{3}-R'_{1}\end{array}$$  
 		(1) FC? Sì  
 		(2) Ammissibile? Sì, vale -3  
 		(3) Ottima? Non so  
 		(4) Illimitata? Non so  
 		(5) entra x3 ed esce $$\min\{\frac{1}{\frac{1}{2}},\frac{4}{\frac{5}{2}},\frac{4}{0}\}=x_{5}$$  
 	Iter 3) $$B=[x_{1}\ x_{3}\ x_{6}]$$  
-		$$\begin{array}{cccccc|c|cc}x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline0&7/5&0&6/5&3/5&0&-1&27/5&R'_{0}=R_{0}+\frac{3}{2}R'_{2}\\\hline1&1/5&0&3/5&-1/5&0&0&1/5&R'_{1}=R_{1}-\frac{1}{2}R'_{2}\\0&3/5&1&-1/5&2/5&0&0&8/5&R'_{2}=\frac{2}{5}R_{2}\\0&1&0&-1&0&1&0&4&R'_{3}=R_{3}\end{array}$$  
+		$$\begin{array}{ccccccc|c|cc}&x_{1}&x_{2}&x_{3}&x_{4}&x_{5}&x_{6}&-z&\bar{b}\\\hline&0&7/5&0&6/5&3/5&0&-1&27/5&R'_{0}=R_{0}+\frac{3}{2}R'_{2}\\\hline(x_{1})&1&1/5&0&3/5&-1/5&0&0&1/5&R'_{1}=R_{1}-\frac{1}{2}R'_{2}\\(x_{3})&0&3/5&1&-1/5&2/5&0&0&8/5&R'_{2}=\frac{2}{5}R_{2}\\(x_{6})&0&1&0&-1&0&1&0&4&R'_{3}=R_{3}\end{array}$$  
 		(1) FC? Sì  
 		(2) Ammissibile? Sì, vale -27/5  
 		(3) Ottima? Sì, non ci sono costi ridotti negativi  
