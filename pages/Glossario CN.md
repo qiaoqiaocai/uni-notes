@@ -7,9 +7,9 @@ tags:
   - review
 ---
 In particolare  
-- perturbazioni dati sistemi lineari  
+- [metodi iterativi lineari stazionali per soluzione di Ax=b](#12.%20Metodi%20iterativi%20lineari%20stazionari%20per%20soluzione%20di%20Ax=b:%20idea generale,%20condizioni%20per%20la%20consistenza,%20possibili%20vantaggi,%20risultato%20di%20convergenza%20generale%20che%20si%20deduce%20dal%20lemma%20delle%20contrazioni)  
 - [lemma contrazioni](Glossario%2520CN.md##11.%2520Punti%2520fissi,%2520lemma%2520delle%2520contrazioni%2520con%2520dimostrazione.)  
-- formule degli integrali  
+- proiezioni ortogonali  
   
 ##### 1. Sistema binario e sistema floating-point IEEE754 dei numeri macchina  
 ?  
