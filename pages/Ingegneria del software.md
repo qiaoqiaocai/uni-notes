@@ -59,6 +59,13 @@ Attività utili per passare da uno stato del ciclo di vita del progetto all'altr
   
 Queste attività si suddividono in task più piccoli per maggiore efficienza.  
   
+Le attività primarie sono  
+- acquisizione  
+- fornitura  
+- progettazione  
+- implementazione  
+- manutenzione  
+  
 Quando un progetto è significativo, si associano ai processi un *sistema di qualità* che aiuta a migliorarli e garantire conformità.  
 ![](./img/Pasted%20image%2020251006093841.png)  
 Il controllo di processo richiede di attuare manutenzione migliorativa.  
@@ -176,12 +183,14 @@ Retrospettiva
 3. Cosa fare per andare meglio?  
 4. Pianificazione futura e ricalcolo dei costi  
   
-#### Analisi dei Requisiti  
+### Analisi dei Requisiti  
 Requisito  
 - capacità necessaria a un utente per raggiungere un obiettivo, aspettative, *lato utente*  
 - capacità necessaria a un sistema per rispondere ad una aspettativa, implementazione, *lato soluzione*  
   
 Studia {::nomarkdown} <u>cosa</u> {:/nomarkdown} si deve fare. E' una checklist.  
+  
+*Definition of Done*, dobbiamo decidere cosa riferiamo come completato. Viene fatta quando vengono definiti i requisiti per evitare bias.  
   
 Acquisizione di conoscenze: *brainstorming* (cerimoniale)  
 Tutti quelli che discutono hanno importanza paritaria (es. round robin). Ha un gestore che organizza l'attività e uno scriba che trascrive i punti importanti. E' a tempo limitato.  
@@ -232,10 +241,6 @@ Coherent
   
 Tracciamento dei requisiti = checkpoint nel corso del progetto per validare se un requisito è soddisfatto  
   
-Verifica: accertare che lo svolgimento dello sviluppo sia corretto  
-Validazione: accertare che il prodotto finale corrisponda alle aspettative  
-Piano di Qualifica V&V  
-  
 Baseline requisiti è solida quando si sa motivarli.  
 La specifica dei requisiti deve essere  
 - priva di ambiguità  
@@ -252,37 +257,38 @@ RTB[^4] specifica
   
 Il PoC non deve contenere design se non quello implicato dalle tecnologie.  
   
-### Progettazione software  
+## Progettazione software  
 Il *modello a V* dello sviluppo di un progetto  
   
-|         1. Capitolato         |    <-->     |  9. Collaudo   |  
-|:-----------------------------:|:-----------:|:--------------:|  
-|   2. Analisi dei requisiti    |    <-->     | 8. Validazione |  
-|    3. Progettazione logica    |    <-->     |  7. Verifica   |  
-| 4. Progettazione di dettaglio |    <-->     |  6. Verifica   |  
-|               >               | 5. Codifica |       ^        |  
+|     {::nomarkdown} <u>1. Capitolato</u> {:/nomarkdown}      |    <-->     | {::nomarkdown} <u>9. Collaudo</u> {:/nomarkdown} |  
+| :---------------------------: | :---------: | :----------------: |  
+|   2. Analisi dei requisiti    |    <-->     |   8. Validazione   |  
+|    3. Progettazione logica    |    <-->     |    7. Verifica     |  
+| 4. Progettazione di dettaglio |    <-->     |    6. Verifica     |  
+|               >               | 5. Codifica |         ^          |  
   
 La progettazione software non è un processo lineare: stabiliamo prima quello che accadrà dopo.  
   
+(Edsger W. Dijktra)  
 "Making a thing satisfying our needs" come singola responsabilità, è diviso in due  
 1. Dichiarare le sue proprietà attese, Analisi  
 2. Crearlo assicurandoci le proprietà attese, Codifica  
 Correttezza per costruzione, invece di correttezza per correzione.  
   
 *Architettura logica (design)*  
-Individuando le parti (unità atomica), coerente con i requisiti, con la proprie specifiche (risorse, mantenimento).  
+Individuando le parti (unità atomica), coerente con i requisiti, con la proprie specifiche (risorse, mantenimento).   
 Facciamo adozione e adattamento di paradigmi.  
   
-*Schema in dettaglio* unità archittetturali a cui corrispondono moduli di codice  
+*Schema in dettaglio* unità architetturali a cui corrispondono moduli di codice  
   
-Il codice non da componenti archittetturali. Il software non riconosce struttura. Codice è conseguenza, il design viene prima.  
+Il codice non da componenti architetturali. Il software non riconosce struttura. Codice è conseguenza, il design viene prima.  
   
 La quantità di SW prodotto si misura in delivered source lines of code dopo la verifica.  
   
 Procedura  
 - top-down: dalla logica al dettaglio  
-- botton-up: OOP concepito dalle parte volte al riuso e specializzazione  
-- agile: progressivo (feedback-refactoring) su una archittetura base che si specifica in corso della sua realizzazione  
+- bottom-up: OOP concepito dalle parte volte al riuso e specializzazione  
+- agile: progressivo (feedback-refactoring) su una architettura base che si specifica in corso della sua realizzazione  
   
 Modifica del codice da un processore a un altro, re-targeting  
   
@@ -290,18 +296,28 @@ Proprietà dell'architettura
 - sufficienza, a soddisfare tutti i requisiti  
 - comprensibilità  
 - modularità, suddivisa in parti chiare e ben distinte  
-separazione esposizione (interfaccia) e componenti interni (implementazione)  
+	1. suddividere l'attività nei suoi blocchi logici  
+	2. aggregare strutture con le loro operazioni (information hiding)  
 - robustezza, gestisce diversi input  
 - disponibilità  
+- sicurezza  
+- semplicità, deve avere difficoltà non superflua (rasoio di Occam)  
+- incapsulazione, information hiding  
+- coesione, funzionalità "vicine" stanno nello stesso componente  
+  funzionale, temporale o informativa (preferibile)  
+- basso accoppiamento, side-effect  
   
-#### Qualità del software  
+Stati di progresso SEMAT  
+Architecture selected  
+Demonstrable  
+  
+### Qualità del software  
 ISO (International Standardisation Organisation)  
 >*Qualità del software*  
 >Insieme delle caratteristiche di un'entità, che ne determinano la capacità di soddisfare esigenze sia espresse che implicite.  
 >- ISO  
   
-Dal punto di vista di chi lo fa fatto, chi lo usa e valutato da terze parti.  
-Deve essere misurabile.  
+Dal punto di vista di chi lo fa fatto (intrinseca), chi lo usa e valutato da terze parti (relativa). Deve essere misurabile.  
   
 >*Sistema qualità*  
 >Struttura organizzativa, responsabilità, procedure, risorse, atte al perseguimento della qualità.  
@@ -322,20 +338,28 @@ Conformità riflessa nel *cruscotto di controllo* informato e non troppo costoso
 Le attività del Sistema Qualità pianificate e attuate per assicurare che il prodotto soddisfi le attese.  
 Questo è *Quality Assurance* (garanzia di qualità).  
   
-Engagement of people (comunicazione)  
-Improvement quantitativo  
-Evidence-based decision making  
+Piano + Controllo = Piano di Qualifica   
+  
+Quality Management Principles  
+1. Customer focus (comunicazione)  
+2. Leadership, avere una visione  
+3. Engagement of people, concorre alla stessa idea di qualità  
+4. Process approach  
+5. Improvement quantitativo  
+6. Evidence-based decision making  
   
 Valutazione quantitativa (metrica)  
 Il processo con cui assegnare simboli o numeri ad attributi di una entità con regole definite.  
   
-Qualità d'uso  
+Qualità in uso: efficacia, efficienza, soddisfazione, mitigazione rischi, copertura  
+  
 Qualità esterna (funzionale) sono spesso aspettative  
 Qualità interna (strutturale): manutenibilità e portabilità  
   
 Manutenibilità  
 Correttiva, di adattamento, evoluzione  
   
+Tutte queste qualità devono essere misurabili, metrica.  
 Fattori misurabili  
 - numero di parametri  
 - complessità ciclomatica  
@@ -354,9 +378,9 @@ Prodotto ->
 -> Giudizio  
 Cruscotto facilmente comprensibile  
   
-#### Qualità del processo  
+### Qualità del processo  
 Sviluppo non è una attività ma, un processo.  
-La qualità di un processo è una esigenza primaria. Un processo mal costruito porta a risultati mal fatti.  
+La qualità di un processo è una esigenza primaria. Un processo mal costruito e mantenuto porta a risultati mal fatti.  
   
 Un processo di qualità ha due piani:  
 ![[./img/Pasted image 20251126105855.png|Pasted image 20251126105855.png]]  
@@ -393,7 +417,7 @@ SPICE (Software Process Improvement Capability dEtermination, 1992)
 PdQ (Piano di Qualifica)  
 Obiettivi di qualità e fotografia di avanzamento  
   
-#### Verifica e Validazione  
+### Verifica e Validazione  
 *Verifica* provvede tutti gli strumenti per una facile validazione. Si fa ad ogni passo.  
 *Validazione* conferma tramite evidenza oggettiva che il prodotto soddisfa i requisiti (aspettative utente e usi intesi). Si fa ai momenti culmine.  
   
