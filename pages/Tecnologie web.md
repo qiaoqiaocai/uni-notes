@@ -1,6 +1,6 @@
 ---
-layout: page
 title: Tecnologie Web
+layout: page
 share: true
 ---
 html, css, php, javascript  
@@ -15,6 +15,7 @@ slide possono avere informazioni sforvianti
 | 3           | Reinderizzo       |  
 | 4           | Errore del client |  
 | 5           | Errore del server |  
+  
 Codici di stato HTTP (es. 404 error)  
   
 ## Standard HTML5  
@@ -159,7 +160,7 @@ Nell'aria-describedby viene messo il riferimento id alla descrizione della strut
 </table>  
 ```  
   
-#### Form  
+**Form**  
 ```html  
 <form action="file.php" method="post">  
 </form>  
@@ -477,13 +478,13 @@ html
 css  
 ```css  
 .navHelp {  
-    position: absolute;  
-    text-indent: -999em;  
+	position: absolute;  
+	text-indent: -999em;  
 }  
   
 .navHelp:focus {  
-    position: static;  
-    text-indent: 0em;  
+	position: static;  
+	text-indent: 0em;  
 }  
 ```  
 Per fare in modo che al cambio di pagina, lo screenreader non debba rileggersi l'header e il menù.  
@@ -616,60 +617,35 @@ Regole ARIA
 4. Non usare `role="presentation", aria-hidden="true"` su elementi che possono ricevere focus.  
 5. Tutti gli elementi interattivi devono avere un'etichetta accessibile.  
   
-I nomi accessibili   
-lkj.-  
-Contenuto  
+Nomi accessibili non devono ripetersi.   
+Contenuto accessibile per disabilità cognitive.   
+- gli elementi e il loro uso devono essere comprensibili  
+- aiuta a trovare il focus  
+- suggerimenti per evitare errori e aiutare a correggerli  
+- non richiedere l'uso della memoria  
+  
 I video e audio devono avere sottotitoli e/o trascrizioni.  
 Evitare i CAPTCHA il più possibile.  
   
-Ciechi e ipovedenti  
-Ipovedenti hanno una vista parziale per cui non possono guidare mezzi. Hanno un grande range non definibile.  
+Progetto "Guarda oltre!"  
+Ciechi: acuità visiva o campo visivo molto ridotto, non può affidarsi alla vista  
+Ipovedenti: < 3/10 di visione  
+Hanno una vista parziale per cui non possono guidare mezzi. Hanno un grande range non definibile.  
   
-## SEO (Search Engine Optimisation)  
-SERP: Search Engine Response Page, pagine ritornate da un motore di ricerca  
-Obiettivo: <= 30 posizioni, meglio nelle <=10 (prima pagina)  
-Tecnica + Marketing = SEO  
-  
-**Fattori Interni**  
-- keywork nel tag title (max 55 caratteri)  
-- meta tag description (max 145 caratteri, con call to action)  
-- uso corretto delle intestazioni  
-- attributo alt  
-- velocità di caricamento  
-- qualità del codice, no link errati (404 gestita)  
-- alberatura facilmente navigabile  
-- mai contenuti duplicati  
-- ancora link attinente al testo  
-- social sign, abilità di condividere etc.  
-  
-**Fattori esterni**  
-- inbound link, link esterni  
-  crescita deve essere organica, avere una motivazione  
-- link baiting  
-- link popularity  
-  
-Progettazione dei siti web  
-Da ordine di importanza:  
-1. Analisi dei requisiti, casi d'uso   
-2. Dati e informazioni  
-3. Applicazioni e servizi  
-4. Accessibilità e usabilità  
-5. Interfaccia e stile  
-6. Strumenti e manutenzione  
-Si devono avere le licenze di distribuzione.  
-  
-Modello mentale  
-- modalità di interazione  
-- aspettattive dell'utente  
-struttura del documento, strumenti di navigazione e strategia di browsing  
-  
-Fare attenzione a rompere le aspettative esterne per non disturbare quelle interne.  
-Globalizzato o localizzato? Differenze in iconografia, colori e contenuti.  
-  
-Il tag `description` non influenza molto il posizionamento in una SERP, ma come viene visualizzato in esso.  
+Siti web deteriorano in accessibilità. Fare attenzione ai servizi esterni.  
   
 ## Architettura dell'informazione  
 archiviazione, organizzamento e ricerca dei siti web  
+  
+Information designer, Web designer  
+Analisi dei requisiti -> target  
+Modello mentale: interazione e aspettative utente  
+1. evitare di rompere convenzioni esterne  
+2. romperle solo quando davvero si deve  
+3. convenzioni interne devono essere le stesse in tutto il sito  
+  
+Globalizzazione vs localizzazione  
+  
 Contesto + Contenuto + Utenti  
   
 Disorientamento  
@@ -799,6 +775,49 @@ Verifica
 - evitare verbi nascosti  
 Nei form mettere gli esem3pi sotto invece che nella casella.  
 area-live per gli errori, non solo il colore rosso  
+  
+## SEO (Search Engine Optimisation)  
+SERP: Search Engine Response Page, pagine ritornate da un motore di ricerca  
+Obiettivo: <= 30 posizioni, meglio nelle <=10 (prima pagina)  
+Tecnica + Marketing = SEO  
+  
+**Fattori Interni**  
+- keywork nel tag title (max 55 caratteri)  
+- meta tag description (max 145 caratteri, con call to action)  
+- uso corretto delle intestazioni  
+- attributo alt  
+- velocità di caricamento  
+- qualità del codice, no link errati (404 gestita)  
+- alberatura facilmente navigabile  
+- mai contenuti duplicati  
+- ancora link attinente al testo  
+- social sign, abilità di condividere etc.  
+  
+**Fattori esterni**  
+- inbound link, link esterni  
+  crescita deve essere organica, avere una motivazione  
+- link baiting  
+- link popularity  
+  
+Progettazione dei siti web  
+Da ordine di importanza:  
+1. Analisi dei requisiti, casi d'uso   
+2. Dati e informazioni  
+3. Applicazioni e servizi  
+4. Accessibilità e usabilità  
+5. Interfaccia e stile  
+6. Strumenti e manutenzione  
+Si devono avere le licenze di distribuzione.  
+  
+Modello mentale  
+- modalità di interazione  
+- aspettattive dell'utente  
+struttura del documento, strumenti di navigazione e strategia di browsing  
+  
+Fare attenzione a rompere le aspettative esterne per non disturbare quelle interne.  
+Globalizzato o localizzato? Differenze in iconografia, colori e contenuti.  
+  
+Il tag `description` non influenza molto il posizionamento in una SERP, ma come viene visualizzato in esso.  
   
 ## PHP  
 Personal Home Page, ora PHP Hypertext Processor  
