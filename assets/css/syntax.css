@@ -30,7 +30,7 @@
     --n_o_na-color:#40a02b;
     --kr-color: #209fb5;
     --text-bg-color: #e6e9ef;
-    --text-color: #8839ef;
+    --text-color: #8534ef;
 }
 
 :has(#dark-mode-toggle:checked) {
