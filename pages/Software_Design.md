@@ -168,96 +168,7 @@ port-adapter
   
 Business logic è la più importante. Comunica con l'esterno tramite porte (driver). Gli adapting vengono fatte su queste e implementano gli use case.  
   
-### Architettura di tipo deployment  
-Basato sulla build, installazione del software.  
-**Architettura monolite**  
-E' composto da un monolite, detto anche artifact o installazione, indipendente dalle altre applicazioni. Da un monolite si definiscono i servizi.  
-Scaling  
-- verticale: capacità fisiche  
-- orizzontale: duplicazione dei servizi  
-  
-Ha un problema di "big ball of mud" dove un solo monolite fatto male può portare a una serie di servizi fatti male.  
-Per risolvere questo si può applicare il modular monolith.  
-  
-**Architettura a microservizi**  
-E' un'architettura distribuita.  
-  
-La serie di microservizi sono indipendenti l'uno con l'altro con concetti di dominio separati.   
-Si devono stabilire come i microservizi interagiscono tra loro.  
-I microservizi *non possono condividere risorse* nel sistema di persistenza.  
-  
-La problematica dei microservizi è la rete.  
-Da un sistema locale a un sistema distribuito: si perde la la proprietà di transazionalità (certezza che tutti i processi richiesti vengano eseguiti).  
-  
-CAP theorem = un sistema distribuito può assicurare solo due proprietà tra Consistency, Availability e Partitioned.  
-Se tutte e tre sono assicurate dal sistema questa è ACID, ovvero ha la proprietà di transazionalità ed non è un sistema distribuito.  
-Database sQL sono ACID.  
-  
-Domain Driven Design è riprodurre al livello software il dominio applicativo.   
-  
-Circuit breaker = definisce un circuit break nel caso di errore in un microservizio.  
-Rate limiter = definisce un limite di traffico mandato da un microservizio.  
-  
-Idempotenza = gestione di dati duplicati.  
-  
-SemVer  
-Semanthic Versioning stabilisce che ogni versione può essere  
-- x Major, non retrocompatibile  
-- y Minor, retrocompatibile  
-- z Patch, piccole modifiche retrocompatibili  
-  
-*Topologie*  
-API-based = una libreria che comunica con i microservizi  
-REST-based = applicazione che comunica con i microservizi  
-  
-Con la comunicazione sincrona chi chiede deve rimanere in attesa attiva della risposta.  
-Centralised Message = c'è un layer di message broker che attende e inoltra risposte  
-  
-### Dependency Injection  
-Risolve il problema di risoluzione delle dipendenze.  
-  
-Albero delle dipendenze, Direct Acyclic Graph  
-![](./img/dag.png)  
-La dipendenza non ha proprietà transazionali.  
-  
-```c++  
-class A {  
-	B b;    // Field injection  
-	A(B b); // Constructor(Ctor) injection  
-	void setB(B b); // Method injection  
-}  
-```  
-  
-Problema  
-gli errori di dipendenza sono rilevabili solo in fase di esecuzione.  
-  
-Injector = risolve le dipendenze per conto mio, framework.  
-  
-@Inject per dichirare che le injections  
-  
-*Spring (in Java)*  
-@Configuration, classe che specifica  
-	@Bean definisce come costruire un oggetto  
-```java  
-@Configuration  
-public class CoffeeConfig {  
-	@Bean  
-	public CoffeeLister lister() {  
-		return new CoffeeLister(finder());  
-	}  
-	  
-	@Bean  
-	public CoffeeFinder finder() {  
-		return new ColonCoffeeFinder("coffee.csv");  
-	}  
-}  
-ApplicationContext ctx = new AnnotationConfigApplicationContext(CoffeeCongif.class);  
-```  
-Aiutano a costruire un Context Map, oggetti costruiti e le loro dipendenze (singlets).  
-  
-Con il metodo tradizionale ci sono più copie diverse del codice in ambienti diversi.  
-  
-### Pattern Model-View  
+#### Pattern Model-View  
 Pattern front-end  
 E' una architettura di tipo logico perché l'unico deployment che fa sono sulla macchina del cliente.  
   
@@ -313,6 +224,105 @@ View
 Framework ha il flusso che richiama gli elementi da noi definiti  
 Libreria: il flusso è a mano nostra e richiamiamo elementi in libreria  
   
+### Architettura di tipo deployment  
+Basato sulla build, installazione del software.  
+**Architettura monolite**  
+E' composto da un monolite, detto anche artifact o installazione, indipendente dalle altre applicazioni. Da un monolite si definiscono i servizi.  
+Scaling  
+- verticale: capacità fisiche  
+- orizzontale: duplicazione dei servizi  
+  
+Ha un problema di "big ball of mud" dove un solo monolite fatto male può portare a una serie di servizi fatti male.  
+Per risolvere questo si può applicare il modular monolith.  
+  
+**Architettura a microservizi**  
+E' un'architettura distribuita.  
+  
+La serie di microservizi sono indipendenti l'uno con l'altro con concetti di dominio separati.   
+Si devono stabilire come i microservizi interagiscono tra loro.  
+I microservizi *non possono condividere risorse* nel sistema di persistenza.  
+  
+La problematica dei microservizi è la rete.  
+Da un sistema locale a un sistema distribuito: si perde la la proprietà di transazionalità (certezza che tutti i processi richiesti vengano eseguiti).  
+  
+CAP theorem = un sistema distribuito può assicurare solo due proprietà tra Consistency, Availability e Partitioned.  
+Se tutte e tre sono assicurate dal sistema questa è ACID, ovvero ha la proprietà di transazionalità ed non è un sistema distribuito.  
+Database sQL sono ACID.  
+  
+Domain Driven Design è riprodurre al livello software il dominio applicativo.   
+  
+Circuit breaker = definisce un circuit break nel caso di errore in un microservizio.  
+Rate limiter = definisce un limite di traffico mandato da un microservizio.  
+  
+Idempotenza = gestione di dati duplicati.  
+  
+SemVer  
+Semanthic Versioning stabilisce che ogni versione può essere  
+- x Major, non retrocompatibile  
+- y Minor, retrocompatibile  
+- z Patch, piccole modifiche retrocompatibili  
+  
+*Topologie*  
+API-based = una libreria che comunica con i microservizi  
+REST-based = applicazione che comunica con i microservizi  
+  
+Con la comunicazione sincrona chi chiede deve rimanere in attesa attiva della risposta.  
+Centralised Message = c'è un layer di message broker che attende e inoltra risposte  
+  
+### Dependency Injection  
+E' l'uso di framework.  
+Chiamo codice che risolve il problema di risoluzione delle dipendenze.  
+  
+Oggetto di dominio che modella la realtà. Codificato dal developer.  
+Oggetto infrastrutturale che supportano. Usa un framework.  
+  
+Albero delle dipendenze, Direct Acyclic Graph  
+![](./img/dag.png)  
+La dipendenza non ha proprietà transazionali.  
+  
+```c++  
+class A {  
+	B b;    // Field injection  
+	A(B b); // Constructor(Ctor) injection  
+	void setB(B b); // Method injection  
+}  
+```  
+  
+Problema  
+gli errori di dipendenza sono rilevabili solo in fase di esecuzione.  
+  
+Injector = risolve le dipendenze per conto mio, framework.  
+  
+@Inject per dichirare che le injections  
+  
+*Spring (in Java e Kotlin)*  
+@Configuration, classe che specifica  
+	@Bean definisce come costruire un oggetto  
+  
+```kotlin  
+@Configuration  
+open class CoffeeConfig {  
+	@Bean  
+	open fun movieRepository : FindMoviesByDirectorPort {  
+		return MovieRepository()  
+	}  
+	  
+	@Bean  
+	open fun movieService (  
+		port: FindMoviesByDirectorPort  
+	) : FindMoviesByDirectorUseCase {  
+		return MovieService(port)  
+	}  
+}  
+  
+fun main(args: Array<String>) {  
+	runApplication<SwebdApplication>(*args)  
+}  
+```  
+Aiutano a costruire un Context Map con oggetti costruiti e le loro dipendenze (singlets).  
+  
+Con il metodo tradizionale ci sono più copie diverse del codice in ambienti diversi.  
+  
 ## Design Pattern Creazionali  
 Design pattern per la creazione di istanze.  
 ### Builder  
@@ -321,67 +331,71 @@ Problemi
 - Telescoping: diversi costruttori da costruire e mantenere  
 - è possibile passare valori non validi  
   
-```java  
-public class BuilderPattern {  
-	static class HappyMeal {  
-		private String panino; //obbligatorio  
-		private String contorno; //obbligatorio  
-		private String frutta;  
-		private String bibita; //obbligatorio  
-		private String gioco;  
-		  
-		  
-		private HappyMeal(String panino, String contorno, String frutta, String bibita, String gioco) {  
-			if(panino==null || panino.isBlank())  
-				throw new IllegalArgumentException("Panino cannot be null or empty");  
-			this.panino = panino;  
-			this.contorno = contorno;  
-			this.frutta = frutta;  
-			this.bibita = bibita;  
-			this.gioco = gioco;  
-		}  
-		  
-		public HappyMealBuilder withPanino(String panino) {  
-			this.panino = panino;  
-			return this;  
-		}  
-		//... metodi with degli altri campi  
-		  
-		public HappyMeal build() {  
-			return new HappyMeal(panino, contorno, frutta, bibita, gioco);  
-		}  
-	}  
+```kotlin  
+class Movie (  
+	private val title: String, //required  
+	private val director: String, //required  
+	private val year: Int?,  
+	private val genre: String?,  
+) {  
+	constructor (  
+		title: String, director: String  
+	) : this(title, director, year=null, genre=null)  
 	  
-	static enum Bibita {  
-		FANTA,  
-		COLA,  
-		ACQUA  
-	}  
+	/* molteplici varianti di costruttore con diversi null */  
 	  
-	public static void main(String[] args) {  
-		final HappyMeal happyMeal = new HappyMeal(panino:"Fanta");  
+	class Builder {  
+		private val title: String,  
+		private val director: String,  
+		private val year: Int? = null,  
+		private val genre: String? = null,  
 		  
-		final HappyMeal happyMeal1 = new HappyMeal.HappyMealBuilder(panino:"Toast", contorno:"Patatine", bibita: "Fanta")  
-			.withGioco("Barbie");  
+		fun withTitle(title: String): Movie.Builder {   
+			this.title = title  
+			return this  
+		}  
+		fun withDirector(director: String) apply { this.director = director }  
+		fun withYear(year: Int) apply { this.year = year }  
+		fun withGenre(genre: String) apply { this.genre = genre }  
+		  
+		fun build() : Movie {  
+			val title = requireNotNull(value=this.title) { "Title is required" }  
+			val director = requireNotNull(value=this.director) { "Director is required" }  
+			return Movie(title=title, director=director)  
+		}  
 	}  
+}  
   
+fun main() {  
+	val movie = Movie.Builder()  
+		.title("Backrooms")  
+		.director("Kane Parsons")  
+		.year(2026)  
+		.build()  
 }  
 ```  
   
-Kotlin è un linguaggio modello  
+Problema `Movie(title=director, director=title)`  
+Primitive types blindness: le primitive non si differenziano dalla loro definizione.  
 ```kotlin  
-data class HappyMeal(val panino:String="Toast", val bibita:String="Fanta")  
-  
-val HappyMeal hm = HappyMeal(bibita="Cola")  
-  
-object Singleton  
+@JvmInline  
+value class Title(private val title: String) {  
+	init {  
+		require(value=title.isNotBlank()) { "Title cannot be blank" }  
+	}  
+}  
+class Director(private val title: String) {}  
 ```  
+Value Class hanno un solo attributo e vengono tradotti come primitive  
+Stack per funzioni e primitive, Heap per indirizzazione  
   
 ### Singleton  
 Assicurarsi l'esistenza di un'*unica istanza* di classe ed avere un *accesso globale* a questa.  
 Motivazione: ci sono entità che non devono avere più di una istanza.  
 Usato per classi service.  
+  
 ![singleton.png](./img/singleton.png)  
+  
 ```java  
 public enum Singleton {  
 	INSTANCE;  
@@ -389,11 +403,10 @@ public enum Singleton {
 }  
 ```  
   
-Problema: race condition e accoppiamento con tutto il codice che lo usa  
-Usiamo i metodi di gestione di race condition e limitiamo il suo scope.  
+Problema: e' una variabile globale quindi ha dipendenza con tutto il codice. Usiamo i metodi di gestione di race condition e limitiamo il suo scope.  
   
 Non è possibile effettuare i test con i Singleton.  
-Nei caso non si vuole far in modo che il Singleton sia recuperabile ovunque, costruire un singleton  classe con dipendenza esplicitata nel costruttore  
+Nei caso non si vuole far in modo che il Singleton sia recuperabile ovunque, costruire un singleton classe con dipendenza esplicitata nel costruttore  
   
 ### Abstract Factory  
 Fornisce una interfaccia per creare famiglie di prodotti senza specificare classi concrete.  
@@ -403,15 +416,19 @@ Motivazione:
   
 ```java  
 public interface AbstractFactory {  
-	interface AbstractButton {}  
-	class ConcreteButton implements AbstractButton {}  
-	  
-	public static void main(String[] args) {  
-		final WidgetAbstractFactory widgetFactory =  
-			new WindowsWidgetFactory();  
-		  
-		ConcreteButton button = widgetFactory.createButton();  
+	Button buildButton();  
+}  
+  
+class ConcreteFactory implements AbstractFactory {  
+	@Override  
+	public Button buildButton() {  
+		return new ConcreteButton();  
 	}  
+}  
+  
+public static void main(String[] args) {  
+	ConcreteFactory abFactory = new ConcreteFactory(args[0]);  
+	final ConcreteButton button = abFactory.buildButton();  
 }  
 ```  
   
@@ -420,20 +437,26 @@ public interface AbstractFactory {
 ### Adapter  
 Permette di convertire l'interfaccia di una classe con un'altra.  
   
-Object adapter  
-```java  
-class PerimeterCalculator { // libreria  
-	interface Shape {}  
-}  
-class MySquare {} // mia applicazione  
+Class adapter  
+Adapter eredita sia dal target e l'adaptee. Non viene spesso usata.   
   
-interface PerimeterCalculatorTarget {  
-	double perimeter(MySquare square);  
+Object adapter  
+Adapter implementa target e compone l'adaptee.  
+```java  
+interface PerimeterCalculator { // libreria  
+	double perimeter(Shape shape);  
 }  
+class Square {} // mia applicazione  
+  
 class PerimeterCalculatorAdapter implements PerimeterCalculatorTarget {  
 	private final PerimeterCalculator delegate;  
 	  
-	double perimeter() {  
+	@Override  
+	double perimeter(Shape shape) {  
+		if(shape instanceof Square) { /* uso in data-oriented */  
+			Square square = (Square) shape;  
+			return square.lato*4;  
+		}  
 	}  
 }  
   
@@ -444,8 +467,6 @@ public static void main(String[] args) {
 }  
 ```  
   
-Class adapter non viene spesso usata.   
-  
 ### Decorator  
 Si vogliono mantenere le funzionalità base ma aggiungere qualcosa prima o dopo.  
 Funziona meglio quando la base non ha troppi metodi.  
@@ -454,15 +475,19 @@ Riduce le implementazioni ai diversi
 ```java  
 public abstract class PreToppedDecorator implements Pizza {  
 	private final Pizza pizza;  
+	  
 	@Override  
 	public List<String> ingredients() {  
-		return pizza.ingredients();  
+		return toppingIngredient(pizza.ingredients());  
 	}  
+	  
+	protected abstract List<String> toppingIngredients();  
 }  
-public class TomatoPizza extends PreToppedDecorator {  
-	public List<String> ingredients() {  
-		return addIngredients(pizza.ingredients());  
-	}  
+  
+public static void main(String[] args) {  
+	Pizza margherita = new TomatoPizza(  
+		new MozzarellaCheesePizza(new BasePizza)  
+	);  
 }  
 ```  
   
@@ -477,7 +502,10 @@ E' un single point of failure e complica le dipendenze: va utilizzato solo quand
 E' un surrogato che condivide la stessa interfaccia della classe da mediare.  
 ![](./img/proxy.png)  
   
-L'oggetto viene costruito solo quando viene usato (on demand) come collegamenti al server.  
+- Remote Proxy, rappresentazione locale di un oggetto remoto  
+- Virtual Proxy, oggetto viene costruito solo quando viene usato (on demand)  
+- Protection Proxy, controllo degli accessi all'oggetto  
+  
 Es. smart pointer  
   
 ## Pattern comportamentali  

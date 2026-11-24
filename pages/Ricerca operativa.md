@@ -324,6 +324,8 @@ $$\bar{z}$$ = coefficiente di z
 $$B_{i}$$ = indice della i-esima variabile in base (<= m)  
 $$F_{j}$$ = indice della j-esima variabile fuori base (<= n-m)  
   
+> ❗️Si devono ignorare le basi che hanno negativi al denominatore.  
+  
 $$R_{0}$$ è la funzione obiettivo con z come valore obiettivo  
 $$TS=\left[\begin{array}{cc|c|c|c}&x_{B_{1}}...x_{B_{m}}&x_{F_{1}}...x_{F_{n-m}}&z &\bar{b}\\\hline(R_{0})&c_{B}^{T}&c_{F}^{T}&-1&0\\\hline(R_{1})&&&0\\\vdots&B&F&\vdots&b\\(R_{m})&&&0\end{array}\right]$$  
 Prima di procedere:  
@@ -361,27 +363,57 @@ $$\begin{array}{lllll}\max&3x_{i}&+1x_{2}&+3x_{3}\\\text{s.t.}&&\\&2x_{1}&+x_{2}
 		(3) Ottima? Sì, non ci sono costi ridotti negativi  
 		  
   
-*Base degenere*: ci sono più di una $$\min\{\frac{\bar{b}_{1}}{\bar{a}_{1h}},...,\frac{\bar{b}_{m}}{\bar{a}_{mh}}\}$$.  
-Scegliamo albitrariamente quale fare uscire.  
-E' possibile che con basi diverse si hanno le stesse soluzioni.  
+*Base degenere*: non mi sposto dal vertice (valore obiettivo) ma cambio base.   
+  
+Quando ci sono più di una $$\theta=\min\{\frac{\bar{b}_{1}}{\bar{a}_{1h}},...,\frac{\bar{b}_{m}}{\bar{a}_{mh}}\}$$.  
+Scegliamo arbitrariamente quale fare uscire.  
+  
+E' possibile che con stesso funzione obiettivo si hanno soluzioni ottime di base diverse. Se ne esistono più di uno, ci sono infinite soluzioni ottime (non di base).  
   
 Costi ridotti negativi, mettere in forma canonica. Attenzione a non avere mai b<0 (non ammissibile).  
   
->**Regola anticiclo di Bland**  
+>**Regola anti-ciclo di Bland**  
 >1. Fissare un ordine tra le variabili (indice).  
 >2. Tra le variabili candidate al cambio di base, *scegliere sempre la prima* (con indice minimo).  
 >Applicando Bland, il simplesso visita una base al più una volta.  
   
 Perché sappiamo di ottenere soluzione degenere? Perché la soluzione del quoziente minimo $$\theta=0$$.  
   
+Lemma: Bland garantisce di non visitare una base più volte.  
+  
 Teorema: se esiste una soluzione ottima, allora esiste una base ottima con costi ridotti tutti non negativi.  
 Corollario: le regole anticiclo garantiscono di raggiungerla.  
   
 Utilizzando la regola di Bland, il metodo del simplesso converge sempre al più $$({n\atop m})$$ iterazioni.  
   
-Come trovare una base ammissibile? Usare il metodo della ricerca di ottimo.  
+Come trovare una base ammissibile?   
+Metodo delle due fasi  
+Fase 1) risolvo il problema artificiale  
+$$\begin{array}{ll}w^{*}=&\min w=&1^{T}y=y_{1}+y_{2}+...+y_{m}\\ &s.t. &Ax+ly=b\\ &&x,y\geq0\end{array}$$  
   
-Programmazione lineare  
+w>0 problema inammissibile  
+w=0 allora y=0  
+	posso mettere tutte le y fuori base e ottenere $$x_{B}$$ ammissibile per il problema di partenza  
+  
+| max  | 2 x1 | 3 x2  | -12 x3 |       |  
+| ---- | ---- | ----- | ------ | ----- |  
+| s.t. | x1   | -x2   | +4 x3  | >= -2 |  
+|      | 2 x1 | +2 x2 | -6 x3  | <= 4  |  
+|      | x1   | -x2   |        | <= 2  |  
+|      | x1,  | x2,   | x3     | <= 0  |  
+  
+| min  | $$-2x_1$$ | $$-3x_2$$ | $$-12\hat{x}_3$$ |     |     |     |      |  
+| ---- | ------- | ------- | -------------- | --- | --- | --- | ---- |  
+| s.t. | -x1     | +x2     | -4 x3          | +x5 |     |     | = -2 |  
+|      | 2 x1    | +2 x2   | -6 x3          |     | +x6 |     | = 4  |  
+|      | x1      | -x2     |                |     |     | +x7 | = 2  |  
+|      | x1,     | x2,     | x3,            | x5, | x6, | x7  | <= 0 |  
+  
+con $$\hat{x}_3=-x_3$$  
+  
+Se c'è un 0 in corrispondenza del costo ridotto di una variabile fuori base, esistono altre soluzione ottima.  
+  
+### Dualità e Programmazione lineare  
 Cambiamo punto di vista: definiamo un valore per la funzione obiettivo w  
 >Se z* esiste finito allora esiste anche w*.  
   
@@ -390,7 +422,7 @@ $$\begin{array}{lcll}w^{*}=&\max&w\\ &\text{s.t.}&w\leq c^{T}x&\forall x\in P\\ 
   
 PL2  
 Condizioni necessarie e sufficienti:  
-$$\begin{cases}w\leq c^{T}x,\ \forall x\in P\\ P\neq\emptyset\wedge z^{*}>-\infty\end{cases}\quad\Longrightarrow\quad\boxed{\exists u\in\mathbb{R}^{m}\begin{cases}u^{T}A\leq c^{T}\\ w\leq u^{T}b\end{cases}}$$  
+$$\begin{cases}w\leq c^{T}x,\ \forall x\in P\\ P\neq\emptyset\ \wedge\ z^{*}>-\infty\end{cases}\quad\Longrightarrow\quad\boxed{\exists u\in\mathbb{R}^{m}\begin{cases}u^{T}A\leq c^{T}\\ w\leq u^{T}b\end{cases}}$$  
   
 | $$PL_{1}$$                                                                         | $$PL_{2}$$                                                                                                 |  
 | -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |  
@@ -398,9 +430,9 @@ $$\begin{cases}w\leq c^{T}x,\ \forall x\in P\\ P\neq\emptyset\wedge z^{*}>-\inft
   
 La funzione funzione obiettivo del duale è $$u^{T}b=u_{1}b_{1}+...+u_{m}b_{m}$$  
   
+Sufficienza, definire $$u^{T}A\sim c^{T}$$ e u  
+$$c^{T}x\underbrace{\geq}_{x\geq0,\text{ serve }u^{T}A\leq c^{T}}u^{T}Ax\underbrace{\geq}_{Ax=b,\text{ u qualsiasi}}u^{T}b\geq w,\ \forall x\in P$$  
   
--Sufficienza, definire $$u^{T}A\sim c^{T}$$ e u  
-$$c^{T}x\underbrace{\geq}_{x\geq0,\text{ serve }u^{T}A\leq c^{T}}u^{T}Ax\underbrace{\geq}_{Ax}u^{T}b\geq w_{i},\ \forall x\in P$$  
   
 Affinché $$u^{T}Ax\leq c^{T}x$$ è sufficiente che a $$u^{T}A_{j}x_{j}\leq c_{j}x_{j},\ \forall j=1...n$$ si consideri una variabile primale alla volta:  
 - se $$x_{j}\geq0$$, la condizione sufficiente è che $$u^{T}A_{j}\leq c_{j}$$  
@@ -434,7 +466,9 @@ $$\begin{array}{lllll}\min&10x_{1}&+20x_{2}\\\text{s.t.}&2x_1&-x_{2}&&\geq1\\&&x
 > **Teorema della dualità debole**  
 > Siano P e D poliedri delle regioni ammissibili dei problemi primale e duale rispettivamente,   
 > per ogni coppia di soluzioni ammissibili per il primale e duale $$x\in p,\ u\in D$$, vale la relazione $$u^{T}b\leq c^{T}x$$  
->   
+  
+(max=min) I valori ammissibili del duale sono lower bound del primale, e viceversa.  
+  
 > Corollario  
 > Sia $$\bar{x}$$ soluzione ammissibile per (PL) e $$\bar{u}$$ per (DL), $$c^{T}\bar{x}=\bar{u}^{T}b\quad\Longleftrightarrow\quad{\bar{x}\text{ è soluzione ottima (PL),}\atop\bar{u}\text{ è soluzione ottima (DL)}}$$ inoltre  
 > 1. (PL) è illimitato $$\Longrightarrow$$ (DL) è inammissibile  
@@ -455,10 +489,41 @@ x e u sono ottime se e solo se
 3. variabile duale positiva  
 4. vincolo primale lasco  
   
+| max  |           | x2   | +x3   |       |  
+| ---- | --------- | ---- | ----- | ----- |  
+| s.t. | -x1       | -x2  | +2 x3 | <= 1  |  
+|      | -2 x1     | +x2  |       | <= 2  |  
+|      |           | 2 x2 |       | >= -3 |  
+|      | 2 x1      |      | +x3   | = 2   |  
+|      | x1 libera | x2,  | x3    | >= 0  |  
+  
+$$[x_{1}\ x_{2}\ x_{3}]=[1\ 4\ 0]$$ è ottima?  
+1) verifica ammissibilità  
+   $$x2,x3\geq0\\-1-4\leq1,\ -2+4\leq2,\ 8\geq-3,\ 2=2$$  
+2) passo al duale  
+  
+| min  | u1    | +2 u2   | -3 u3   | +2 u4     |      |  
+| ---- | ----- | ------- | ------- | --------- | ---- |  
+| s.t. | -u1   | -2 u2   |         | +2 u4     | = 0  |  
+|      | -u1   | +u2     | +2 u3   |           | >= 1 |  
+|      | +2 u1 |         |         | +u4       | >= 1 |  
+|      | u1,   | u2 >= 0 | u3 <= 0 | u4 libera |      |  
+  
+3) applico c.c.p.o.  
+   $$\begin{align*}u_{1}(-x_{1}-x_{2}+2x_{3}-1)=0&\quad\rightarrow\quad u_{1}(-6)=0&&\rightarrow\quad u_{1}=0\\ u_{2}(-2x_{1}+x_{2}-2)=0&\quad\rightarrow\quad-u_{2}(0)=0&&\rightarrow\quad\text{SEMPRE}\\ u_{3}(2x_{2}+3)=0&\quad\rightarrow\quad u_{3}(11)=0&&\rightarrow\quad u_{3}=0\\ u_{4}(2x_{1}-x_{3}-2)=0&\quad\text{VERO per ammissibilità primale}\\ x_{1} (-u_{1}-2u_{2}+2u_{4}-0)=0&\quad\text{VERO per ammissibilità duale}\\ x_{2}(-u_{1}+u_{2}+2u_{3}-1)=0&\quad\rightarrow\quad4(-u_{1}+u_{2}+2u_{3}-1)=0&&\rightarrow\quad-u_{1}+u_{2}+2u_{3}-1=0\\ x_{3}(2u_{1}+u_{4}-1)=0&\quad\rightarrow\quad0(2u_{1}+u_{4}-1)=0&&\rightarrow\quad\text{SEMPRE}\end{align*}$$  
+   importante: distingui le ammissibilità con il calcolo degli scarti per passo 4)  
+4) risolvo il sistema delle condizioni  
+   $$\begin{cases}u_{1}=0&(CCPD)\\ u_{3}=0&(CCPD)\\ -u_{1}+u_{2}+2u_{3}=0&(CCPD)\\ -u_{1}-2u_{2}+2u_{4}=0&(AD)\end{cases}\quad\Rightarrow\quad\begin{cases}u_{1}=0\\ u_{3}=0\\ u_{2}=1\\ u_{4}=1\end{cases}$$  
+5) verifica ammissibilità duale  
+   $$u_{1},u_{2}\geq0,\ u_{3}\leq0\\-2+2=0,\ 1\geq1,\ +2+1\geq1$$  
+6) conclusione  
+   x data è ammissibile e $$\exists u$$ ammissibile duale  
+   $$\Rightarrow[1\ 4\ 0]$$ è ottimo  
+  
 ### Problemi dei cammini minimi  
 Un problema sui grafi per trovare il Shortest Possible Path (SPP).  
 Variabili decisionali: $$x_{ij}=\begin{cases}1&\text{l'arco (i,j) è sul cammino minimo}\\0&\text{altrimenti}\end{cases}$$  
-$$\begin{align}\min&\sum\limits_{(i,j)\in A}c_{ij}x_{ij}\\s.t.&\underbrace{\sum\limits_{(i,v)\in A}x_{iv}\sum\limits_{(v,j)\in A}x_{vj}}_{\text{vincoli del bil. del flusso}}=\begin{cases}-1&\\+1&\\0&v\in N\backslash\{s,d\}\end{cases}\\&x_{ij}\in\{0,1\}\quad\forall(i,j)\in A\end{align}$$   
+$$\begin{align}\min&\sum\limits_{(i,j)\in A}c_{ij}x_{ij}\\s.t.&\underbrace{\sum\limits_{(i,v)\in A}x_{iv}-\sum\limits_{(v,j)\in A}x_{vj}}_{\text{vincoli del bil. del flusso}}=\begin{cases}-1&v=s\\+1&v=d\\0&v\in N\backslash\{s,d\}\end{cases}\\&x_{ij}\in\{0,1\}\quad\forall(i,j)\in A\end{align}$$   
 Gestire cicli di lunghezza negativa perché il problema sarebbe mal posto: non esiste un cammino minimo.  
   
 Matrice dei grafi  
@@ -469,48 +534,57 @@ Matrice di incidenza, righe nodi e colonne archi
 >Sia E la matrice corrispondente ai vincoli di bilanciamento di flusso e D una qualsiasi sottomatrice quadrata (di qualsiasi dimensione). Allora $$\det(D)\in\{-1,0,+1\}$$: E è *Totalmente Uni-modulare*.  
   
 Sia B sottomatrice quadrata di E (meno una riga...). Si ha:  
-- $$(B^{-1})_{i,j}=(-1)^{i+j}\frac{\det()}{\det()}$$  
--   
-Le soluzioni sono intere.  
+- $$(B^{-1})_{i,j}=(-1)^{i+j}\frac{\det(B^{ji})}{\det(B)}$$  
+- $$B^{-1}$$ è intera (componenti in $$\{0,+1,.1\}$$)  
+  
+Le soluzioni di base sono intere.  
 Possiamo quindi considerare il vincolo $$x_{ij}\in\{0,1\}\equiv\mathbb{R}_{+}$$.  
   
 Costruiamo il duale al problema SPP  
-$$\begin{align}\max\quad&\pi_{d}-\pi_{s}\\s.t.\quad&\pi_{j}-\pi_{i}&\forall(i,j)\in A\\&\pi_{v}\in\mathbb{R}&\forall v\in N\end{align}$$   
+$$\begin{align}\max\quad&\pi_{d}-\pi_{s}\\s.t.\quad&\pi_{j}-\pi_{i}\leq c_{ij}&\forall(i,j)\in A\\&\pi_{v}\in\mathbb{R}&\forall v\in N\end{align}$$  
+$$\pi$$ per potenziale  
+  
 **Algoritmo Label Correcting generico per SPP**  
->$$pi_s:=0$$; set p(s)=^  
->for each $$v\in N-s$$ {set $$\pi_{v}:=+\infty$$, set p(v)=^}  
->while ($$\exists(i,j)\in A:\pi_{j}>\pi_{i}+c_{ij}$$) do {  
->	set $$\pi_{j}:=\pi_{i}+c_{ij}$$ // ipotesi di soluzione duale  
->	set p(j) := i //ipotesi di cammino (sol. primale)  
+>$$\pi_{s}:=0$$; set p(s)=^;  
+>for each $$v\in N-s$$ { set $$\pi_{v}:=+\infty$$, set p(v)=^; }  
+>while ( $$\exists(i,j)\in A:\pi_{j}>\pi_{i}+c_{ij}$$ ) do {  
+>	set $$\pi_{j}:=\pi_{i}+c_{ij}$$  // ipotesi di soluzione duale  
+>	set p(j) := i            // ipotesi di cammino (sol. primale)  
 >}  
   
 Lemma  
-Alla fine di ogni iterazione, se $$\pi_{j}<+\infty$$ allora  
+(i) Alla fine di ogni iterazione, se $$\pi_{j}<+\infty$$ allora  
 - esiste cammino P da s a j  
 - p(j) è il predecessore di j su P  
 - costo di P è $$\pi_{j}$$  
-Al termine dell'algoritmo, se esiste un cammino da s a j, allora $$\pi_{j}<+\infty$$.  
+  
+(ii) Al termine dell'algoritmo, se esiste un cammino da s a j, allora $$\pi_{j}<+\infty$$.  
   
 In presenza di un ciclo di lunghezza negativa, l'algoritmo non converge.  
   
-Senza cicli di lunghezza negativa, l'algoritmo converge in $$O((|N|-1)(\overline{M}-\underline{M})|A|)$$.  
-- N-1 etichette da $$+\infty$$ a costo minimo  
+Senza cicli di lunghezza negativa, l'algoritmo converge in  
+$$O((|N|-1)(\overline{M}-\underline{M})|A|)$$  
+max iterazioni: N-1 etichette da $$+\infty$$ a costo minimo  
 - $$+\infty:$$ usiamo upper bound $$\overline{M}=(|N|-1)\cdot\max\{0,\underset{(i,j)\in A}{\max}x_{ij}\}$$  
-- $$\underline{M}:$$ lower bound per il costo minimo $$=(|N|-1)\cdot\min\{0,\underset{(i,j)\in A}{\min}x_{ij}\}$$  
-- $$|A|:$$ costo di ogni iterazione  
+- $$\underline{M}:$$ lower bound per il costo minimo $$\underline{M}=(|N|-1)\cdot\min\{0,\underset{(i,j)\in A}{\min}x_{ij}\}$$  
+- $$O(|A|):$$ costo di ogni iterazione  
   
-Complessità *non è polinomiale* dato il fattore $$(\overline{M}-\underline{M})$$ che dipende dai valori del problema.  
+Complessità *pseudo-polinomiale* dato il fattore $$(\overline{M}-\underline{M})$$ che dipende dai valori del problema.  
+  
+Correttezza: senza cicli negativi, trova una soluzione ottima  
   
 > L'algoritmo LCG calcola l'albero dei cammini minimi da s verso tutti i nodi.  
   
-E' possibile trovare tutti i cammini minimi costruendo il grafo dei cammini minimo:  
+E' possibile trovare tutti i cammini minimi costruendo il grafo dei cammini minimi:  
 $$G_{s,\pi}=(N,A_{s\pi})\quad\text{dove}\quad A_{s,\pi}=\{(i,j)\in A:\pi_{j}=\pi_{i}+c_{ij}\}$$  
   
+Valgono le condizioni di complementarietà primale duale: $$(\pi_{j}-\pi_{i}-c_{ij})x_{ij}=0\quad\forall(i,j)\in A$$  
+  
 **Algoritmo di Bellman-Ford**  
-> $$pi_s:=0$$; set p(s)=^  
+> $$\pi_{s}:=0$$; set p(s)=^  
 >for each $$v\in N-s$$ {set $$\pi_{v}:=+\infty$$, set p(v)=^}  
->for h=i to |N| {  
->	set flag_aggiornato := falso; set $$\pi':=\pi$$;  
+>for h=1 to |N| {  
+>	set flag_aggiornato := false; set $$\pi':=\pi$$;  
 >	for all ($$(i,j)\in A:\pi_{j}>\pi'_{i}+c_{ij}$$) do {  
 >		set $$\pi_{j}:=\pi'_{i}+c_{ij}$$;  
 >		set p(j) := i;  
@@ -529,6 +603,15 @@ Questo algoritmo finisce sempre e ha una complessità di $$O(|N|A)$$.
 Implementazione mediamente più efficiente, tenendo conto dei flag nodi aggiornati  
   
 Costruire il cammino minimo seguendo i flag all'indietro.  
+![](./img/Schermata_20261123_112254.png) ![110](./img/albero_cammin.png)  
+  
+| iterazione | A     | B             | C             | D             | E             | F             | fla g |  
+| ---------- | ----- | ------------- | ------------- | ------------- | ------------- | ------------- | ----- |  
+| h=0        | 0 (^) | $$+\infty$$ (^) | $$+\infty$$ (^) | $$+\infty$$ (^) | $$+\infty$$ (^) | $$+\infty$$ (^) | true  |  
+| h=1        | 0 (^) | +7 (A)        | +8 (A)        | $$+\infty$$ (^) | $$+\infty$$ (^) | $$+\infty$$ (^) | true  |  
+| h=2        | 0 (^) | +7 (A)        | +6 (B)        | +11 (B)       | +8 (B)        | +11 (C)       | true  |  
+| h=3        | 0 (^) | +7 (A)        | +6 (B)        | +8 (E)        | +8 (B)        | +9 (C)        | true  |  
+| h=4        | 0 (^) | +7 (A)        | +6 (B)        | +8 (E)        | +8 (B)        | +9 (C)        | false |  
   
 Generalizzazione del cammino minimo con più inizi e fini  
 Variabile decisionale $$x_{ij}\in\mathbb{Z}_+$$  
