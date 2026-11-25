@@ -67,11 +67,11 @@
     <script src="{{ "/assets/js/scale.fix.js" | relative_url }}"></script>
     <script>
       const darkMode = document.getElementById("dark-mode-toggle");
-      if (localStorage.getItem("darkMode") == null) {
-        localStorage.setItem("darkMode", darkMode.checked);
-      }
 
-      if (savedMode == true) {
+      darkMode.addEventListener ("click", () => {
+        localStorage.setItem("darkMode", darkMode.checked);
+      });
+      if (localStorage.getItem("darkMode") == true) {
         darkMode.checked = true;
       }
     </script>
